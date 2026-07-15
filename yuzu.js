@@ -1,5 +1,5 @@
 // =============================================================================
-// YuzuFox — Firefox Autoconfig for Arch Linux · Tiling WM · One-line UI · RAM Cache
+// YuzuFox — Firefox
 // =============================================================================
 // This file is installed as a system-wide default preference override. Every pref
 // is chosen for a minimalist, keyboard-driven, privacy-respecting workflow where
