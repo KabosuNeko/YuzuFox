@@ -69,7 +69,19 @@ curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-sett
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.sh | bash -s -- --uninstall
 ```
+## Troubleshooting
 
+This configuration strictly prioritizes privacy and performance, which may occasionally break certain web features. Here is how to quickly resolve common edge cases without altering the core setup:
+
+* **Broken SSO Logins or Payment Gateways:** Strict cross-origin referrer trimming might block third-party authentication handshakes.
+  * *Fix:* Press `Ctrl + L` to focus the URL bar, tab to the **Shield Icon** (Enhanced Tracking Protection), and toggle it off for that specific site.
+* **Cannot Access Router / Local IPs:** HTTPS-Only mode is strictly enforced. Local HTTP servers will show a secure connection warning.
+  * *Fix:* Simply click the **"Continue to HTTP Site"** button on the warning page.
+* **Fillable PDF Forms Not Working:** JavaScript execution within the built-in PDF viewer is disabled for security.
+  * *Fix:* Download the document and open it with a native lightweight PDF reader (e.g., `zathura` or `mupdf`).
+* **Missing Comments or Social Widgets:** Aggressive ad-blocking (uBlock Origin) combined with Strict ETP might block third-party frames like Disqus or embedded posts.
+  * *Fix:* Click the uBlock Origin extension icon and disable it temporarily for the site, or turn off the ETP shield.
+  
 ## Credits
 
 `yuzu.js` draws inspiration from [Betterfox](https://github.com/yokoffing/Betterfox), [Arkenfox](https://github.com/arkenfox/user.js) and [Firefox-cachyos-settings](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/cachyos-firefox-settings)
