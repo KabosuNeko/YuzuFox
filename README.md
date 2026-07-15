@@ -27,6 +27,10 @@ Over 300 locked preferences covering:
 - **Mozilla bloat removed** — Pocket, VPN, AI, sponsored content, promotions all disabled
 - **WebRender forced** — GPU compositing, hardware video decoding, Skia font cache
 
+### `policies.json`
+
+Enterprise Policy auto-installing uBlock Origin with pre-configured filter lists, enforcing privacy settings, and removing Mozilla messaging.
+
 ### `userChrome.css`
 
 230-line stylesheet collapsing tab bar and navigation bar into a single row on windows wider than 1000 px. Zero border radii, 26 px row height, transparent toolbars, hidden context menu items.
@@ -34,11 +38,6 @@ Over 300 locked preferences covering:
 <p align="center">
   <img width="850" alt="YuzuFox One-line UI Preview" src="https://github.com/user-attachments/assets/abe8c52c-9fd5-4c0c-95d4-55ffbbbfb913" style="border-radius: 8px;">
 </p>
-
-
-### `policies.json`
-
-Enterprise Policy auto-installing uBlock Origin with pre-configured filter lists, enforcing privacy settings, and removing Mozilla messaging.
 
 ## Install
 
