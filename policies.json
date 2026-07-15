@@ -1,0 +1,91 @@
+{
+  "policies": {
+    "DisableFeedbackCommands": true,
+    "DisableFirefoxStudies": true,
+    "DisablePocket": true,
+    "DisableTelemetry": true,
+    "NoDefaultBookmarks": true,
+    "DontCheckDefaultBrowser": true,
+    "NetworkPrediction": false,
+    "EnableTrackingProtection": {
+      "Value": true,
+      "Fingerprinting": true,
+      "Cryptomining": true,
+      "EmailTracking": true
+    },
+    "DNSOverHTTPS": {
+      "Enabled": true
+    },
+    "FirefoxHome": {
+      "SponsoredPocket": false,
+      "Pocket": false,
+      "Highlights": false,
+      "SponsoredTopSites": false,
+      "TopSites": false,
+      "Search": false,
+      "Locked": true
+    },
+    "Extensions": {
+      "Install": [
+        "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+      ],
+      "Uninstall": [
+        "amazondotcom@search.mozilla.org",
+        "bing@search.mozilla.org",
+        "ebay@search.mozilla.org",
+        "google@search.mozilla.org",
+        "duckduckgo@search.mozilla.org",
+        "twitter@search.mozilla.org"
+      ]
+    },
+    "ExtensionSettings": {
+      "uBlock0@raymondhill.net": {
+        "private_browsing": true
+      }
+    },
+    "3rdparty": {
+      "Extensions": {
+        "uBlock0@raymondhill.net": {
+          "adminSettings": {
+            "userSettings": {
+              "externalLists": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
+              "importedLists": [
+                "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+              ]
+            },
+            "selectedFilterLists": [
+              "user-filters",
+              "ublock-filters",
+              "ublock-badware",
+              "ublock-privacy",
+              "ublock-quick-fixes",
+              "ublock-unbreak",
+              "easylist",
+              "easyprivacy",
+              "adguard-spyware-url",
+              "urlhaus-1",
+              "plowe-0",
+              "fanboy-cookiemonster",
+              "fanboy-social",
+              "easylist-annoyances",
+              "ublock-annoyances",
+              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+            ],
+            "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
+            "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true"
+          }
+        }
+      }
+    },
+    "UserMessaging": {
+      "FeatureRecommendations": false,
+      "ExtensionRecommendations": false,
+      "WhatsNew": false,
+      "UrlbarInterventions": false,
+      "SkipOnboarding": true,
+      "FirefoxLabs": false,
+      "MoreFromMozilla": false,
+      "Locked": true
+    }
+  }
+}
