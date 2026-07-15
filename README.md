@@ -1,10 +1,10 @@
 # YuzuFox
 
-A minimalist, hardened Firefox setup tailored for Linux window managers, featuring a one-line UI.
+**Hardened, zero-bloat Firefox for WMs. Seamless one-line UI.**
 
 ## Overview
 
-YuzuFox transforms Firefox into a privacy-respecting, performance-optimized browser with a compact one-line UI. It consists of four components:
+YuzuFox transforms Firefox into a privacy-respecting and performance-optimized browser with a seamless one-line UI, securing your data without breaking sites. It consists of four components:
 
 | File | Purpose |
 |---|---|
