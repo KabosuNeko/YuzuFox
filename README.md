@@ -1,6 +1,6 @@
 # YuzuFox
 
-A minimalist, hardened Firefox setup with a one-line UI and auto-configured uBlock Origin.
+A minimalist, hardened Firefox setup tailored for Linux window managers, featuring a one-line UI.
 
 ## Overview
 
@@ -31,19 +31,24 @@ Over 300 locked preferences covering:
 
 230-line stylesheet collapsing tab bar and navigation bar into a single row on windows wider than 1000 px. Zero border radii, 26 px row height, transparent toolbars, hidden context menu items.
 
+<p align="center">
+  <img width="850" alt="YuzuFox One-line UI Preview" src="https://github.com/user-attachments/assets/abe8c52c-9fd5-4c0c-95d4-55ffbbbfb913" style="border-radius: 8px;">
+</p>
+
+
 ### `policies.json`
 
 Enterprise Policy auto-installing uBlock Origin with pre-configured filter lists, enforcing privacy settings, and removing Mozilla messaging.
 
 ## Install
 
-### System-wide settings (requires sudo)
+### Settings (requires sudo)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-settings.sh | bash
 ```
 
-### One-line UI (user-level)
+### Css (user-level)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.sh | bash
@@ -53,13 +58,13 @@ curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.
 
 ## Uninstall
 
-### System-wide settings
+### Settings
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-settings.sh | bash -s -- --uninstall
 ```
 
-### One-line UI
+### Css
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.sh | bash -s -- --uninstall
