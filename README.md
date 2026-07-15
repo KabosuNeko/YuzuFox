@@ -1,5 +1,11 @@
 # YuzuFox
 
+<p><br/></p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cffdbb1c-2676-4df8-94fb-0369edbb86bd" alt="yuzufox Logo" style="width: 192px" />
+</p>
+<p><br/></p>
+
 **Hardened, zero-bloat Firefox for WMs. Seamless one-line UI.**
 
 ## Overview
