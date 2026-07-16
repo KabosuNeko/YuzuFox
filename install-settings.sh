@@ -31,21 +31,24 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 curl -sSL "$POLICIES_URL" -o "$TEMP_DIR/policies.json" || { echo "!!! Error: Failed to download policies.json"; exit 1; }
 curl -sSL "$PREFS_URL" -o "$TEMP_DIR/yuzu.js" || { echo "!!! Error: Failed to download yuzu.js"; exit 1; }
 
-# --- Auto Region/Language Filter Injection via IP Geolocation ---
+# --- Auto Region/Language Filter Injection (Offline Mode) ---
 if command -v jq &> /dev/null; then
-    echo ":: Detecting geographic location..."
-
-    GEO_LOC=$(curl -sSL --max-time 3 https://ipinfo.io/country 2>/dev/null | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tr -d '\r')
-
-    if [ -z "$GEO_LOC" ]; then
-        GEO_LOC=$(curl -sSL --max-time 3 https://ifconfig.co/country-iso 2>/dev/null | tr '[:upper:]' '[:lower:]' | tr -d '\n' | tr -d '\r')
+    echo ":: Detecting geographic location locally (Offline)..."
+    
+    GEO_LOC=""
+    
+    SYS_TZ=$(timedatectl show --property=Timezone --value 2>/dev/null)
+    if [ -n "$SYS_TZ" ] && [ -f "/usr/share/zoneinfo/zone.tab" ]; then
+        GEO_LOC=$(awk -v tz="$SYS_TZ" '$3 == tz {print tolower($1)}' /usr/share/zoneinfo/zone.tab | head -n 1)
     fi
 
-    if [ -z "$GEO_LOC" ]; then
-        GEO_LOC=$(curl -sSL --max-time 3 https://cloudflare.com/cdn-cgi/trace 2>/dev/null | grep -E '^loc=' | cut -d'=' -f2 | tr '[:upper:]' '[:lower:]')
+    if [ -z "$GEO_LOC" ] || [ "$GEO_LOC" = "us" ]; then
+        echo ":: Timezone mapped to US or undetected."
+        read -rp ":: Enter your 2-letter country code for uBlock filters (e.g., vn, jp) or press Enter to skip: " GEO_LOC
+        GEO_LOC=$(echo "$GEO_LOC" | tr '[:upper:]' '[:lower:]')
     fi
 
-    echo ":: [DEBUG] Detected GEO_LOC: '${GEO_LOC:-NONE}'"
+    echo ":: [DEBUG] Targeted Region: '${GEO_LOC:-NONE}'"
 
     FILTER_CODE=""
 
@@ -89,7 +92,7 @@ if command -v jq &> /dev/null; then
     esac
 
     if [ -n "$FILTER_CODE" ]; then
-        echo ":: IP Location mapped to region '$GEO_LOC'. Injecting filter '$FILTER_CODE'..."
+        echo ":: Region mapped to '$GEO_LOC'. Injecting filter '$FILTER_CODE'..."
 
         jq --arg filter "$FILTER_CODE" '
             .policies["3rdparty"].Extensions["uBlock0@raymondhill.net"].adminSettings.selectedFilterLists |=
@@ -103,9 +106,7 @@ if command -v jq &> /dev/null; then
             echo "!!! [ERROR] jq failed to modify policies.json."
         fi
     elif [ -n "$GEO_LOC" ] && [ "$GEO_LOC" != "none" ]; then
-        echo ":: Unmapped region '$GEO_LOC'. No regional filter injected."
-    else
-        echo ":: Could not detect location (network issue). Skipping regional filter injection."
+        echo ":: Unmapped region '$GEO_LOC'. No regional filter injected (Defaulting to Global rules)."
     fi
 else
     echo "!!! Warning: 'jq' is not installed. You MUST install 'jq' (e.g., sudo pacman -S jq) for auto-region filter to work!"
