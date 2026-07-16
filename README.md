@@ -6,7 +6,7 @@
 </p>
 <p><br/></p>
 
-**Hardened, zero-bloat Firefox for WMs. Seamless one-line UI.**
+**Hardened, zero-bloat Firefox. Seamless one-line UI.**
 
 ## Overview
 
