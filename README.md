@@ -7,10 +7,9 @@
 <p><br/></p>
 
 **Hardened, zero-bloat Firefox. Seamless one-line UI.**
+YuzuFox transforms Firefox into a privacy-respecting and performance-optimized browser with a seamless one-line UI, securing your data without breaking sites.
 
 ## Overview
-
-YuzuFox transforms Firefox into a privacy-respecting and performance-optimized browser with a seamless one-line UI, securing your data without breaking sites. It consists of four components:
 
 | File | Purpose |
 |---|---|
