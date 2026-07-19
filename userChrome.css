@@ -1,6 +1,7 @@
-/* YuzuFox userChrome.css — One-line layout for Firefox.
-   Uses internal Firefox CSS variables that may change between versions. */
-/* One-line layout. Default column layout becomes row on wide windows. */
+/* YuzuFox userChrome.css — One-line layout for Firefox (tested on FF 128+).
+   Uses internal Firefox CSS variables (--tab-min-height, --urlbarView-*, etc.)
+   that may change between major versions. If the layout breaks after an update,
+   check Firefox release notes for renamed variables. */
 #navigator-toolbox { display: flex; flex-direction: column; }
 
 @media (min-width: 1000px) {
@@ -122,6 +123,8 @@ menupopup, panel {
 
 #PanelUI-button { display: inline-flex !important; }
 #reader-mode-button { display: none !important; }
+
+/* Permission icons (camera, mic, location). Comment out to show them again. */
 #identity-permission-box { display: none !important; }
 
 /* Playing indicator and other tab secondary labels (e.g. container, audio).
