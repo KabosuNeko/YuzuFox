@@ -17,7 +17,7 @@ YuzuFox transforms Firefox into a privacy-respecting and performance-optimized b
 | `yuzu.js` | System autoconfig (840 lines): privacy, performance, UI cleanup |
 | `userChrome.css` | One-line layout — tabs and URL bar on the same row |
 | `policies.json` | Enterprise policy: uBlock Origin auto-install, enforced privacy |
-| `install-settings.sh` | Install/uninstall yuzu.js + policies.json (Auto Region/Language Filter)  (requires sudo) |
+| `install-settings.sh` | Install/uninstall yuzu.js + policies.json (Auto Region/Language Filter via offline timezone detection, not IP-based)  (requires sudo) |
 | `install-css.sh` | Install/uninstall userChrome.css to Firefox profiles (user-level) |
 
 ### `yuzu.js`
@@ -36,6 +36,14 @@ Over 300 locked preferences covering:
 ### `policies.json`
 
 Enterprise Policy auto-installing uBlock Origin with pre-configured filter lists, enforcing privacy settings, and removing Mozilla messaging.
+
+> **Third-party data sources:** `policies.json` configures uBlock Origin to fetch filter lists from:
+> - [uBlock Origin built-in lists](https://github.com/uBlockOrigin/uAssets) (maintained by uBlock developers)
+> - [EasyList / EasyPrivacy](https://easylist.to/) (community-maintained ad blocking lists)
+> - [DandelionSprout's Legitimate URL Shortener](https://github.com/DandelionSprout/adfilt) (anti-tracking list)
+> - Region-specific filters (injected at install time based on timezone)
+>
+> These lists are fetched directly by uBlock Origin at runtime, not by YuzuFox itself.
 
 ### `userChrome.css`
 
@@ -60,6 +68,8 @@ curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.
 ```
 
 > **Note:** After installation, go to `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+>
+> **Dry-run:** Run `install-settings.sh --dry-run` or `install-css.sh --dry-run` to preview changes without applying them.
 
 ## Uninstall
 

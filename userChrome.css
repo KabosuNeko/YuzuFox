@@ -1,3 +1,5 @@
+/* YuzuFox userChrome.css — One-line layout for Firefox.
+   Uses internal Firefox CSS variables that may change between versions. */
 /* One-line layout. Default column layout becomes row on wide windows. */
 #navigator-toolbox { display: flex; flex-direction: column; }
 
@@ -122,7 +124,8 @@ menupopup, panel {
 #reader-mode-button { display: none !important; }
 #identity-permission-box { display: none !important; }
 
-/* e.g. playing indicator (secondary - not icon) */
+/* Playing indicator and other tab secondary labels (e.g. container, audio).
+   Comment out the line below to show audio indicators again. */
 .tab-secondary-label { display: none !important; }
 
 /* Context (Right click menu) items. Comment-out the ones you want to see in the context menu */
