@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'policies.json'
+      - 'yuzu.js'
+      - 'install-css.sh'
+      - 'install-settings.sh'
+  pull_request:
+    paths:
+      - 'policies.json'
+      - 'yuzu.js'
+      - 'install-css.sh'
+      - 'install-settings.sh'
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate policies.json
+        run: python3 -m json.tool policies.json > /dev/null
+
+  validate-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax (install-css.sh)
+        run: bash -n install-css.sh
+      - name: Check shell syntax (install-settings.sh)
+        run: bash -n install-settings.sh

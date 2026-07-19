@@ -3,21 +3,46 @@
 REPO_URL="https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main"
 POLICIES_URL="$REPO_URL/policies.json"
 PREFS_URL="$REPO_URL/yuzu.js"
+POLICIES_DEST="/etc/firefox/policies/policies.json"
+PREFS_DEST="/usr/lib/firefox/browser/defaults/preferences/yuzu.js"
+
+# Check prerequisites
+for cmd in curl sudo pgrep; do
+    if ! command -v "$cmd" &>/dev/null; then
+        echo "!!! Error: '$cmd' is required but not installed." >&2
+        exit 1
+    fi
+done
+
+# Check Firefox is not running
+if pgrep -x firefox &>/dev/null || pgrep -x firefox-esr &>/dev/null; then
+    echo "!!! Error: Firefox is running. Please close it first." >&2
+    exit 1
+fi
+
+# Dry-run mode
+if [ "${1:-}" = "--dry-run" ]; then
+    echo ":: [DRY-RUN] Would install:"
+    echo "    - $POLICIES_DEST"
+    echo "    - $PREFS_DEST"
+    echo "    - Region filter would be detected from timezone (offline)"
+    exit 0
+fi
 
 # --- Uninstall ---
-if [ "$1" = "--uninstall" ]; then
+if [ "${1:-}" = "--uninstall" ]; then
     echo ":: YuzuFox — Uninstall system settings"
     echo "    This will remove:"
-    echo "    - /etc/firefox/policies/policies.json"
-    echo "    - /usr/lib/firefox/browser/defaults/preferences/yuzu.js"
+    echo "    - $POLICIES_DEST"
+    echo "    - $PREFS_DEST"
     read -rp "    Continue? [y/N] " confirm
     if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
         echo "    Aborted."
         exit 0
     fi
     echo ":: Removing files (requires sudo)..."
-    sudo rm -f /etc/firefox/policies/policies.json
-    sudo rm -f /usr/lib/firefox/browser/defaults/preferences/yuzu.js
+    sudo rm -f "$POLICIES_DEST"
+    sudo rm -f "$PREFS_DEST"
     echo "===> Done. Please restart Firefox."
     exit 0
 fi
@@ -113,11 +138,11 @@ else
 fi
 
 echo ":: Installing system-wide (requires sudo)..."
-sudo mkdir -p /etc/firefox/policies/
-sudo cp -f "$TEMP_DIR/policies.json" /etc/firefox/policies/policies.json
+sudo mkdir -p "$(dirname "$POLICIES_DEST")"
+sudo cp -f "$TEMP_DIR/policies.json" "$POLICIES_DEST"
 
-sudo mkdir -p /usr/lib/firefox/browser/defaults/preferences/
-sudo cp -f "$TEMP_DIR/yuzu.js" /usr/lib/firefox/browser/defaults/preferences/yuzu.js
+sudo mkdir -p "$(dirname "$PREFS_DEST")"
+sudo cp -f "$TEMP_DIR/yuzu.js" "$PREFS_DEST"
 
 echo "===> Settings installed. Restart Firefox to apply."
 echo "    Run 'install-css.sh' to apply the one-line UI stylesheet."
