@@ -67,13 +67,7 @@ if command -v jq &> /dev/null; then
         GEO_LOC=$(awk -v tz="$SYS_TZ" '$3 == tz {print tolower($1)}' /usr/share/zoneinfo/zone.tab | head -n 1)
     fi
 
-    if [ -z "$GEO_LOC" ] || [ "$GEO_LOC" = "us" ]; then
-        echo ":: Timezone mapped to US or undetected."
-        read -rp ":: Enter your 2-letter country code for uBlock filters (e.g., vn, jp) or press Enter to skip: " GEO_LOC
-        GEO_LOC=$(echo "$GEO_LOC" | tr '[:upper:]' '[:lower:]')
-    fi
-
-    echo ":: [DEBUG] Targeted Region: '${GEO_LOC:-NONE}'"
+    echo ":: [DEBUG] Timezone-based region: '${GEO_LOC:-NONE}'"
 
     FILTER_CODE=""
 
