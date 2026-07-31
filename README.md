@@ -92,3 +92,5 @@ curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.
 ## Credits
 
 `yuzu.js` draws inspiration from [Betterfox](https://github.com/yokoffing/Betterfox), [Arkenfox](https://github.com/arkenfox/user.js) and [Firefox-cachyos-settings](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/cachyos-firefox-settings)
+
+`userChrome.css` draws inspiration from [firefox-qutebrowser-userchrome](https://github.com/Dook97/firefox-qutebrowser-userchrome)
