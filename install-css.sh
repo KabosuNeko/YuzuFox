@@ -69,7 +69,7 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 
 curl -sSL "$CSS_URL" -o "$TEMP_DIR/userChrome.css" || { echo "!!! Error: Failed to download userChrome.css" >&2; exit 1; }
 
-echo ":: Applying one-line UI to Firefox profiles..."
+echo ":: Applying YuzuFox UI to Firefox profiles..."
 shopt -s nullglob
 PROFILES=("$FIREFOX_DIR"/*.default* "$FIREFOX_DIR"/*.dev-edition-default)
 shopt -u nullglob
