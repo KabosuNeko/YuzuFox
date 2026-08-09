@@ -75,6 +75,13 @@ detect_os() {
     esac
 }
 
+# Fail fast when we would need to prompt but stdin is not a terminal
+# (e.g. `curl ... | bash` consumes stdin, so read -rp never sees the
+# keyboard). Suggest the two non-interactive escapes.
+require_tty() {
+    [ -t 0 ] || die "cannot prompt: stdin is not a terminal (curl | bash). Use --all, or download and run locally: curl -sSL -o yuzufox-install.sh $REPO_URL/install.sh && bash yuzufox-install.sh"
+}
+
 OS="$(detect_os)"
 [ "$OS" = "unsupported" ] && {
     echo "!!! Error: unsupported OS '$(uname -s)'." >&2
@@ -162,6 +169,7 @@ select_profiles() {
     SELECTED_IDX=("${!PROFILE_NAME[@]}")
     return
   fi
+  require_tty
   say "Available Firefox profiles:"
   for i in "${!PROFILE_NAME[@]}"; do
     if [ -d "${PROFILE_PATH[$i]}" ]; then
@@ -208,6 +216,7 @@ uninstall_system() {
   echo "    - $POLICIES_DEST"
   echo "    - $PREFS_DEST"
   if [ "$ALL" != "1" ]; then
+    require_tty
     read -rp "    Continue? [y/N] " confirm
     if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
       say_note "Aborted."
@@ -254,9 +263,15 @@ uninstall_profiles() {
   say "Done. Restart Firefox to apply."
 }
 
-# -----------------------------------------------------------------------------
-# Main
-# -----------------------------------------------------------------------------
+# --- Main ---------------------------------------------------------------------
+
+# curl | bash consumes stdin, so any read prompt would silently get EOF.
+# Fail fast BEFORE touching the system: if we will need to ask anything
+# (profile picker, or the uninstall confirmation) and stdin is not a
+# terminal and the caller did not pass --all, refuse to start.
+if [ "$ALL" != "1" ] && [ ! -t 0 ] && { [ "$MODE" != "system" ] || [ "$UNINSTALL" = "1" ]; }; then
+  require_tty
+fi
 
 if pgrep -x firefox &>/dev/null || pgrep -x firefox-esr &>/dev/null; then
   die "Firefox is running. Please close it first."

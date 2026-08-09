@@ -46,12 +46,26 @@ by a system-wide re-install.
 
 ### Linux / macOS
 
-```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash
-```
-
 Detects the platform, installs system-wide settings (asks for sudo), then
 lists profiles and asks which ones to install `user.js` into.
+
+> **Piped installs can't prompt.** `curl ... | bash` feeds the script through
+> stdin, so the interactive profile picker has no keyboard to read.
+> Download the script first, then run it locally:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
+bash install.sh
+```
+
+> For a non-interactive install (every profile, no prompt, works in a pipe):
+
+```bash
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --all
+```
+
+The installer refuses to prompt over a pipe and tells you exactly that, with
+the two commands above.
 
 | | policies.json | yuzu.js |
 |---|---|---|
@@ -61,30 +75,35 @@ lists profiles and asks which ones to install `user.js` into.
 Variants:
 
 ```bash
-install.sh --system-only     # yuzu.js + policies.json only
-install.sh --profiles-only   # user.js only (no sudo)
-install.sh --all             # every profile, no prompt
-install.sh --dry-run         # preview, write nothing
+bash install.sh                 # interactive profile picker
+bash install.sh --system-only   # yuzu.js + policies.json only
+bash install.sh --profiles-only # user.js only (no sudo)
+bash install.sh --all           # every profile, no prompt
+bash install.sh --dry-run       # preview, write nothing
 ```
 
 Existing `user.js` is **backed up** as `user.js.yuzubak`.
 
 ### Windows
 
-Open an **elevated** PowerShell and run:
+Open an **elevated** PowerShell, download the script, and run it locally:
 
 ```powershell
-irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
+.\install.ps1
 ```
 
-Same two-layer behaviour. *Flags need the scriptblock wrapper:*
+> If execution policy blocks `.ps1` files, bypass it for this run:
+>
+> ```powershell
+> powershell -ExecutionPolicy Bypass -File .\install.ps1
+> ```
+
+For a non-interactive install (every profile, no prompt), add `-All`:
 
 ```powershell
-$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
-& ([scriptblock]::Create($s)) -DryRun
-& ([scriptblock]::Create($s)) -SystemOnly
-& ([scriptblock]::Create($s)) -ProfilesOnly
-& ([scriptblock]::Create($s)) -All          # every profile, no prompt
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
+.\install.ps1 -All
 ```
 
 | File | Path |
@@ -96,14 +115,18 @@ $s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
 ## Uninstall
 
 ```bash
-# Linux / macOS
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall
+# Linux / macOS — every profile, no confirm prompt (works with the pipe)
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
+
+# Or download first for the interactive [y/N] confirmation
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
+bash install.sh --uninstall
 ```
 
 ```powershell
 # Windows
-$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
-& ([scriptblock]::Create($s)) -Uninstall
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
+.\install.ps1 -Uninstall
 ```
 
 ## Further reading
