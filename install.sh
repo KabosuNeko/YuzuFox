@@ -40,6 +40,7 @@ USERJS_TMP=""
 cleanup() {
     [ -n "$SYSTEM_TMP" ] && rm -rf "$SYSTEM_TMP"
     [ -n "$USERJS_TMP" ] && rm -rf "$USERJS_TMP"
+    return 0
 }
 trap cleanup EXIT
 
