@@ -6,91 +6,121 @@
 </p>
 <p><br/></p>
 
-**Hardened, zero-bloat Firefox. Compact, pywal-themed UI.**
+**Hardened, zero-bloat Firefox for daily use.**
 
-YuzuFox transforms Firefox into a privacy-respecting and performance-optimized browser with a compact two-row UI that auto-tints to your wallpaper, securing your data without breaking sites.
+---
 
 ## Overview
 
-| File | Purpose |
-|---|---|
-| `yuzu.js` | System autoconfig (840 lines): privacy, performance, UI cleanup |
-| `userChrome.css` | Compact two-row UI — 16 px tabs + auto-hiding navbar, pywal-tinted colors |
-| `policies.json` | Enterprise policy: uBlock Origin auto-install, enforced privacy |
-| `install-settings.sh` | Install/uninstall yuzu.js + policies.json (Auto Region/Language Filter via offline timezone detection, not IP-based)  (requires sudo) |
-| `install-css.sh` | Install/uninstall userChrome.css to Firefox profiles (user-level) |
+YuzuFox configures Firefox in **two layers**:
 
-### `yuzu.js`
+| Layer | File | Scope |
+|---|---|---|
+| System-wide | `yuzu.js` + `policies.json` | Every profile, locked prefs, installed once with sudo |
+| Per-profile | `user.js` | Optional per-profile tuning, updated independently |
 
-Over 300 locked preferences covering:
+- **`yuzu.js`** — system base: telemetry block, Mozilla bloat removal,
+  WebRender/GPU, locale, desktop integration. Locked prefs, installed once.
+- **`policies.json`** — enterprise policy: auto-installs uBlock Origin, sets
+  DuckDuckGo as default search, disables telemetry and Pocket at the policy
+  level.
+- **`user.js`** — per-profile tuning: privacy & security, performance, QoL.
+  *Generated from `src/user.js/*.js` by `build.py`.* Install into the profiles
+  you use. Updated separately from the system base.
+- **`install.sh`** — one script for Linux/macOS: system-wide + per-profile.
+- **`install.ps1`** — same for Windows.
 
-- **CRLite-only revocation** — OCSP disabled; certificate checks offline via CRLite mode 2
-- **RAM-only cache** — disk cache disabled; 1 GB memory cache, 3 GB media cache
-- **Zero background connections** — all speculativeConnect, DNS prefetch, predictor flags severed
-- **Fingerprinting Protection** — Firefox FFP, content script isolation, referrer trimming
-- **Safe Browsing disabled** — delegated to DNS-level blocking
-- **Complete telemetry block** — Normandy, studies, crash reports, coverage, activity stream all capped
-- **Mozilla bloat removed** — Pocket, VPN, AI, sponsored content, promotions all disabled
-- **WebRender forced** — GPU compositing, hardware video decoding, Skia font cache
+### Why two config files
 
-### `policies.json`
+`yuzu.js` rarely changes — only when Mozilla reshuffles a pref. You install it
+once and it stays as a **locked** floor for every profile.
 
-Enterprise Policy auto-installing uBlock Origin with pre-configured filter lists, enforcing privacy settings, and removing Mozilla messaging.
+`user.js` tracks Firefox updates more closely. Privacy prefs get renamed or
+deprecated; this file absorbs that churn. **Update it every few weeks** without
+ever touching the system-wide base.
 
-> **Third-party data sources:** `policies.json` configures uBlock Origin to fetch filter lists from:
-> - [uBlock Origin built-in lists](https://github.com/uBlockOrigin/uAssets) (maintained by uBlock developers)
-> - [EasyList / EasyPrivacy](https://easylist.to/) (community-maintained ad blocking lists)
-> - [DandelionSprout's Legitimate URL Shortener](https://github.com/DandelionSprout/adfilt) (anti-tracking list)
-> - Region-specific filters (injected at install time based on timezone)
->
-> These lists are fetched directly by uBlock Origin at runtime, not by YuzuFox itself.
-
-### `userChrome.css`
-
-~500-line stylesheet with a compact two-row layout: 16 px pixel-dense tabs (Maple Mono NF / JetBrains Mono Nerd Font) and an auto-hiding navigation bar that slides in on hover or URL bar focus. Colors are pulled live from [pywal](https://github.com/dylanaraps/pywal) via `@import` of `~/.cache/wal/colors.css` — run `wal -i <wallpaper>` and restart Firefox to re-tint the whole UI. Machines without pywal fall back to a fixed palette, so the layout never breaks.
-
-Also includes: zero border radii, transparent URL bar, debloated navbar (back/forward/reload/home/library buttons removed), hidden tab close buttons, no window controls, container indicators shown via tab title color, and full theming of menus/popups, selection and scrollbars. The active tab is tinted orange at 30% opacity.
-
-<p align="center">
-  <img width="850" alt="YuzuFox UI Preview" src="https://github.com/user-attachments/assets/14acea91-6871-422c-b081-401516b9f0ee" style="border-radius: 8px;">
-</p>
+Keeping them separate also prevents per-profile choices from being overwritten
+by a system-wide re-install.
 
 ## Install
 
-### Settings (requires sudo)
+### Linux / macOS
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-settings.sh | bash
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash
 ```
 
-### Css (user-level)
+Detects the platform, installs system-wide settings (asks for sudo), then
+lists profiles and asks which ones to install `user.js` into.
+
+| | policies.json | yuzu.js |
+|---|---|---|
+| **Linux** | `/etc/firefox/policies/policies.json` | `/usr/lib/firefox/browser/defaults/preferences/yuzu.js` |
+| **macOS** | `/Applications/Firefox.app/.../distribution/policies.json` | `/Applications/Firefox.app/.../browser/defaults/preferences/yuzu.js` |
+
+Variants:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.sh | bash
+install.sh --system-only     # yuzu.js + policies.json only
+install.sh --profiles-only   # user.js only (no sudo)
+install.sh --all             # every profile, no prompt
+install.sh --dry-run         # preview, write nothing
 ```
 
-> **Note:** After installation, go to `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
->
-> **Optional (pywal colors):** install [pywal](https://github.com/dylanaraps/pywal) (`pip install pywal`) and run `wal -i /path/to/wallpaper`, then restart Firefox. Without pywal, the default fallback palette is used.
->
-> **Dry-run:** Run `install-settings.sh --dry-run` or `install-css.sh --dry-run` to preview changes without applying them.
+Existing `user.js` is **backed up** as `user.js.yuzubak`.
+
+### Windows
+
+Open an **elevated** PowerShell and run:
+
+```powershell
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 | iex
+```
+
+Same two-layer behaviour. *Flags need the scriptblock wrapper:*
+
+```powershell
+$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
+& ([scriptblock]::Create($s)) -DryRun
+& ([scriptblock]::Create($s)) -SystemOnly
+& ([scriptblock]::Create($s)) -ProfilesOnly
+& ([scriptblock]::Create($s)) -All          # every profile, no prompt
+```
+
+| File | Path |
+|---|---|
+| policies.json | `%ProgramFiles%\Mozilla Firefox\distribution\policies.json` |
+| yuzu.js | `%ProgramFiles%\Mozilla Firefox\browser\defaults\preferences\yuzu.js` |
+| user.js | selected profiles under `%APPDATA%\Mozilla\Firefox\Profiles\` |
 
 ## Uninstall
 
-### Settings
-
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-settings.sh | bash -s -- --uninstall
+# Linux / macOS
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall
 ```
 
-### Css
-
-```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install-css.sh | bash -s -- --uninstall
+```powershell
+# Windows
+$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
+& ([scriptblock]::Create($s)) -Uninstall
 ```
+
+## Further reading
+
+See **[TIPS.md](TIPS.md)** for DNS/DoH, Safe Browsing, search engines,
+extensions, and zero-day rationale.
+
+## Contributing
+
+`user.js` is generated from modular source files under `src/user.js/`.
+To change a pref, edit the appropriate source file and run `python3 build.py`.
+CI enforces that `user.js` and `user.js.lock` stay in sync via `build.py --check`.
+`yuzu.js` and `policies.json` remain standalone.
 
 ## Credits
 
-`yuzu.js` draws inspiration from [Betterfox](https://github.com/yokoffing/Betterfox), [Arkenfox](https://github.com/arkenfox/user.js) and [cachyos-firefox-settings](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/cachyos-firefox-settings)
-
-`userChrome.css` draws inspiration from [firefox-qutebrowser-userchrome](https://github.com/Dook97/firefox-qutebrowser-userchrome)
+[Betterfox](https://github.com/yokoffing/Betterfox) ·
+[Arkenfox](https://github.com/arkenfox/user.js) ·
+[cachyos-firefox-settings](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/cachyos-firefox-settings) ·
+[Firefox admin docs](https://firefox-admin-docs.mozilla.org/)

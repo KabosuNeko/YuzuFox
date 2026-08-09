@@ -6,14 +6,20 @@ on:
     paths:
       - 'policies.json'
       - 'yuzu.js'
-      - 'install-css.sh'
-      - 'install-settings.sh'
+      - 'user.js'
+      - 'install.sh'
+      - 'install.ps1'
+      - 'build.py'
+      - 'src/user.js/**'
   pull_request:
     paths:
       - 'policies.json'
       - 'yuzu.js'
-      - 'install-css.sh'
-      - 'install-settings.sh'
+      - 'user.js'
+      - 'install.sh'
+      - 'install.ps1'
+      - 'build.py'
+      - 'src/user.js/**'
 
 jobs:
   validate-json:
@@ -27,7 +33,149 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check shell syntax (install-css.sh)
-        run: bash -n install-css.sh
-      - name: Check shell syntax (install-settings.sh)
-        run: bash -n install-settings.sh
+      - name: Check shell syntax (install.sh)
+        run: bash -n install.sh
+
+  validate-no-pref-dup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No pref duplicated between yuzu.js and user.js
+        run: |
+          DUPES=$(comm -12 \
+            <(grep -oP '^\s*(pref|user_pref)\("\K[^"]+' yuzu.js | sort -u) \
+            <(grep -oP '^\s*(pref|user_pref)\("\K[^"]+' user.js | sort -u))
+          if [ -n "$DUPES" ]; then
+            echo "Duplicate prefs found between yuzu.js and user.js:"
+            echo "$DUPES"
+            exit 1
+          fi
+          echo "No preference duplication."
+
+  smoke-test-install-sh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up fake Firefox profiles
+        run: |
+          MOZ_DIR="$HOME/.mozilla/firefox"
+          mkdir -p "$MOZ_DIR/Profiles/default"
+          mkdir -p "$MOZ_DIR/Profiles/test"
+          echo "[Profile0]
+          Name=default
+          IsRelative=1
+          Path=Profiles/default
+          Default=1
+
+          [Profile1]
+          Name=test
+          IsRelative=1
+          Path=Profiles/test" > "$MOZ_DIR/profiles.ini"
+          echo "existing default user.js" > "$MOZ_DIR/Profiles/default/user.js"
+      - name: Mock sudo and pgrep
+        run: |
+          FAKE_BIN="$RUNNER_TEMP/yuzufox-fake-bin"
+          FAKE_ROOT="$RUNNER_TEMP/yuzufox-fake-root"
+          mkdir -p "$FAKE_BIN" "$FAKE_ROOT"
+          cat > "$FAKE_BIN/sudo" <<'EOF'
+          #!/usr/bin/env bash
+          # Redirects system-wide writes into FAKE_ROOT so the CI job stays non-destructive.
+          set -euo pipefail
+          FAKE_ROOT="${FAKE_ROOT:-$(mktemp -d)}"
+          args=("$@")
+          if [ "${args[0]}" = "mkdir" ] && [ "${args[1]}" = "-p" ]; then
+            mkdir -p "$FAKE_ROOT${args[2]}"
+            exit 0
+          fi
+          if [ "${args[0]}" = "cp" ] && [ "${args[1]}" = "-f" ]; then
+            mkdir -p "$(dirname "$FAKE_ROOT${args[3]}")"
+            cp -f "${args[2]}" "$FAKE_ROOT${args[3]}"
+            exit 0
+          fi
+          if [ "${args[0]}" = "rm" ] && [ "${args[1]}" = "-f" ]; then
+            rm -f "$FAKE_ROOT${args[2]}"
+            exit 0
+          fi
+          exec "${args[@]}"
+          EOF
+          cat > "$FAKE_BIN/pgrep" <<'EOF'
+          #!/usr/bin/env bash
+          exit 1
+          EOF
+          chmod +x "$FAKE_BIN/sudo" "$FAKE_BIN/pgrep"
+          echo "$FAKE_BIN" >> "$GITHUB_PATH"
+          echo "FAKE_ROOT=$FAKE_ROOT" >> "$GITHUB_ENV"
+      - name: Dry-run install.sh --all
+        run: ./install.sh --dry-run --all
+      - name: Install user.js with install.sh --all
+        run: |
+          ./install.sh --all
+          for p in default test; do
+            [ -f "$HOME/.mozilla/firefox/Profiles/$p/user.js" ] || { echo "user.js missing in $p"; exit 1; }
+          done
+          [ -f "$HOME/.mozilla/firefox/Profiles/default/user.js.yuzubak" ] || { echo "existing user.js was not backed up"; exit 1; }
+          echo "user.js installed and backed up in all fake profiles."
+      - name: Uninstall user.js with install.sh --uninstall --all
+        run: |
+          ./install.sh --uninstall --all
+          for p in default test; do
+            [ -f "$HOME/.mozilla/firefox/Profiles/$p/user.js" ] && { echo "user.js still present in $p"; exit 1; }
+          done
+          echo "user.js removed from all fake profiles."
+
+   validate-build-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check generated files are in sync
+        run: python3 build.py --check
+
+   validate-powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up fake Firefox profiles
+        shell: pwsh
+        run: |
+          $profilesDir = "$env:APPDATA\Mozilla\Firefox"
+          New-Item -ItemType Directory -Force -Path "$profilesDir\Profiles\default" | Out-Null
+          New-Item -ItemType Directory -Force -Path "$profilesDir\Profiles\test" | Out-Null
+          @"
+          [Profile0]
+          Name=default
+          IsRelative=1
+          Path=Profiles\default
+          Default=1
+
+          [Profile1]
+          Name=test
+          IsRelative=1
+          Path=Profiles\test
+          "@ | Set-Content -Path "$profilesDir\profiles.ini" -Encoding ASCII
+          "existing default user.js" | Set-Content -Path "$profilesDir\Profiles\default\user.js" -Encoding ASCII
+      - name: Dry-run install.ps1 -ProfilesOnly -DryRun -All
+        shell: pwsh
+        run: |
+          $out = .\install.ps1 -ProfilesOnly -DryRun -All *>&1
+          $out | Out-String | Write-Host
+          if ($LASTEXITCODE -ne 0) { throw "install.ps1 dry-run exited with $LASTEXITCODE" }
+      - name: Install user.js with install.ps1 -ProfilesOnly -All
+        shell: pwsh
+        run: |
+          .\install.ps1 -ProfilesOnly -All
+          foreach ($p in @('default','test')) {
+            $f = "$env:APPDATA\Mozilla\Firefox\Profiles\$p\user.js"
+            if (-not (Test-Path $f)) { throw "user.js missing in $p" }
+          }
+          $bak = "$env:APPDATA\Mozilla\Firefox\Profiles\default\user.js.yuzubak"
+          if (-not (Test-Path $bak)) { throw "existing user.js was not backed up" }
+          Write-Host "user.js installed and backup created."
+      - name: Uninstall user.js with install.ps1 -ProfilesOnly -Uninstall -All
+        shell: pwsh
+        run: |
+          .\install.ps1 -ProfilesOnly -Uninstall -All
+          foreach ($p in @('default','test')) {
+            $f = "$env:APPDATA\Mozilla\Firefox\Profiles\$p\user.js"
+            if (Test-Path $f) { throw "user.js still present in $p" }
+          }
+          Write-Host "user.js removed from all fake profiles."

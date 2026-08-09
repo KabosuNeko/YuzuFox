@@ -1,0 +1,6 @@
+# Internal orchestration state
+.omo/
+
+# Python bytecode
+__pycache__/
+*.pyc
