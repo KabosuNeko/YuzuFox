@@ -77,9 +77,9 @@ function Find-FirefoxDir {
 }
 
 function Check-Elevated {
-    ([Security.Principal.WindowsPrincipal]
-     [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(
-        [Security.Principal.WindowsBuiltInRole]::Administrator)
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = [Security.Principal.WindowsPrincipal]$identity
+    $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
 # ==========================================================================
