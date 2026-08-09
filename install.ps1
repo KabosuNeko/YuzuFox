@@ -197,7 +197,7 @@ if ($Mode -ne "system") {
                 $ex = if (Test-Path (Join-Path $p.Path "user.js")) { " [backup -> user.js.yuzubak]" } else { "" }
                 SayNote "[$($i+1)] $($p.Name)  ($($p.Path))$ex"
             }
-            Say "Done."; return
+            Say "Done."; exit 0
         }
 
         if ($All) {
@@ -264,5 +264,6 @@ if ($Mode -ne "system") {
     }
 }
 
-if ($DryRun) { return }
+if ($DryRun) { exit 0 }
 Say "Done. Restart Firefox to apply."
+exit 0

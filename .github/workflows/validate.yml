@@ -157,8 +157,9 @@ jobs:
         shell: pwsh
         run: |
           $out = .\install.ps1 -ProfilesOnly -DryRun -All *>&1
+          $exitCode = $LASTEXITCODE
           $out | Out-String | Write-Host
-          if ($LASTEXITCODE -ne 0) { throw "install.ps1 dry-run exited with $LASTEXITCODE" }
+          if ($exitCode -and $exitCode -ne 0) { throw "install.ps1 dry-run exited with $exitCode" }
       - name: Install user.js with install.ps1 -ProfilesOnly -All
         shell: pwsh
         run: |
