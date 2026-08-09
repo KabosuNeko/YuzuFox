@@ -1,56 +1,15 @@
 
 // -----------------------------------------------------------------------------
-// PRIVACY & SECURITY — SAFE BROWSING OFF (DNS-delegated)
+// SAFE BROWSING — ON (hash-prefix, local match)
 // -----------------------------------------------------------------------------
-// All Safe Browsing features are disabled because the system's DNS resolver
-// already blocks known-malicious domains. The browser must never ping Google
-// or Mozilla servers for URL reputation checks. If you do not have DNS-level
-// blocking, skip this section.
-//
-// This includes: Google Safe Browsing (all protocol versions), Mozilla's own
-// Safe Browsing service, download reputation lookups, malware/phishing checks,
-// and the blocklist override page.
+// Core Safe Browsing (malware + phishing) stays ON at Firefox defaults:
+// Firefox sends only 32-bit hash prefixes to Google, then matches locally —
+// no full URLs leak. Remote download reputation is the one exception: it
+// uploads file metadata to Google, so it stays OFF (same choice as Arkenfox).
 
-// [SOURCE: YuzuFox] [NOTE: Safe Browsing disabled — not active in Betterfox/Arkenfox upstream]
-user_pref("browser.safebrowsing.allowOverride", false);
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous", false);
-user_pref("browser.safebrowsing.downloads.remote.block_dangerous_host", false);
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
-user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
+// Keep remote download reputation off — sends file info to Google otherwise.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.remote.url", "");
-user_pref("browser.safebrowsing.id", "");
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
-user_pref("browser.safebrowsing.provider.google.advisoryURL", "");
-user_pref("browser.safebrowsing.provider.google.gethashURL", "");
-user_pref("browser.safebrowsing.provider.google.lists", "");
-user_pref("browser.safebrowsing.provider.google.malwareReportURL", "");
-user_pref("browser.safebrowsing.provider.google.pver", 0);
-user_pref("browser.safebrowsing.provider.google.reportMalwareMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google.reportPhishMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google.reportURL", "");
-user_pref("browser.safebrowsing.provider.google.updateURL", "");
-user_pref("browser.safebrowsing.provider.google4.advisoryURL", "");
-user_pref("browser.safebrowsing.provider.google4.dataSharing.enabled", false);
-user_pref("browser.safebrowsing.provider.google4.gethashURL", "");
-user_pref("browser.safebrowsing.provider.google4.lists", "");
-user_pref("browser.safebrowsing.provider.google4.pver", 0);
-user_pref("browser.safebrowsing.provider.google4.reportMalwareMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportPhishMistakeURL", "");
-user_pref("browser.safebrowsing.provider.google4.reportURL", "");
-user_pref("browser.safebrowsing.provider.google4.updateURL", "");
-user_pref("browser.safebrowsing.provider.mozilla.gethashURL", "");
-user_pref("browser.safebrowsing.provider.mozilla.lists", "");
-user_pref("browser.safebrowsing.provider.mozilla.lists.base", "");
-user_pref("browser.safebrowsing.provider.mozilla.lists.content", "");
-user_pref("browser.safebrowsing.provider.mozilla.pver", 0);
-user_pref("browser.safebrowsing.provider.mozilla.reportURL", "");
-user_pref("browser.safebrowsing.provider.mozilla.updateURL", "");
-user_pref("browser.safebrowsing.reportPhishURL", "");
 
 // Keep URL-classifier skip lists so embedded Twitter/Reddit/Instagram content
 // still renders when the user visits those sites.

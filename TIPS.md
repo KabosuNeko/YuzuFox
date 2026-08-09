@@ -35,38 +35,30 @@ defeats the point.*
 
 ## Safe Browsing
 
-> **⚠️ WARNING:** YuzuFox disables ALL Safe Browsing checks because it
-> assumes you have **DNS-level blocking** (Pi-hole, NextDNS, Quad9, AdGuard
-> Home, or a system resolver that filters malicious domains). Without that,
-> you lose phishing/malware protection entirely. If you are not sure, keep
-> Safe Browsing **enabled**.
+Core Safe Browsing (malware + phishing) is **enabled** at Firefox defaults.
+Firefox sends only 32-bit hash prefixes to Google, then matches locally — no
+full URLs leave the browser. DNS-level blocking (Pi-hole, NextDNS, Quad9) plus
+uBlock Origin's filter lists are an additional layer on top, not a
+replacement.
 
-All Google and Mozilla Safe Browsing checks are disabled. Firefox normally
-sends hashed URL prefixes to Google *every ~30 minutes and on every
-download*. YuzuFox replaces that with DNS-level blocking (system resolver,
-Pi-hole, Quad9) plus uBlock Origin's filter lists.
+The one thing YuzuFox disables is **remote download reputation**
+(`browser.safebrowsing.downloads.remote.enabled = false`) — the same choice
+Arkenfox makes. That feature uploads file metadata to Google on every
+download, with little marginal protection if you already have DNS-level
+blocking.
 
-### Verify you have DNS-level blocking
+### Verify you have DNS-level blocking (optional hardening)
 
-The DNS resolver must block known-malicious domains itself. Quick checks:
-
-- **Pi-hole / AdGuard Home** — you maintain the blocklist, browser trusts the result
+- **Pi-hole / AdGuard Home** — you maintain the blocklist
 - **NextDNS / Quad9** — DNS provider filters malware/phishing domains upstream
-- **Stock ISP router DNS** — ❌ *not sufficient*; re-enable Safe Browsing
+- **Stock ISP router DNS** — Safe Browsing alone still protects you; the
+  DNS layer is merely a bonus
 
-If in doubt, re-enable Safe Browsing (see below) — the privacy cost is small
-compared to losing malware protection.
-
-### Re-enabling
+If you want remote download reputation back:
 
 ```js
-user_pref("browser.safebrowsing.malware.enabled", true);
-user_pref("browser.safebrowsing.phishing.enabled", true);
-user_pref("browser.safebrowsing.downloads.enabled", true);
+user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 ```
-
-This restores core malware/phishing checks. Remote download reputation
-lookups *stay off* — those send data to Google on every file download.
 
 ---
 
@@ -201,14 +193,16 @@ settings. You can also clear the DNS cache at `about:networking#dns`.
 
 ### Safe Browsing warnings missing
 
-YuzuFox disables Safe Browsing by default. To bring warnings back, see
-[Safe Browsing](#safe-browsing) and set:
+Safe Browsing core (malware + phishing) is on by default. If warnings are
+missing, something else has switched them off — check under
+`about:preferences#privacy` → *Security* that "Block dangerous and
+deceptive content" and "Block dangerous downloads" are ticked, or verify in
+`about:config` that `browser.safebrowsing.malware.enabled` and
+`browser.safebrowsing.phishing.enabled` are `true`.
 
-```js
-user_pref("browser.safebrowsing.malware.enabled", true);
-user_pref("browser.safebrowsing.phishing.enabled", true);
-user_pref("browser.safebrowsing.downloads.enabled", true);
-```
+The only Safe Browsing feature YuzuFox keeps off is *remote download
+reputation* (`browser.safebrowsing.downloads.remote.enabled`) — see
+[Safe Browsing](#safe-browsing) for why, and how to turn it back on.
 
 ### How to fully revert
 
