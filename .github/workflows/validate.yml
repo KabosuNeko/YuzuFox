@@ -25,21 +25,21 @@ jobs:
   validate-json:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate policies.json
         run: python3 -m json.tool policies.json > /dev/null
 
   validate-shell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check shell syntax (install.sh)
         run: bash -n install.sh
 
   validate-no-pref-dup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: No pref duplicated between yuzu.js and user.js
         run: |
           DUPES=$(comm -12 \
@@ -55,7 +55,7 @@ jobs:
   smoke-test-install-sh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up fake Firefox profiles
         run: |
           MOZ_DIR="$HOME/.mozilla/firefox"
@@ -123,17 +123,17 @@ jobs:
           done
           echo "user.js removed from all fake profiles."
 
-   validate-build-sync:
+  validate-build-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check generated files are in sync
         run: python3 build.py --check
 
-   validate-powershell:
+  validate-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up fake Firefox profiles
         shell: pwsh
         run: |

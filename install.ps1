@@ -26,7 +26,8 @@ Per-profile user.js only (no Administrator needed).
 Install user.js into every profile without asking (non-interactive).
 
 .EXAMPLE
-irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
+.\install.ps1
 
 .EXAMPLE
 .\install.ps1 -DryRun
