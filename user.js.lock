@@ -1,0 +1,1446 @@
+{
+  "generated_at": "2026-08-09T18:09:08.983828+00:00",
+  "prefs": [
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.bookmarks.openInTabClosesMenu",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "RAM-only cache and JIT/GC tuning for responsiveness",
+      "pref": "browser.cache.disk.enable",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "browser.cache.memory.capacity",
+      "source": "YuzuFox",
+      "value": 1048576
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.compactmode.show",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.contentblocking.category",
+      "source": "Both",
+      "value": "strict"
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.alwaysOpenPanel",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.always_ask_before_handling_new_types",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.manager.addToRecentDocs",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.open_pdf_attachments_inline",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.start_downloads_in_tmp_dir",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.download.useDownloadDir",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.download.viewableInternally.typeWasRegistered.pdf",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.formfill.enable",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.helperApps.deleteTempFileOnExit",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.newtabpage.activity-stream.default.sites",
+      "source": "Both",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.newtabpage.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.places.speculativeConnect.enabled",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.privateWindowSeparation.enabled",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.privatebrowsing.forceMediaMemoryCache",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "Safe Browsing disabled — not active in Betterfox/Arkenfox upstream",
+      "pref": "browser.safebrowsing.allowOverride",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.blockedURIs.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.remote.block_dangerous",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.remote.block_dangerous_host",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.remote.block_uncommon",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.safebrowsing.downloads.remote.enabled",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.downloads.remote.remote.url",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.id",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.malware.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.phishing.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.advisoryURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.gethashURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.lists",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.malwareReportURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.pver",
+      "source": "YuzuFox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.reportMalwareMistakeURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.reportPhishMistakeURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.reportURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google.updateURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.advisoryURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.dataSharing.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.gethashURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.lists",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.pver",
+      "source": "YuzuFox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.reportMalwareMistakeURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.reportPhishMistakeURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.reportURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.google4.updateURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.gethashURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.lists",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.lists.base",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.lists.content",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.pver",
+      "source": "YuzuFox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.reportURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.provider.mozilla.updateURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "browser.safebrowsing.reportPhishURL",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.search.separatePrivateDefault.ui.enabled",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.sessionstore.privacy_level",
+      "source": "Arkenfox",
+      "value": 1
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable taskbar favicons and app restart registration",
+      "pref": "browser.shell.shortcutFavicons",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.startup.homepage",
+      "source": "Arkenfox",
+      "value": "chrome://browser/content/blanktab.html"
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "quiet startup and disable push/attribution pings",
+      "pref": "browser.startup.page",
+      "source": "Arkenfox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.tabs.firefox-view",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.tabs.firefox-view-next",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "browser.tabs.unloadOnLowMemory",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.groupLabels.enabled",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.importantDates.featureGate",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.market.featureGate",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.showSearchTerms.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.speculativeConnect.enabled",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.addons",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.quicksuggest.fakespot",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.quicksuggest.topsites",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.trending",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.trending.featureGate",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.trimHttps",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.untrimOnUserInteraction.featureGate",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.urlbar.yelpRealtime.featureGate",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "browser.xul.error_pages.expert_bad_cert",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "content.notify.interval",
+      "source": "Betterfox",
+      "value": 100000
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "dom.disable_window_move_resize",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": null,
+      "pref": "dom.private-attribution.submission.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "HTTPS-only, tracking protection, and query stripping",
+      "pref": "dom.security.https_only_mode",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "dom.security.https_only_mode_send_http_background_request",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "editor.truncate_user_pastes",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "findbar.highlightAll",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "full-screen-api.transition-duration.enter",
+      "source": "Betterfox",
+      "value": "0 0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "full-screen-api.transition-duration.leave",
+      "source": "Betterfox",
+      "value": "0 0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "full-screen-api.warning.timeout",
+      "source": "Betterfox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.currentVelocityWeighting",
+      "source": "YuzuFox",
+      "value": "1.0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",
+      "source": "Betterfox",
+      "value": 12
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "general.smoothScroll.msdPhysics.enabled",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.motionBeginSpringConstant",
+      "source": "YuzuFox",
+      "value": 200
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.regularSpringConstant",
+      "source": "YuzuFox",
+      "value": 250
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaMS",
+      "source": "Betterfox",
+      "value": 25
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",
+      "source": "YuzuFox",
+      "value": "2.0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "general.smoothScroll.msdPhysics.slowdownSpringConstant",
+      "source": "Betterfox",
+      "value": 250
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.stopDecelerationWeighting",
+      "source": "YuzuFox",
+      "value": "1.0"
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable Windows geolocation and UNC paths",
+      "pref": "geo.provider.ms-windows-location",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable Red Hat geoclue location service",
+      "pref": "geo.provider.use_geoclue",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "gfx.canvas.accelerated.cache-items",
+      "source": "YuzuFox",
+      "value": 32768
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "gfx.canvas.accelerated.cache-size",
+      "source": "Betterfox",
+      "value": 512
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "gfx.content.skia-font-cache-size",
+      "source": "Betterfox",
+      "value": 20
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "image.cache.size",
+      "source": "YuzuFox",
+      "value": 10485760
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "image.mem.decode_bytes_at_a_time",
+      "source": "Betterfox",
+      "value": 32768
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "image.mem.shared.unmap.min_expiration_ms",
+      "source": "YuzuFox",
+      "value": 120000
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "javascript.options.baselinejit.threshold",
+      "source": "Betterfox",
+      "value": 50
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "layout.css.grid-template-masonry-value.enabled",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "media.cache_readahead_limit",
+      "source": "Betterfox",
+      "value": 3600
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "media.cache_resume_threshold",
+      "source": "Betterfox",
+      "value": 1800
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "media.memory_cache_max_size",
+      "source": "YuzuFox",
+      "value": 1048576
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "media.memory_caches_combined_limit_kb",
+      "source": "YuzuFox",
+      "value": 3145728
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "mousewheel.default.delta_multiplier_y",
+      "source": "Betterfox",
+      "value": 300
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.IDN_show_punycode",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.auth.subresource-http-auth-allow",
+      "source": "Both",
+      "value": 1
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.buffer.cache.count",
+      "source": "Betterfox",
+      "value": 48
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.buffer.cache.size",
+      "source": "Betterfox",
+      "value": 65535
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "network.cookie.cookieBehavior.optInPartitioning",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "network.cookie.cookieBehavior.optInPartitioning.pbmode",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.dns.disablePrefetch",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.dns.disablePrefetchFromHTTPS",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.dnsCacheExpiration",
+      "source": "Betterfox",
+      "value": 3600
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "block UNC paths as file URLs",
+      "pref": "network.file.disable_unc_paths",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "block GVfs from acting as protocol handler",
+      "pref": "network.gio.supported-protocols",
+      "source": "Arkenfox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.max-connections",
+      "source": "Betterfox",
+      "value": 1800
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.max-persistent-connections-per-server",
+      "source": "Betterfox",
+      "value": 10
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.max-urgent-start-excessive-connections-per-host",
+      "source": "Betterfox",
+      "value": 5
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "network.http.pacing.requests.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.referer.XOriginTrimmingPolicy",
+      "source": "Both",
+      "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.request.max-start-delay",
+      "source": "Betterfox",
+      "value": 5
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.http.speculative-parallel-limit",
+      "source": "Both",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.predictor.enable-prefetch",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.predictor.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "network.prefetch-next",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "network.ssl_tokens_cache_capacity",
+      "source": "YuzuFox",
+      "value": 32768
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "pdfjs.enableScripting",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": null,
+      "pref": "permissions.default.desktop-notification",
+      "source": "YuzuFox",
+      "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "permissions.manager.defaultsUrl",
+      "source": "Both",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "privacy.antitracking.isolateContentScriptResources",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "privacy.fingerprintingProtection",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "privacy.globalprivacycontrol.enabled",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "privacy.query_stripping.strip_list",
+      "source": "YuzuFox",
+      "value": "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "privacy.userContext.enabled",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "privacy.userContext.longPressBehavior",
+      "source": "YuzuFox",
+      "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "privacy.userContext.ui.enabled",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "offline CRLite revocation + no speculative connections",
+      "pref": "security.OCSP.enabled",
+      "source": "Betterfox",
+      "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "security.cert_pinning.enforcement_level",
+      "source": "Arkenfox",
+      "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "security.csp.reporting.enabled",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "security.ssl.require_safe_negotiation",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "security.ssl.treat_unsafe_negotiation_as_broken",
+      "source": "Both",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "security.tls.enable_0rtt_data",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": null,
+      "pref": "services.settings.poll_interval",
+      "source": "YuzuFox",
+      "value": 300
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "signon.autofillForms",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "signon.formlessCapture.enabled",
+      "source": "Both",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "audited against upstream user.js",
+      "pref": "signon.privateBrowsingCapture.enabled",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "compact UI, URL-bar cleanup, and physics scrolling",
+      "pref": "toolkit.legacyUserProfileCustomizations.stylesheets",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable Windows taskbar restart registration",
+      "pref": "toolkit.winRegisterApplicationRestart",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "urlclassifier.features.socialtracking.skipURLs",
+      "source": "YuzuFox",
+      "value": "*.instagram.com, *.twitter.com, *.twimg.com"
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "urlclassifier.trackingSkipURLs",
+      "source": "YuzuFox",
+      "value": "*.reddit.com, *.twitter.com, *.twimg.com"
+    }
+  ],
+  "sources": [
+    "src/user.js/00-header.js",
+    "src/user.js/10-network.js",
+    "src/user.js/20-privacy.js",
+    "src/user.js/30-security.js",
+    "src/user.js/40-telemetry-connections.js",
+    "src/user.js/45-performance.js",
+    "src/user.js/50-ui-qol.js",
+    "src/user.js/60-os-specific.js"
+  ]
+}
