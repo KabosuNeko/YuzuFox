@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:24:14.946318+00:00",
+  "generated_at": "2026-08-10T12:26:22.035107+00:00",
   "prefs": [
     {
       "files": [
@@ -43,7 +43,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.contentblocking.category",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": "strict"
     },
     {
@@ -70,7 +70,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.download.manager.addToRecentDocs",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -88,7 +88,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.download.start_downloads_in_tmp_dir",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -115,7 +115,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.formfill.enable",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -133,7 +133,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.newtabpage.activity-stream.default.sites",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": ""
     },
     {
@@ -151,7 +151,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.places.speculativeConnect.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -160,7 +160,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.privatebrowsing.forceMediaMemoryCache",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -169,7 +169,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.safebrowsing.downloads.remote.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -178,7 +178,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.search.separatePrivateDefault.ui.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -313,7 +313,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.urlbar.speculativeConnect.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -376,7 +376,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.urlbar.trending.featureGate",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -412,7 +412,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.xul.error_pages.expert_bad_cert",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -808,7 +808,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.IDN_show_punycode",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -817,7 +817,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.auth.subresource-http-auth-allow",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": 1
     },
     {
@@ -862,7 +862,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.dns.disablePrefetch",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -871,7 +871,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.dns.disablePrefetchFromHTTPS",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -961,7 +961,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.http.referer.XOriginTrimmingPolicy",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": 2
     },
     {
@@ -979,7 +979,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.http.speculative-parallel-limit",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": 0
     },
     {
@@ -1006,7 +1006,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "network.prefetch-next",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -1024,7 +1024,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "pdfjs.enableScripting",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -1051,7 +1051,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "permissions.manager.defaultsUrl",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": ""
     },
     {
@@ -1060,7 +1060,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "privacy.antitracking.isolateContentScriptResources",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -1114,7 +1114,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "privacy.userContext.ui.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -1141,7 +1141,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "security.csp.reporting.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -1159,7 +1159,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "security.ssl.treat_unsafe_negotiation_as_broken",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
@@ -1168,7 +1168,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "security.tls.enable_0rtt_data",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
@@ -1186,7 +1186,7 @@
       ],
       "note": "audited against upstream user.js",
       "pref": "signon.formlessCapture.enabled",
-      "source": "Both",
+      "source": "Arkenfox + Betterfox",
       "value": false
     },
     {

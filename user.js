@@ -31,18 +31,18 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 // Require RFC 5746 safe renegotiation; lack of it allows MiTM injection.
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("security.ssl.require_safe_negotiation", true);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
 // TLS 1.3 0-RTT is not forward secret and allows replay attacks.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("security.tls.enable_0rtt_data", false);
 
 // QUIC 0-RTT (HTTP/3) has the same replay weakness as TLS 0-RTT.
 user_pref("network.http.http3.enable_0rtt", false);
 
 // Show expert bad-cert pages immediately when debugging TLS.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
 // -----------------------------------------------------------------------------
@@ -50,21 +50,21 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 // -----------------------------------------------------------------------------
 // No speculative networking of any kind. Every connection is user-initiated.
 
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.dns.disablePrefetch", true);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.http.speculative-parallel-limit", 0);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.prefetch-next", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("network.predictor.enabled", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("network.predictor.enable-prefetch", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.places.speculativeConnect.enabled", false);
 // Only expose the public IP via WebRTC — never the LAN address (192.168.x.x).
 // [SOURCE: Arkenfox] [NOTE: WebRTC local-IP leak prevention]
@@ -88,25 +88,25 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
 // Firefox's modern fingerprinting protection: randomises canvas, constrains
 // fonts, spoofs timezone, limits concurrency — without the all-or-nothing
 // breakage of RFP. Cover normal + private windows.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.fingerprintingProtection", true);
 
 // Isolate content-script resources so a malicious extension cannot use
 // content scripts as a cross-origin bridge.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
 // Disable CSP Level 2 report delivery (leaks referrer + policy info, no
 // defensive value when the content itself is trusted).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("security.csp.reporting.enabled", false);
 // -----------------------------------------------------------------------------
 // PRIVACY — REFERRERS & GPC
 // -----------------------------------------------------------------------------
 
 // Trim cross-origin referrers to scheme+host+port (no path/query leaks).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 // No referrer spoofing (it breaks CSRF protections on Origin-validating sites).
@@ -132,10 +132,10 @@ user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc
 
 // Disable inline autocomplete and the built-in password manager; credential
 // capture is delegated to an external passphrase store (pass / KeePassXC).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.formfill.enable", false);
 user_pref("signon.rememberSignons", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("signon.formlessCapture.enabled", false);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("signon.privateBrowsingCapture.enabled", false);
@@ -143,7 +143,7 @@ user_pref("signon.privateBrowsingCapture.enabled", false);
 user_pref("signon.autofillForms", false);
 
 // Sub-resources from other origins cannot prompt for HTTP credentials.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
 // Preserve pasted rich text instead of letting the editor strip formatting.
@@ -168,11 +168,11 @@ user_pref("device.sensors.enabled", false);
 user_pref("dom.battery.enabled", false);
 
 // Homograph defense: always show Punycode for IDNs.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.IDN_show_punycode", true);
 
 // PDF.js stays but never runs embedded scripts.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("pdfjs.enableScripting", false);
 // -----------------------------------------------------------------------------
 // PRIVACY — GEOLOCATION & HTTPS-ONLY ERROR PAGE
@@ -201,7 +201,7 @@ user_pref("dom.security.https_only_mode_error_page_user_suggestions", false);
 // uploads file metadata to Google, so it stays OFF (same choice as Arkenfox).
 
 // Keep remote download reputation off — sends file info to Google otherwise.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
 // Keep URL-classifier skip lists so embedded Twitter/Reddit/Instagram content
@@ -214,13 +214,13 @@ user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twim
 
 // Stage downloads in tmp and delete the temp file once the external app
 // finishes with it.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 
 // Keep downloads out of the Recent Documents registry.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 // The download panel never steals focus; Ctrl+J summons it.
@@ -247,7 +247,7 @@ user_pref("browser.startup.page", 0);
 user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("browser.newtabpage.enabled", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // Session restore revives URLs but never replays authenticated state.
@@ -259,7 +259,7 @@ user_pref("browser.sessionstore.privacy_level", 2);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("dom.private-attribution.submission.enabled", false);
 // No mozilla.org domain receives special permissions by default.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("permissions.manager.defaultsUrl", "");
 // -----------------------------------------------------------------------------
 // PERFORMANCE — RAM-ONLY CACHE (SSD PROTECTION)
@@ -271,7 +271,7 @@ user_pref("permissions.manager.defaultsUrl", "");
 user_pref("browser.cache.disk.enable", false);
 // [SOURCE: Betterfox + CachyOS] [NOTE: 1 GB memory cache]
 user_pref("browser.cache.memory.capacity", 1048576);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 // [SOURCE: CachyOS] [NOTE: media cache stays in RAM, not disk]
 user_pref("media.memory_cache_max_size", 1048576);
@@ -393,11 +393,11 @@ user_pref("browser.urlbar.importantDates.featureGate", false);
 user_pref("browser.urlbar.market.featureGate", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("browser.urlbar.yelpRealtime.featureGate", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.urlbar.trending.featureGate", false);
 
 // Separately configurable private-window search engine.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 
 // Fullscreen transitions are instant in a tiling WM.
@@ -425,7 +425,7 @@ user_pref("findbar.highlightAll", true);
 // without needing a separate profile.
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.userContext.enabled", true);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.userContext.ui.enabled", true);
 // Long-press + new tab button opens container picker.
 user_pref("privacy.userContext.longPressBehavior", 2);

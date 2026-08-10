@@ -16,25 +16,25 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
 // Firefox's modern fingerprinting protection: randomises canvas, constrains
 // fonts, spoofs timezone, limits concurrency — without the all-or-nothing
 // breakage of RFP. Cover normal + private windows.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.fingerprintingProtection", true);
 
 // Isolate content-script resources so a malicious extension cannot use
 // content scripts as a cross-origin bridge.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
 // Disable CSP Level 2 report delivery (leaks referrer + policy info, no
 // defensive value when the content itself is trusted).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("security.csp.reporting.enabled", false);
 // -----------------------------------------------------------------------------
 // PRIVACY — REFERRERS & GPC
 // -----------------------------------------------------------------------------
 
 // Trim cross-origin referrers to scheme+host+port (no path/query leaks).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 // No referrer spoofing (it breaks CSRF protections on Origin-validating sites).
@@ -60,10 +60,10 @@ user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc
 
 // Disable inline autocomplete and the built-in password manager; credential
 // capture is delegated to an external passphrase store (pass / KeePassXC).
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.formfill.enable", false);
 user_pref("signon.rememberSignons", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("signon.formlessCapture.enabled", false);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("signon.privateBrowsingCapture.enabled", false);
@@ -71,7 +71,7 @@ user_pref("signon.privateBrowsingCapture.enabled", false);
 user_pref("signon.autofillForms", false);
 
 // Sub-resources from other origins cannot prompt for HTTP credentials.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.auth.subresource-http-auth-allow", 1);
 
 // Preserve pasted rich text instead of letting the editor strip formatting.
@@ -96,11 +96,11 @@ user_pref("device.sensors.enabled", false);
 user_pref("dom.battery.enabled", false);
 
 // Homograph defense: always show Punycode for IDNs.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.IDN_show_punycode", true);
 
 // PDF.js stays but never runs embedded scripts.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("pdfjs.enableScripting", false);
 // -----------------------------------------------------------------------------
 // PRIVACY — GEOLOCATION & HTTPS-ONLY ERROR PAGE
