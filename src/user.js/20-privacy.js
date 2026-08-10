@@ -88,3 +88,20 @@ user_pref("network.IDN_show_punycode", true);
 // PDF.js stays but never runs embedded scripts.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("pdfjs.enableScripting", false);
+// -----------------------------------------------------------------------------
+// PRIVACY — GEOLOCATION & HTTPS-ONLY ERROR PAGE
+// -----------------------------------------------------------------------------
+
+// Block geolocation by default; allow per-site via the permission prompt.
+// [SOURCE: Betterfox] [NOTE: geolocation default-blocked, allow per site]
+user_pref("permissions.default.geo", 2);
+
+// Kill Google's network-based geolocation (fallback when GPS/WiFi is absent).
+// [SOURCE: Betterfox] [NOTE: disable Google network geolocation]
+user_pref("geo.provider.network.url", "");
+
+// On HTTPS-only errors, do not suggest "continue to HTTP" — prevents
+// click-through without thinking.
+// [SOURCE: Betterfox] [NOTE: no "continue to HTTP" suggestion on error page]
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", false);
+

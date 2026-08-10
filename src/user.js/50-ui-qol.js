@@ -103,3 +103,7 @@ user_pref("layout.css.grid-template-masonry-value.enabled", true);
 // -----------------------------------------------------------------------------
 // DESKTOP / SECURITY MISC
 // -----------------------------------------------------------------------------
+// Do not search for clipboard content on accidental middle-click.
+// [SOURCE: Arkenfox] [NOTE: disable middle-click clipboard search]
+user_pref("browser.tabs.searchclipboardfor.middleclick", false);
+

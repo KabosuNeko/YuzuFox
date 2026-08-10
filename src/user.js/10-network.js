@@ -50,3 +50,7 @@ user_pref("network.predictor.enable-prefetch", false);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.places.speculativeConnect.enabled", false);
+// Only expose the public IP via WebRTC — never the LAN address (192.168.x.x).
+// [SOURCE: Arkenfox] [NOTE: WebRTC local-IP leak prevention]
+user_pref("media.peerconnection.ice.default_address_only", true);
+

@@ -66,6 +66,10 @@ user_pref("network.predictor.enable-prefetch", false);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.places.speculativeConnect.enabled", false);
+// Only expose the public IP via WebRTC — never the LAN address (192.168.x.x).
+// [SOURCE: Arkenfox] [NOTE: WebRTC local-IP leak prevention]
+user_pref("media.peerconnection.ice.default_address_only", true);
+
 // -----------------------------------------------------------------------------
 // PRIVACY — HTTPS-ONLY MODE
 // -----------------------------------------------------------------------------
@@ -156,6 +160,23 @@ user_pref("network.IDN_show_punycode", true);
 // PDF.js stays but never runs embedded scripts.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("pdfjs.enableScripting", false);
+// -----------------------------------------------------------------------------
+// PRIVACY — GEOLOCATION & HTTPS-ONLY ERROR PAGE
+// -----------------------------------------------------------------------------
+
+// Block geolocation by default; allow per-site via the permission prompt.
+// [SOURCE: Betterfox] [NOTE: geolocation default-blocked, allow per site]
+user_pref("permissions.default.geo", 2);
+
+// Kill Google's network-based geolocation (fallback when GPS/WiFi is absent).
+// [SOURCE: Betterfox] [NOTE: disable Google network geolocation]
+user_pref("geo.provider.network.url", "");
+
+// On HTTPS-only errors, do not suggest "continue to HTTP" — prevents
+// click-through without thinking.
+// [SOURCE: Betterfox] [NOTE: no "continue to HTTP" suggestion on error page]
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", false);
+
 
 // -----------------------------------------------------------------------------
 // SAFE BROWSING — ON (hash-prefix, local match)
@@ -199,6 +220,14 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.always_ask_before_handling_new_types", true);
 // Force download PDFs instead of opening in-browser.
 user_pref("browser.download.viewableInternally.typeWasRegistered.pdf", false);
+// Remove the 1s delay on security dialogs (certificate, etc.).
+// [SOURCE: Arkenfox] [NOTE: remove security dialog delay]
+user_pref("security.dialog_enable_delay", 0);
+
+// Do not load remote tracking-mitigation shims from Mozilla.
+// [SOURCE: Arkenfox] [NOTE: disable remote webcompat shims]
+user_pref("extensions.webcompat.enable_shims", false);
+
 // -----------------------------------------------------------------------------
 // STARTUP & SESSION
 // -----------------------------------------------------------------------------
@@ -399,6 +428,10 @@ user_pref("layout.css.grid-template-masonry-value.enabled", true);
 // -----------------------------------------------------------------------------
 // DESKTOP / SECURITY MISC
 // -----------------------------------------------------------------------------
+// Do not search for clipboard content on accidental middle-click.
+// [SOURCE: Arkenfox] [NOTE: disable middle-click clipboard search]
+user_pref("browser.tabs.searchclipboardfor.middleclick", false);
+
 // -----------------------------------------------------------------------------
 // PER-OS SECTIONS
 // -----------------------------------------------------------------------------
@@ -441,5 +474,8 @@ user_pref("browser.shell.shortcutFavicons", false);
 user_pref("toolkit.winRegisterApplicationRestart", false);
 
 // --- [macOS] ---
-// (nothing YuzuFox currently differs on macOS; keep this section explicit
-// by policy — yuzu.js is OS-agnostic and macOS inherits the shared prefs)
+// Disable Apple's CoreLocation geolocation provider.
+// [SOURCE: Arkenfox] [NOTE: disable macOS CoreLocation geolocation]
+user_pref("geo.provider.use_corelocation", false);
+
+// (rest of macOS is policy-inherited; yuzu.js is OS-agnostic)

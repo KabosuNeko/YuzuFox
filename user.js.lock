@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T18:34:32.788383+00:00",
+  "generated_at": "2026-08-10T03:54:36.959451+00:00",
   "prefs": [
     {
       "files": [
@@ -246,6 +246,15 @@
     },
     {
       "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "disable middle-click clipboard search",
+      "pref": "browser.tabs.searchclipboardfor.middleclick",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/45-performance.js"
       ],
       "note": null,
@@ -419,6 +428,15 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
+      "note": "no \"continue to HTTP\" suggestion on error page",
+      "pref": "dom.security.https_only_mode_error_page_user_suggestions",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
       "note": "audited against upstream user.js",
       "pref": "dom.security.https_only_mode_send_http_background_request",
       "source": "Arkenfox",
@@ -431,6 +449,15 @@
       "note": "audited against upstream user.js",
       "pref": "editor.truncate_user_pastes",
       "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "disable remote webcompat shims",
+      "pref": "extensions.webcompat.enable_shims",
+      "source": "Arkenfox",
       "value": false
     },
     {
@@ -561,6 +588,24 @@
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "disable Google network geolocation",
+      "pref": "geo.provider.network.url",
+      "source": "Betterfox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable macOS CoreLocation geolocation",
+      "pref": "geo.provider.use_corelocation",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/60-os-specific.js"
       ],
       "note": "disable Red Hat geoclue location service",
@@ -675,6 +720,15 @@
       "pref": "media.memory_caches_combined_limit_kb",
       "source": "YuzuFox",
       "value": 3145728
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "WebRTC local-IP leak prevention",
+      "pref": "media.peerconnection.ice.default_address_only",
+      "source": "Arkenfox",
+      "value": true
     },
     {
       "files": [
@@ -903,6 +957,15 @@
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "geolocation default-blocked, allow per site",
+      "pref": "permissions.default.geo",
+      "source": "Betterfox",
+      "value": 2
+    },
+    {
+      "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
       "note": "audited against upstream user.js",
@@ -999,6 +1062,15 @@
       "pref": "security.csp.reporting.enabled",
       "source": "Both",
       "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "remove security dialog delay",
+      "pref": "security.dialog_enable_delay",
+      "source": "Arkenfox",
+      "value": 0
     },
     {
       "files": [

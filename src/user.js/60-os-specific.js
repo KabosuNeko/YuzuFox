@@ -40,5 +40,8 @@ user_pref("browser.shell.shortcutFavicons", false);
 user_pref("toolkit.winRegisterApplicationRestart", false);
 
 // --- [macOS] ---
-// (nothing YuzuFox currently differs on macOS; keep this section explicit
-// by policy — yuzu.js is OS-agnostic and macOS inherits the shared prefs)
+// Disable Apple's CoreLocation geolocation provider.
+// [SOURCE: Arkenfox] [NOTE: disable macOS CoreLocation geolocation]
+user_pref("geo.provider.use_corelocation", false);
+
+// (rest of macOS is policy-inherited; yuzu.js is OS-agnostic)
