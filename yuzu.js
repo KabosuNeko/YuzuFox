@@ -287,6 +287,5 @@ pref("signon.firefoxRelay.feature", "disabled", locked);
 // DESKTOP INTEGRATION
 // -----------------------------------------------------------------------------
 
-// Prefer the XDG Desktop Portal for the file picker dialog. On a modern
-// Arch setup this gives a native GTK file dialog matching the WM's theme.
+// Prefer the XDG Desktop Portal for the file picker dialog.
 pref("widget.use-xdg-desktop-portal.file-picker", 1);
