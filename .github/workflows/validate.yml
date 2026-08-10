@@ -9,8 +9,11 @@ on:
       - 'user.js'
       - 'install.sh'
       - 'install.ps1'
+      - 'prefsCleaner.sh'
+      - 'prefsCleaner.ps1'
       - 'build.py'
       - 'src/user.js/**'
+      - '.github/workflows/validate.yml'
   pull_request:
     paths:
       - 'policies.json'
@@ -18,8 +21,11 @@ on:
       - 'user.js'
       - 'install.sh'
       - 'install.ps1'
+      - 'prefsCleaner.sh'
+      - 'prefsCleaner.ps1'
       - 'build.py'
       - 'src/user.js/**'
+      - '.github/workflows/validate.yml'
 
 jobs:
   validate-json:
