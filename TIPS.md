@@ -164,10 +164,10 @@ files from `main` and compares them against what is installed:
 
 ```bash
 # Linux / macOS
-bash scripts/install.sh --all
+bash install.sh --all
 
 # Windows
-.\scripts\install.ps1 -All
+.\install.ps1 -All
 ```
 
 After a major update, clean stale prefs. Prefs that YuzuFox removed from
@@ -177,12 +177,12 @@ the old Safe Browsing block would keep malware protection off even though
 
 ```bash
 # Linux / macOS — dry-run first, then clean every profile
-bash scripts/prefsCleaner.sh --dry-run
-bash scripts/prefsCleaner.sh --all
+bash prefsCleaner.sh --dry-run
+bash prefsCleaner.sh --all
 
 # Windows
-.\scripts\prefsCleaner.ps1 -DryRun
-.\scripts\prefsCleaner.ps1 -All
+.\prefsCleaner.ps1 -DryRun
+.\prefsCleaner.ps1 -All
 ```
 
 Each cleaned `prefs.js` is backed up to `prefs.js.yuzubak`. Close Firefox
@@ -260,7 +260,7 @@ If you don't have a backup, remove `user.js.off` and run the uninstaller
 If Firefox still won't start, remove the system-wide files:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --uninstall --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
 ```
 
 ### Some website breaks
@@ -306,12 +306,12 @@ Run the uninstall command for your platform:
 
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --uninstall --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
 ```
 
 ```powershell
 # Windows
-$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.ps1
+$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
 & ([scriptblock]::Create($s)) -Uninstall
 ```
 
