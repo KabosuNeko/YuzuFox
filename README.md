@@ -19,7 +19,7 @@ YuzuFox makes **one set of choices** so you don't have to:
   notifications, search suggestions, and webcompat shims stay on. If the
   browser can't be your daily driver, the config is wrong.
 
-- Idle hardware is wasted hardware. YuzuFox tunes the JIT, compositor, caches,
+- **Idle hardware is wasted hardware.** YuzuFox tunes the JIT, compositor, caches,
   GPU pipeline, and network stack to put your machine to work — lower latency,
   smoother video, faster page loads. Every perf pref is verified against
   CachyOS and Firefox source.
