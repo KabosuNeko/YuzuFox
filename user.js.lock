@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T10:51:32.386076+00:00",
+  "generated_at": "2026-08-10T12:24:14.946318+00:00",
   "prefs": [
     {
       "files": [
@@ -23,9 +23,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "1 GB memory cache",
       "pref": "browser.cache.memory.capacity",
-      "source": "YuzuFox",
+      "source": "Betterfox + CachyOS",
       "value": 1048576
     },
     {
@@ -257,9 +257,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "tab unloading under memory pressure",
       "pref": "browser.tabs.unloadOnLowMemory",
-      "source": "YuzuFox",
+      "source": "CachyOS",
       "value": true
     },
     {
@@ -662,9 +662,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "canvas cache items + size for GPU acceleration",
       "pref": "gfx.canvas.accelerated.cache-items",
-      "source": "YuzuFox",
+      "source": "CachyOS",
       "value": 32768
     },
     {
@@ -689,9 +689,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "image decode cache tuning",
       "pref": "image.cache.size",
-      "source": "YuzuFox",
+      "source": "CachyOS",
       "value": 10485760
     },
     {
@@ -770,9 +770,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "media cache stays in RAM, not disk",
       "pref": "media.memory_cache_max_size",
-      "source": "YuzuFox",
+      "source": "CachyOS",
       "value": 1048576
     },
     {
@@ -950,9 +950,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "disable request pacing for lower latency",
       "pref": "network.http.pacing.requests.enabled",
-      "source": "YuzuFox",
+      "source": "CachyOS",
       "value": false
     },
     {
@@ -1013,9 +1013,9 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": null,
+      "note": "TLS session cache",
       "pref": "network.ssl_tokens_cache_capacity",
-      "source": "YuzuFox",
+      "source": "Betterfox + CachyOS",
       "value": 32768
     },
     {
