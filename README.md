@@ -21,8 +21,7 @@ YuzuFox makes **one set of choices** so you don't have to:
 
 - **Idle hardware is wasted hardware.** YuzuFox tunes the JIT, compositor, caches,
   GPU pipeline, and network stack to put your machine to work — lower latency,
-  smoother video, faster page loads. Every perf pref is verified against
-  CachyOS and Firefox source.
+  smoother video, faster page loads.
 
 - **Privacy means telemetry is dead.** 112 locked system-wide prefs kill
   every Mozilla data-collection channel: telemetry, studies, crash reports,
