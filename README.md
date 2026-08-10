@@ -8,31 +8,9 @@
 
 **Hardened, zero-bloat Firefox for daily use.**
 
----
-
-## Philosophy
-
-YuzuFox makes **one set of choices** so you don't have to:
-
-- **Daily use comes first.** No RFP, no JIT-off, no DRM-off, no blanket Safe
-  Browsing off — nothing that breaks the sites you actually visit. Push
-  notifications, search suggestions, and webcompat shims stay on. If the
-  browser can't be your daily driver, the config is wrong.
-
-- **Idle hardware is wasted hardware.** YuzuFox tunes the JIT, compositor, caches,
-  GPU pipeline, and network stack to put your machine to work — lower latency,
-  smoother video, faster page loads.
-
-- **Privacy means telemetry is dead.** 112 locked system-wide prefs kill
-  every Mozilla data-collection channel: telemetry, studies, crash reports,
-  Normandy, Activity Stream pings, coverage pings, captive-portal probes,
-  and all marketing/AI services. At the policy level, enterprise policies
-  add a second layer.
-
-- **Security is leaned on, not exaggerated.** CRLite (offline revocation),
-  strict cert pinning, HTTPS-only mode with no cleartext fallback, QUIC/TLS
-  0-RTT off, and quarantined-domain enforcement are on. The Mozilla blocklist
-  stays active (unlike CachyOS). Safe Browsing stays on (hash-prefix only).
+YuzuFox is a Firefox config that kills telemetry, hardens privacy, and tunes
+performance — without breaking the sites you visit. It expects a modern machine
+and uses the hardware you paid for.
 
 ---
 
