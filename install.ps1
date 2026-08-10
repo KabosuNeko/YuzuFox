@@ -76,6 +76,16 @@ function Find-FirefoxDir {
     return ""
 }
 
+# Compare a freshly downloaded file against what is installed.
+# Returns $false (needs update / not installed) or $true (up to date).
+function Test-UpToDate {
+    param([string]$New, [string]$Dest)
+    if (-not (Test-Path $Dest)) { return $false }
+    $h1 = (Get-FileHash -Path $New -Algorithm SHA256).Hash
+    $h2 = (Get-FileHash -Path $Dest -Algorithm SHA256).Hash
+    return ($h1 -eq $h2)
+}
+
 function Check-Elevated {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal]$identity
@@ -123,6 +133,17 @@ if ($Mode -ne "profiles") {
             Say "Downloading system configuration..."
             Invoke-WebRequest -Uri $PoliciesUrl -OutFile "$tmp\policies.json" -UseBasicParsing
             Invoke-WebRequest -Uri $PrefsUrl    -OutFile "$tmp\yuzu.js"     -UseBasicParsing
+
+            $changed = $false
+            if (Test-UpToDate "$tmp\policies.json" $PoliciesDest) { SayNote "policies.json: up to date" }
+            else { $changed = $true; SayNote "policies.json: new version" }
+            if (Test-UpToDate "$tmp\yuzu.js" $PrefsDest) { SayNote "yuzu.js: up to date" }
+            else { $changed = $true; SayNote "yuzu.js: new version" }
+
+            if (-not $changed) {
+                SayNote "System settings already up to date."
+                return
+            }
 
             Say "Installing system-wide (requires Administrator)..."
             New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PoliciesDest) | Out-Null
@@ -250,6 +271,10 @@ if ($Mode -ne "system") {
                         SayNote "[!] Skipped missing profile $($p.Name) ($($p.Path))"; continue
                     }
                     $dest = Join-Path $p.Path "user.js"
+                    if (Test-UpToDate "$tmp\user.js" $dest) {
+                        SayNote "[~] $($p.Name): user.js up to date"
+                        continue
+                    }
                     if (Test-Path $dest) {
                         Copy-Item -Force $dest "$dest.yuzubak"
                         SayNote "[~] Backup: user.js.yuzubak"

@@ -4,3 +4,7 @@
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Reference clones for reading (not part of the project)
+/Arkenfox/
+/Betterfox/

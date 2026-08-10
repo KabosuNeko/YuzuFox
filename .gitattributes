@@ -1,0 +1,26 @@
+# Line endings: normalize text files to LF in the repo; checkout follows platform.
+* text=auto
+
+*.js text
+*.md text
+*.yml text
+*.txt text
+*.sh text
+*.ps1 text
+*.py text
+*.json text
+
+# Windows batch files must keep CRLF to run correctly.
+*.bat -text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+
+# Keep archives clean: CI and this file are not needed by end users.
+.gitattributes export-ignore
+*.yml export-ignore
+/.github export-ignore

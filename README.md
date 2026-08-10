@@ -84,6 +84,32 @@ bash install.sh --dry-run       # preview, write nothing
 
 Existing `user.js` is **backed up** as `user.js.yuzubak`.
 
+### Updating
+
+Re-running the installer **is** the update: it always fetches the latest files
+from `main` and compares them against what is installed. Unchanged files are
+skipped ("up to date"); changed ones are replaced (with a backup of the old
+`user.js`).
+
+### Cleaning stale prefs
+
+Prefs removed from `user.js` can linger in a profile's `prefs.js` and keep
+applying old values (e.g. the old Safe Browsing block). `prefsCleaner` resets
+them to Firefox defaults:
+
+```bash
+# Linux / macOS
+bash prefsCleaner.sh --dry-run   # preview
+bash prefsCleaner.sh --all       # clean every profile
+
+# Windows
+.\prefsCleaner.ps1 -DryRun
+.\prefsCleaner.ps1 -All
+```
+
+Each `prefs.js` is backed up to `prefs.js.yuzubak` first. Close Firefox
+before running.
+
 ### Windows
 
 Open an **elevated** PowerShell, download the script, and run it locally:
