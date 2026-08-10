@@ -175,7 +175,7 @@ If you don't have a backup, remove `user.js.off` and run the uninstaller
 If Firefox still won't start, remove the system-wide files:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --uninstall --all
 ```
 
 ### Some website breaks
@@ -221,12 +221,12 @@ Run the uninstall command for your platform:
 
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --uninstall --all
 ```
 
 ```powershell
 # Windows
-$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
+$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.ps1
 & ([scriptblock]::Create($s)) -Uninstall
 ```
 

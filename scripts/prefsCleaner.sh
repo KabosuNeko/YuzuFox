@@ -7,10 +7,10 @@
 # script deletes those lines so Firefox falls back to its built-in defaults.
 #
 # Usage:
-#   ./prefsCleaner.sh                          # clean the default profile
-#   ./prefsCleaner.sh <profile-dir> [more...]  # clean specific profiles
-#   ./prefsCleaner.sh --all                    # every profile in profiles.ini
-#   ./prefsCleaner.sh --dry-run                # show what would be removed
+#   ./scripts/prefsCleaner.sh                          # clean the default profile
+#   ./scripts/prefsCleaner.sh <profile-dir> [more...]  # clean specific profiles
+#   ./scripts/prefsCleaner.sh --all                    # every profile in profiles.ini
+#   ./scripts/prefsCleaner.sh --dry-run                # show what would be removed
 #
 # Backs up each prefs.js to prefs.js.yuzubak before touching it.
 # Run with Firefox closed.

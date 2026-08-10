@@ -27,8 +27,8 @@ YuzuFox configures Firefox in **two layers**:
 - **`user.js`** — per-profile tuning: privacy & security, performance, QoL.
   *Generated from `src/user.js/*.js` by `build.py`.* Install into the profiles
   you use. Updated separately from the system base.
-- **`install.sh`** — one script for Linux/macOS: system-wide + per-profile.
-- **`install.ps1`** — same for Windows.
+- **`scripts/install.sh`** — one script for Linux/macOS: system-wide + per-profile.
+- **`scripts/install.ps1`** — same for Windows.
 
 ### Why two config files
 
@@ -54,14 +54,14 @@ lists profiles and asks which ones to install `user.js` into.
 > Download the script first, then run it locally:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
-bash install.sh
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh -o scripts/install.sh
+bash scripts/install.sh
 ```
 
 > For a non-interactive install (every profile, no prompt, works in a pipe):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --all
 ```
 
 The installer refuses to prompt over a pipe and tells you exactly that, with
@@ -75,11 +75,11 @@ the two commands above.
 Variants:
 
 ```bash
-bash install.sh                 # interactive profile picker
-bash install.sh --system-only   # yuzu.js + policies.json only
-bash install.sh --profiles-only # user.js only (no sudo)
-bash install.sh --all           # every profile, no prompt
-bash install.sh --dry-run       # preview, write nothing
+bash scripts/install.sh                 # interactive profile picker
+bash scripts/install.sh --system-only   # yuzu.js + policies.json only
+bash scripts/install.sh --profiles-only # user.js only (no sudo)
+bash scripts/install.sh --all           # every profile, no prompt
+bash scripts/install.sh --dry-run       # preview, write nothing
 ```
 
 Existing `user.js` is **backed up** as `user.js.yuzubak`.
@@ -99,12 +99,12 @@ them to Firefox defaults:
 
 ```bash
 # Linux / macOS
-bash prefsCleaner.sh --dry-run   # preview
-bash prefsCleaner.sh --all       # clean every profile
+bash scripts/prefsCleaner.sh --dry-run   # preview
+bash scripts/prefsCleaner.sh --all       # clean every profile
 
 # Windows
-.\prefsCleaner.ps1 -DryRun
-.\prefsCleaner.ps1 -All
+.\scripts\prefsCleaner.ps1 -DryRun
+.\scripts\prefsCleaner.ps1 -All
 ```
 
 Each `prefs.js` is backed up to `prefs.js.yuzubak` first. Close Firefox
@@ -115,21 +115,21 @@ before running.
 Open an **elevated** PowerShell, download the script, and run it locally:
 
 ```powershell
-irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
-.\install.ps1
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.ps1 -OutFile install.ps1
+.\scripts\install.ps1
 ```
 
 > If execution policy blocks `.ps1` files, bypass it for this run:
 >
 > ```powershell
-> powershell -ExecutionPolicy Bypass -File .\install.ps1
+> powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
 > ```
 
 For a non-interactive install (every profile, no prompt), add `-All`:
 
 ```powershell
-irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
-.\install.ps1 -All
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.ps1 -OutFile install.ps1
+.\scripts\install.ps1 -All
 ```
 
 | File | Path |
@@ -142,17 +142,17 @@ irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFi
 
 ```bash
 # Linux / macOS — every profile, no confirm prompt (works with the pipe)
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh | bash -s -- --uninstall --all
 
 # Or download first for the interactive [y/N] confirmation
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
-bash install.sh --uninstall
+curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.sh -o scripts/install.sh
+bash scripts/install.sh --uninstall
 ```
 
 ```powershell
 # Windows
-irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
-.\install.ps1 -Uninstall
+irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/scripts/install.ps1 -OutFile install.ps1
+.\scripts\install.ps1 -Uninstall
 ```
 
 ## Further reading
