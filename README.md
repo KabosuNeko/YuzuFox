@@ -69,20 +69,11 @@ ever touching the system-wide base.
 Keeping them separate also prevents per-profile choices from being overwritten
 by a system-wide re-install.
 
-### Why YuzuFox over the alternatives
+### Why YuzuFox
 
-|                              | Arkenfox             | Betterfox    | CachyOS              | **YuzuFox**                              |
-| ---------------------------- | -------------------- | ------------ | -------------------- | ---------------------------------------- |
-| **Daily use**                    | Accepts breakage     | Good         | Good                 | Good — no RFP, shims ON, SB ON           |
-| **Performance tuning**           | None                 | Good         | Excellent            | Excellent — superset of CachyOS          |
-| **Privacy hardening**            | Maximum              | Moderate     | Minimal              | High — Arkenfox-grade, daily-use curated |
-| **System-wide locked layer**     | No                   | No           | Yes (basic)          | Yes — 112 pref locked                    |
-| **Enterprise policies**          | No                   | No           | Yes (basic)          | Yes — search engines, uBlock, telemetry  |
-| **Blocklist**                    | On                   | On           | **Off**                  | On                                       |
-| **Maintenance tooling**          | Manual               | Manual       | Manual               | build.py + prefsCleaner + CI sync         |
-
-YuzuFox sits at the intersection: **Arkenfox-grade telemetry/privacy + CachyOS-grade
-performance + enterprise-policy layer + maintenance tooling**, without the daily-use
+YuzuFox sits at the intersection: **Arkenfox-grade telemetry/privacy via
+curated curation + CachyOS-grade performance via aggressive hardware tuning +
+enterprise-policy layer + maintenance tooling** — without the daily-use
 breakage that comes from extremes.
 
 See [TIPS.md](TIPS.md) for the resource-usage rationale and tuning guide.
