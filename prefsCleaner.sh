@@ -143,7 +143,7 @@ fi
 
 # --- Clean one prefs.js -------------------------------------------------------
 clean_prefs() {
-    local dir="$1" prefs tmp name removed=0 kept=0
+    local dir="$1" prefs tmp name removed=0
     prefs="$dir/prefs.js"
     [ -f "$prefs" ] || { say_note "[~] No prefs.js in $dir"; return 0; }
 
@@ -170,7 +170,6 @@ clean_prefs() {
             continue
         fi
         printf '%s\n' "$line" >> "$tmp"
-        kept=$((kept+1))
     done < "$prefs"
 
     if [ "$removed" -gt 0 ]; then
