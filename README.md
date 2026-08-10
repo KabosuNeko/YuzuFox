@@ -10,6 +10,33 @@
 
 ---
 
+## Philosophy
+
+YuzuFox makes **one set of choices** so you don't have to:
+
+- **Daily use comes first.** No RFP, no JIT-off, no DRM-off, no blanket Safe
+  Browsing off — nothing that breaks the sites you actually visit. Push
+  notifications, search suggestions, and webcompat shims stay on. If the
+  browser can't be your daily driver, the config is wrong.
+
+- **Performance is a privacy feature.** A slow browser pushes users towards
+  Chrome. YuzuFox tunes the JIT, compositor, caches, GPU pipeline, and
+  network stack aggressively — trading idle RAM/CPU/GPU for lower latency.
+  Every pref is verified against CachyOS and Firefox source.
+
+- **Privacy means telemetry is dead.** 112 locked system-wide prefs kill
+  every Mozilla data-collection channel: telemetry, studies, crash reports,
+  Normandy, Activity Stream pings, coverage pings, captive-portal probes,
+  and all marketing/AI services. At the policy level, enterprise policies
+  add a second layer.
+
+- **Security is leaned on, not exaggerated.** CRLite (offline revocation),
+  strict cert pinning, HTTPS-only mode with no cleartext fallback, QUIC/TLS
+  0-RTT off, and quarantined-domain enforcement are on. The Mozilla blocklist
+  stays active (unlike CachyOS). Safe Browsing stays on (hash-prefix only).
+
+---
+
 ## Overview
 
 YuzuFox configures Firefox in **two layers**:
@@ -41,6 +68,24 @@ ever touching the system-wide base.
 
 Keeping them separate also prevents per-profile choices from being overwritten
 by a system-wide re-install.
+
+### Why YuzuFox over the alternatives
+
+|                              | Arkenfox             | Betterfox    | CachyOS              | **YuzuFox**                              |
+| ---------------------------- | -------------------- | ------------ | -------------------- | ---------------------------------------- |
+| **Daily use**                    | Accepts breakage     | Good         | Good                 | Good — no RFP, shims ON, SB ON           |
+| **Performance tuning**           | None                 | Good         | Excellent            | Excellent — superset of CachyOS          |
+| **Privacy hardening**            | Maximum              | Moderate     | Minimal              | High — Arkenfox-grade, daily-use curated |
+| **System-wide locked layer**     | No                   | No           | Yes (basic)          | Yes — 112 pref locked                    |
+| **Enterprise policies**          | No                   | No           | Yes (basic)          | Yes — search engines, uBlock, telemetry  |
+| **Blocklist**                    | On                   | On           | **Off**                  | On                                       |
+| **Maintenance tooling**          | Manual               | Manual       | Manual               | build.py + prefsCleaner + CI sync         |
+
+YuzuFox sits at the intersection: **Arkenfox-grade telemetry/privacy + CachyOS-grade
+performance + enterprise-policy layer + maintenance tooling**, without the daily-use
+breakage that comes from extremes.
+
+See [TIPS.md](TIPS.md) for the resource-usage rationale and tuning guide.
 
 ## Install
 
