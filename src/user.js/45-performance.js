@@ -8,7 +8,7 @@
 user_pref("browser.cache.disk.enable", false);
 // [SOURCE: Betterfox + CachyOS] [NOTE: 1 GB memory cache]
 user_pref("browser.cache.memory.capacity", 1048576);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 // [SOURCE: CachyOS] [NOTE: media cache stays in RAM, not disk]
 user_pref("media.memory_cache_max_size", 1048576);

@@ -40,11 +40,11 @@ user_pref("browser.urlbar.importantDates.featureGate", false);
 user_pref("browser.urlbar.market.featureGate", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("browser.urlbar.yelpRealtime.featureGate", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.urlbar.trending.featureGate", false);
 
 // Separately configurable private-window search engine.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 
 // Fullscreen transitions are instant in a tiling WM.
@@ -72,7 +72,7 @@ user_pref("findbar.highlightAll", true);
 // without needing a separate profile.
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.userContext.enabled", true);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("privacy.userContext.ui.enabled", true);
 // Long-press + new tab button opens container picker.
 user_pref("privacy.userContext.longPressBehavior", 2);

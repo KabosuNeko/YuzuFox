@@ -10,7 +10,7 @@ user_pref("browser.startup.page", 0);
 user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("browser.newtabpage.enabled", false);
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // Session restore revives URLs but never replays authenticated state.
@@ -22,5 +22,5 @@ user_pref("browser.sessionstore.privacy_level", 2);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("dom.private-attribution.submission.enabled", false);
 // No mozilla.org domain receives special permissions by default.
-// [SOURCE: Both] [NOTE: audited against upstream user.js]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: audited against upstream user.js]
 user_pref("permissions.manager.defaultsUrl", "");
