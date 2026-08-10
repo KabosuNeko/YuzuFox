@@ -198,11 +198,34 @@ select_profiles() {
 }
 
 # --- System-wide actions ------------------------------------------------------
+# Compare a freshly downloaded file against what is installed. Returns 0
+# (up to date) or 1 (new version available / not installed yet).
+needs_update() {
+    local new="$1" dest="$2"
+    [ -f "$dest" ] || return 1
+    cmp -s "$new" "$dest"
+}
+
 install_system() {
   say "Downloading configuration files..."
   SYSTEM_TMP=$(mktemp -d)
   curl -sSL "$POLICIES_URL" -o "$SYSTEM_TMP/policies.json" || die "Failed to download policies.json"
   curl -sSL "$PREFS_URL" -o "$SYSTEM_TMP/yuzu.js" || die "Failed to download yuzu.js"
+
+  local changed=0
+  if needs_update "$SYSTEM_TMP/policies.json" "$POLICIES_DEST"; then
+    say_note "policies.json: up to date"
+  else
+    changed=1
+    say_note "policies.json: new version"
+  fi
+  if needs_update "$SYSTEM_TMP/yuzu.js" "$PREFS_DEST"; then
+    say_note "yuzu.js: up to date"
+  else
+    changed=1
+    say_note "yuzu.js: new version"
+  fi
+  [ "$changed" = "0" ] && { say_note "System settings already up to date."; return 0; }
 
   say "Installing system-wide [$OS] (requires sudo)..."
   sudo mkdir -p "$(dirname "$POLICIES_DEST")"
@@ -237,9 +260,15 @@ install_profiles() {
   curl -sSL "$USERJS_URL" -o "$USERJS_TMP/user.js" || die "Failed to download user.js"
 
   select_profiles
+  local changed=0
   for i in "${SELECTED_IDX[@]}"; do
     p="${PROFILE_PATH[$i]}"
     [ -d "$p" ] || { say_note "[!] Skipped missing profile ${PROFILE_NAME[$i]} ($p)"; continue; }
+    if [ -f "$p/user.js" ] && cmp -s "$USERJS_TMP/user.js" "$p/user.js"; then
+      say_note "[~] ${PROFILE_NAME[$i]}: user.js up to date"
+      continue
+    fi
+    changed=1
     if [ -f "$p/user.js" ]; then
       cp -f "$p/user.js" "$p/user.js.yuzubak"
       say_note "[~] Existing user.js backed up to user.js.yuzubak"
@@ -247,6 +276,7 @@ install_profiles() {
     cp -f "$USERJS_TMP/user.js" "$p/user.js"
     say_note "[+] Installed ${PROFILE_NAME[$i]} ($p/user.js)"
   done
+  [ "$changed" = "0" ] && { say "user.js already up to date in all selected profiles."; return 0; }
   say "user.js installed to selected profiles. Restart Firefox to apply."
 }
 
