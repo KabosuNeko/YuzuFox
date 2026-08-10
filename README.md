@@ -19,10 +19,10 @@ YuzuFox makes **one set of choices** so you don't have to:
   notifications, search suggestions, and webcompat shims stay on. If the
   browser can't be your daily driver, the config is wrong.
 
-- **Performance is a privacy feature.** A slow browser pushes users towards
-  Chrome. YuzuFox tunes the JIT, compositor, caches, GPU pipeline, and
-  network stack aggressively — trading idle RAM/CPU/GPU for lower latency.
-  Every pref is verified against CachyOS and Firefox source.
+- **Speed matters — a slow browser pushes people to Chrome.** YuzuFox tunes
+  the JIT, compositor, caches, GPU pipeline, and network stack aggressively
+  — trading idle RAM/CPU/GPU for lower latency. Every perf pref is verified
+  against CachyOS and Firefox source.
 
 - **Privacy means telemetry is dead.** 112 locked system-wide prefs kill
   every Mozilla data-collection channel: telemetry, studies, crash reports,
