@@ -81,18 +81,15 @@ $RemovedPrefs = @(
     # Redundant prefs at Firefox defaults, removed 2026-08-09.
     'browser.search.suggest.enabled'
     'browser.search.separatePrivateDefault'
-    'browser.urlbar.quicksuggest.enabled'
     'browser.urlbar.suggest.searches'
-    'browser.urlbar.suggest.quicksuggest.nonsponsored'
-    'browser.urlbar.suggest.quicksuggest.sponsored'
     'browser.urlbar.amp.featureGate'
     'browser.urlbar.wikipedia.featureGate'
     'dom.push.enabled'
-    'javascript.options.ion.threshold'
     'network.http.referer.spoofSource'
     'privacy.fingerprintingProtection.pbmode'
     'security.pki.crlite_mode'
     'security.remote_settings.crlite_filters.enabled'
+    'services.settings.poll_interval'
 )
 
 # --- Locate profiles ---------------------------------------------------------

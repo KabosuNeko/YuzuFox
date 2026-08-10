@@ -58,10 +58,11 @@ user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc
 // PRIVACY — FORMS / PASSWORDS / DOM RESTRICTIONS
 // -----------------------------------------------------------------------------
 
-// Disable inline autocomplete; password capture is delegated to an external
-// passphrase store (pass / KeePassXC).
+// Disable inline autocomplete and the built-in password manager; credential
+// capture is delegated to an external passphrase store (pass / KeePassXC).
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.formfill.enable", false);
+user_pref("signon.rememberSignons", false);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("signon.formlessCapture.enabled", false);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
@@ -80,6 +81,19 @@ user_pref("editor.truncate_user_pastes", false);
 // Prevent JS from moving/resizing the window (the tiling WM owns geometry).
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("dom.disable_window_move_resize", true);
+
+// Block site access to clipboard events (fingerprinting + data leak vector).
+// [SOURCE: Arkenfox] [NOTE: clipboard event access disabled]
+user_pref("dom.event.clipboardevents.enabled", false);
+
+// Disable device sensor APIs — accelerometer, gyroscope, proximity.
+// These are fingerprinting vectors with no legitimate use for most sites.
+// [SOURCE: Arkenfox] [NOTE: sensor API disabled per Arkenfox 4200+]
+user_pref("device.sensors.enabled", false);
+
+// Battery Status API — leaks device type + charge level as fingerprint.
+// [SOURCE: Arkenfox] [NOTE: battery API disabled per Arkenfox 4200+]
+user_pref("dom.battery.enabled", false);
 
 // Homograph defense: always show Punycode for IDNs.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]

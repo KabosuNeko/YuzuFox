@@ -107,6 +107,8 @@ Firefox's built-in password manager is disabled:
 browser.formfill.enable = false
 signon.rememberSignons = false
 signon.autofillForms = false
+signon.formlessCapture.enabled = false
+signon.privateBrowsingCapture.enabled = false
 ```
 
 Use an **external password manager** instead. It keeps credentials encrypted
@@ -235,6 +237,83 @@ vs prod, one account per site — all in one window.
 
 Containers do **not** replace a VPN or a separate browser profile — they
 separate cookies/storage, not network identity.
+
+---
+
+## Why YuzuFox uses more RAM / CPU / GPU than vanilla Firefox
+
+YuzuFox prioritises **speed over resource frugality** — it trades idle RAM /
+GPU / CPU headroom for lower latency and snappier browsing. Every pref below
+is deliberate; if your machine has 8+ GB of RAM and a modern GPU, the
+trade-off is a pure win. If you are on 4 GB or an integrated-only GPU, some
+values can be dialled down (see "Tuning for low-RAM machines" at the bottom).
+
+### RAM — cache everything in memory, never touch the SSD
+
+| Pref                                           | Firefox default | YuzuFox   | What it does                                                |
+| ---------------------------------------------- | --------------- | --------- | ----------------------------------------------------------- |
+| `browser.cache.disk.enable`                      | `true`            | `false`     | All cached pages live in RAM; SSD write wear is eliminated  |
+| `browser.cache.memory.capacity`                  | `-1` (auto)      | `1048576`   | 1 GB pool for page cache                                    |
+| `media.memory_cache_max_size`                    | auto             | `1048576`   | 1 GB per media element (video, audio)                       |
+| `media.memory_caches_combined_limit_kb`          | auto             | `3145728`   | 3 GB total media cache                                      |
+| `image.cache.size`                               | auto             | `10485760`  | 10 MB decoded-image pool — images re-render from cache      |
+| `gfx.content.skia-font-cache-size`               | auto             | `80` (MB)   | Larger font cache → fewer glyph re-renders during scroll    |
+| `browser.sessionhistory.max_total_viewers`       | `-1` (auto)      | `10`        | Back/forward cache holds 10 full page states (~20-50 MB each) |
+
+### CPU — compile JavaScript sooner, render faster
+
+| Pref                                        | Firefox default | YuzuFox | What it does                                                   |
+| ------------------------------------------- | --------------- | ------- | -------------------------------------------------------------- |
+| `javascript.options.baselinejit.threshold`    | `100`             | `50`     | Warm functions compile to Baseline JIT after 50 iterations     |
+| `javascript.options.ion.threshold`            | `~1000`           | `500`    | Hot-paths compile to Ion JIT (optimising compiler) sooner      |
+| `content.notify.interval`                     | `120000` (μs)    | `100000` | Incremental reflow timer fires more often → pages paint faster |
+
+More JIT compilation = higher CPU usage during page load. On a modern
+multi-core CPU this is imperceptible; the result is faster Time-to-Interactive.
+
+### GPU — force hardware acceleration for everything
+
+| Pref                                          | Firefox default | YuzuFox | What it does                                      |
+| --------------------------------------------- | --------------- | ------- | ------------------------------------------------- |
+| `gfx.webrender.compositor.force-enabled`        | auto             | `true`    | Compositor always uses GPU (~50-100 MB VRAM extra) |
+| `media.hardware-video-decoding.force-enabled`   | auto             | `true`    | Video decode always on GPU hardware               |
+| `media.gpu-process-decoder`                     | auto             | `true`    | Dedicated GPU process for video (extra ~30 MB)    |
+| `gfx.webrender.precache-shaders`                | auto             | `true`    | Compile shaders ahead of time (faster first paint) |
+| `gfx.webrender.program-binary-disk`             | auto             | `true`    | Cache compiled shaders on disk → skip recompile    |
+
+GPU stays active and uses more VRAM, but video playback is smooth and page
+compositing never falls back to software rendering.
+
+### Network — more connections, more socket buffers
+
+| Pref                                             | Firefox default | YuzuFox  | What it does                                              |
+| ------------------------------------------------ | --------------- | -------- | --------------------------------------------------------- |
+| `network.http.max-connections`                     | `900`             | `1800`     | Twice as many parallel connections → more socket buffers  |
+| `network.http.max-persistent-connections-per-server` | `6`               | `10`       | More keep-alive sockets per host                          |
+| `network.http.http3.enable`                        | `true` (default) | `true`     | Explicitly enforce QUIC (HTTP/3)                          |
+
+### Total estimate
+
+YuzuFox uses roughly **500 MB to 1.5 GB more RAM** than vanilla Firefox
+(depends on open-tab count and media load). GPU is always active. CPU spikes
+are higher during page load but settle faster.
+
+### Tuning for low-RAM machines (4-6 GB)
+
+Add these overrides to your `user.js` *after* YuzuFox is installed (they go
+at the end of the file so they take precedence):
+
+```js
+user_pref("browser.cache.memory.capacity", 524288);        // 512 MB instead of 1 GB
+user_pref("media.memory_caches_combined_limit_kb", 1048576); // 1 GB instead of 3 GB
+user_pref("browser.sessionhistory.max_total_viewers", 3);  // 3 pages instead of 10
+user_pref("gfx.content.skia-font-cache-size", 40);         // 40 MB instead of 80 MB
+user_pref("media.memory_cache_max_size", 524288);          // 512 MB per media element
+user_pref("network.http.max-connections", 900);            // Firefox default
+```
+
+Restart Firefox after editing. You keep the privacy/security hardening while
+cutting RAM usage roughly in half.
 
 ---
 

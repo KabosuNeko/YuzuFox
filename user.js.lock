@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T03:54:36.959451+00:00",
+  "generated_at": "2026-08-10T10:51:32.386076+00:00",
   "prefs": [
     {
       "files": [
@@ -156,15 +156,6 @@
     },
     {
       "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "browser.privateWindowSeparation.enabled",
-      "source": "Betterfox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/45-performance.js"
       ],
       "note": "audited against upstream user.js",
@@ -192,12 +183,21 @@
     },
     {
       "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "browser.sessionhistory.max_total_viewers",
+      "source": "YuzuFox",
+      "value": 10
+    },
+    {
+      "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
       "note": "audited against upstream user.js",
       "pref": "browser.sessionstore.privacy_level",
       "source": "Arkenfox",
-      "value": 1
+      "value": 2
     },
     {
       "files": [
@@ -293,6 +293,15 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
+      "note": "QuickSuggest master switch + sponsored/nonsponsored off",
+      "pref": "browser.urlbar.quicksuggest.enabled",
+      "source": "CachyOS",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
       "note": "audited against upstream user.js",
       "pref": "browser.urlbar.showSearchTerms.enabled",
       "source": "Arkenfox",
@@ -322,6 +331,24 @@
       ],
       "note": null,
       "pref": "browser.urlbar.suggest.quicksuggest.fakespot",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.quicksuggest.nonsponsored",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.quicksuggest.sponsored",
       "source": "YuzuFox",
       "value": false
     },
@@ -401,10 +428,37 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
+      "note": "sensor API disabled per Arkenfox 4200+",
+      "pref": "device.sensors.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "battery API disabled per Arkenfox 4200+",
+      "pref": "dom.battery.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
       "note": "audited against upstream user.js",
       "pref": "dom.disable_window_move_resize",
       "source": "Arkenfox",
       "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "clipboard event access disabled",
+      "pref": "dom.event.clipboardevents.enabled",
+      "source": "Arkenfox",
+      "value": false
     },
     {
       "files": [
@@ -449,15 +503,6 @@
       "note": "audited against upstream user.js",
       "pref": "editor.truncate_user_pastes",
       "source": "Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "disable remote webcompat shims",
-      "pref": "extensions.webcompat.enable_shims",
-      "source": "Arkenfox",
       "value": false
     },
     {
@@ -626,19 +671,19 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "4 MB canvas cache for GPU-accelerated canvas apps",
       "pref": "gfx.canvas.accelerated.cache-size",
-      "source": "Betterfox",
-      "value": 512
+      "source": "CachyOS",
+      "value": 4096
     },
     {
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "80 MB Skia font cache, faster text rendering",
       "pref": "gfx.content.skia-font-cache-size",
-      "source": "Betterfox",
-      "value": 20
+      "source": "CachyOS",
+      "value": 80
     },
     {
       "files": [
@@ -653,10 +698,10 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "64 KB decode chunks for faster image rendering",
       "pref": "image.mem.decode_bytes_at_a_time",
-      "source": "Betterfox",
-      "value": 32768
+      "source": "CachyOS",
+      "value": 65536
     },
     {
       "files": [
@@ -678,6 +723,15 @@
     },
     {
       "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": "IonMonkey aggressive warm-up, safe on modern hardware",
+      "pref": "javascript.options.ion.threshold",
+      "source": "CachyOS",
+      "value": 500
+    },
+    {
+      "files": [
         "src/user.js/50-ui-qol.js"
       ],
       "note": null,
@@ -689,19 +743,28 @@
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": "audited against upstream user.js",
-      "pref": "media.cache_readahead_limit",
-      "source": "Betterfox",
-      "value": 3600
+      "note": "5 = block all, same as upstream cachyos.js",
+      "pref": "media.autoplay.default",
+      "source": "CachyOS",
+      "value": 5
     },
     {
       "files": [
         "src/user.js/45-performance.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "double read-ahead and resume threshold",
+      "pref": "media.cache_readahead_limit",
+      "source": "CachyOS",
+      "value": 7200
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
       "pref": "media.cache_resume_threshold",
-      "source": "Betterfox",
-      "value": 1800
+      "source": "YuzuFox",
+      "value": 3600
     },
     {
       "files": [
@@ -837,6 +900,24 @@
       "pref": "network.gio.supported-protocols",
       "source": "Arkenfox",
       "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/45-performance.js"
+      ],
+      "note": null,
+      "pref": "network.http.http3.enable",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": null,
+      "pref": "network.http.http3.enable_0rtt",
+      "source": "YuzuFox",
+      "value": false
     },
     {
       "files": [
@@ -1065,15 +1146,6 @@
     },
     {
       "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "remove security dialog delay",
-      "pref": "security.dialog_enable_delay",
-      "source": "Arkenfox",
-      "value": 0
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "audited against upstream user.js",
@@ -1101,15 +1173,6 @@
     },
     {
       "files": [
-        "src/user.js/10-network.js"
-      ],
-      "note": null,
-      "pref": "services.settings.poll_interval",
-      "source": "YuzuFox",
-      "value": 300
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
       "note": "audited against upstream user.js",
@@ -1133,6 +1196,15 @@
       "note": "audited against upstream user.js",
       "pref": "signon.privateBrowsingCapture.enabled",
       "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "signon.rememberSignons",
+      "source": "YuzuFox",
       "value": false
     },
     {

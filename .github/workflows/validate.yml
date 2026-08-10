@@ -139,6 +139,20 @@ jobs:
       - name: Check generated files are in sync
         run: python3 build.py --check
 
+  validate-psscriptanalyzer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Lint PowerShell scripts
+        shell: pwsh
+        run: |
+          $issues = Invoke-ScriptAnalyzer -Path install.ps1,prefsCleaner.ps1 -Severity Error,Warning
+          if ($issues) {
+            $issues | Format-Table -AutoSize
+            throw "PSScriptAnalyzer found $($issues.Count) issue(s)"
+          }
+          Write-Host "PowerShell scripts clean."
+
   validate-powershell:
     runs-on: windows-latest
     steps:

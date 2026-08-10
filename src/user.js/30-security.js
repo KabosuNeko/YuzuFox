@@ -41,11 +41,4 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.always_ask_before_handling_new_types", true);
 // Force download PDFs instead of opening in-browser.
 user_pref("browser.download.viewableInternally.typeWasRegistered.pdf", false);
-// Remove the 1s delay on security dialogs (certificate, etc.).
-// [SOURCE: Arkenfox] [NOTE: remove security dialog delay]
-user_pref("security.dialog_enable_delay", 0);
-
-// Do not load remote tracking-mitigation shims from Mozilla.
-// [SOURCE: Arkenfox] [NOTE: disable remote webcompat shims]
-user_pref("extensions.webcompat.enable_shims", false);
 
