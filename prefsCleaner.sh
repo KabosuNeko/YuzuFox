@@ -19,6 +19,7 @@ set -euo pipefail
 
 DRY_RUN=0
 ALL=0
+PROFILE_DIRS=()
 
 usage() {
     sed -n '2,22p' "$0" 2>/dev/null | grep -v '^#!' | sed 's/^# \{0,1\}//'
