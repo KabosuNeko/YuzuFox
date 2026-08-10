@@ -153,6 +153,91 @@ cycle is added delay.
 
 ---
 
+## Updating & maintenance
+
+Re-running the installer **is** the update — it always fetches the latest
+files from `main` and compares them against what is installed:
+
+- **Unchanged files** are skipped (`policies.json: up to date`).
+- **Changed files** are replaced; the old `user.js` is backed up as
+  `user.js.yuzubak` automatically.
+
+```bash
+# Linux / macOS
+bash scripts/install.sh --all
+
+# Windows
+.\scripts\install.ps1 -All
+```
+
+After a major update, clean stale prefs. Prefs that YuzuFox removed from
+`user.js` can linger in `prefs.js` and keep applying old values (for example
+the old Safe Browsing block would keep malware protection off even though
+`user.js` no longer disables it):
+
+```bash
+# Linux / macOS — dry-run first, then clean every profile
+bash scripts/prefsCleaner.sh --dry-run
+bash scripts/prefsCleaner.sh --all
+
+# Windows
+.\scripts\prefsCleaner.ps1 -DryRun
+.\scripts\prefsCleaner.ps1 -All
+```
+
+Each cleaned `prefs.js` is backed up to `prefs.js.yuzubak`. Close Firefox
+before running.
+
+---
+
+## Notifications & Push
+
+Web Push is left at Firefox defaults (enabled), but the **notification
+permission defaults to blocked** (`permissions.default.desktop-notification
+= 2`). Sites can still request it, and you can allow individual sites:
+
+1. Visit the site.
+2. Click the permission icon in the URL bar (or the notification bell on the
+   permission prompt) and choose **Allow**.
+
+Or manage everything in one place: `about:preferences#privacy` →
+*Permissions* → *Notifications* → *Settings*. There you can also block a
+site that keeps asking.
+
+---
+
+## Geolocation & WebRTC
+
+Geolocation is **blocked by default** (`permissions.default.geo = 2`) and the
+network-based fallback (Google location service) is disabled. Sites can still
+ask, and you allow per-site the same way as notifications (URL bar permission
+icon). If a site genuinely needs location (maps, weather), grant it there.
+
+WebRTC exposes only your **public IP** — the LAN address (192.168.x.x) is
+never leaked to websites
+(`media.peerconnection.ice.default_address_only`). Video calls, screen
+sharing, and file transfer over WebRTC keep working; only the local-network
+address is hidden.
+
+---
+
+## Containers
+
+Container tabs isolate first-party storage per tab: work vs personal, dev
+vs prod, one account per site — all in one window.
+
+- **Open a container tab**: long-press the **+** (new tab) button → pick a
+  container (`privacy.userContext.longPressBehavior = 2`). If the long-press
+  does nothing, the picker also lives in the menu: *New Container Tab*.
+- Or install the official
+  [Multi-Account Containers](https://addons.mozilla.org/firefox/addon/multi-account-containers/)
+  extension for per-site rules ("always open example.com in Work").
+
+Containers do **not** replace a VPN or a separate browser profile — they
+separate cookies/storage, not network identity.
+
+---
+
 ## Troubleshooting
 
 ### Firefox won't start or pages won't load

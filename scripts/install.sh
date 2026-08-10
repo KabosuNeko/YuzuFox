@@ -189,7 +189,13 @@ select_profiles() {
           for n in $selection; do
               case "$n" in
                   *[!0-9]*|"") die "Invalid selection: $n" ;;
-                  *) [ "$n" -ge 1 ] 2>/dev/null && [ "$n" -le "${#PROFILE_NAME[@]}" ] || die "Out of range: $n" ;;
+                  *)
+                      if [ "$n" -ge 1 ] 2>/dev/null && [ "$n" -le "${#PROFILE_NAME[@]}" ]; then
+                          :
+                      else
+                          die "Out of range: $n"
+                      fi
+                      ;;
               esac
               SELECTED_IDX+=("$((n-1))")
           done
