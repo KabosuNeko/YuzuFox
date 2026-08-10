@@ -36,7 +36,7 @@ pref("spellchecker.dictionary_path", "/usr/share/hunspell");
 
 // Suppress the default-browser check on a system where the concept of a
 // "default browser" is handled externally (xdg-settings / the WM).
-pref("browser.shell.checkDefaultBrowser", false);
+pref("browser.shell.checkDefaultBrowser", false, locked);
 pref("skipDefaultBrowserCheckOnFirstRun", false, locked);
 
 // -----------------------------------------------------------------------------

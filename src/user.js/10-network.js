@@ -22,13 +22,13 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("security.tls.enable_0rtt_data", false);
 
+// QUIC 0-RTT (HTTP/3) has the same replay weakness as TLS 0-RTT.
+user_pref("network.http.http3.enable_0rtt", false);
+
 // Show expert bad-cert pages immediately when debugging TLS.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
-// Poll Remote Settings (CRLite filters + others) more often so revocation
-// data arrives promptly.
-user_pref("services.settings.poll_interval", 300);
 // -----------------------------------------------------------------------------
 // PRIVACY — SEVER ALL BACKGROUND / SPECULATIVE CONNECTIONS
 // -----------------------------------------------------------------------------

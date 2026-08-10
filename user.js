@@ -38,13 +38,13 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("security.tls.enable_0rtt_data", false);
 
+// QUIC 0-RTT (HTTP/3) has the same replay weakness as TLS 0-RTT.
+user_pref("network.http.http3.enable_0rtt", false);
+
 // Show expert bad-cert pages immediately when debugging TLS.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
-// Poll Remote Settings (CRLite filters + others) more often so revocation
-// data arrives promptly.
-user_pref("services.settings.poll_interval", 300);
 // -----------------------------------------------------------------------------
 // PRIVACY — SEVER ALL BACKGROUND / SPECULATIVE CONNECTIONS
 // -----------------------------------------------------------------------------
@@ -130,10 +130,11 @@ user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc
 // PRIVACY — FORMS / PASSWORDS / DOM RESTRICTIONS
 // -----------------------------------------------------------------------------
 
-// Disable inline autocomplete; password capture is delegated to an external
-// passphrase store (pass / KeePassXC).
+// Disable inline autocomplete and the built-in password manager; credential
+// capture is delegated to an external passphrase store (pass / KeePassXC).
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("browser.formfill.enable", false);
+user_pref("signon.rememberSignons", false);
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
 user_pref("signon.formlessCapture.enabled", false);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
@@ -152,6 +153,19 @@ user_pref("editor.truncate_user_pastes", false);
 // Prevent JS from moving/resizing the window (the tiling WM owns geometry).
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
 user_pref("dom.disable_window_move_resize", true);
+
+// Block site access to clipboard events (fingerprinting + data leak vector).
+// [SOURCE: Arkenfox] [NOTE: clipboard event access disabled]
+user_pref("dom.event.clipboardevents.enabled", false);
+
+// Disable device sensor APIs — accelerometer, gyroscope, proximity.
+// These are fingerprinting vectors with no legitimate use for most sites.
+// [SOURCE: Arkenfox] [NOTE: sensor API disabled per Arkenfox 4200+]
+user_pref("device.sensors.enabled", false);
+
+// Battery Status API — leaks device type + charge level as fingerprint.
+// [SOURCE: Arkenfox] [NOTE: battery API disabled per Arkenfox 4200+]
+user_pref("dom.battery.enabled", false);
 
 // Homograph defense: always show Punycode for IDNs.
 // [SOURCE: Both] [NOTE: audited against upstream user.js]
@@ -220,13 +234,6 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.always_ask_before_handling_new_types", true);
 // Force download PDFs instead of opening in-browser.
 user_pref("browser.download.viewableInternally.typeWasRegistered.pdf", false);
-// Remove the 1s delay on security dialogs (certificate, etc.).
-// [SOURCE: Arkenfox] [NOTE: remove security dialog delay]
-user_pref("security.dialog_enable_delay", 0);
-
-// Do not load remote tracking-mitigation shims from Mozilla.
-// [SOURCE: Arkenfox] [NOTE: disable remote webcompat shims]
-user_pref("extensions.webcompat.enable_shims", false);
 
 // -----------------------------------------------------------------------------
 // STARTUP & SESSION
@@ -246,7 +253,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 // Session restore revives URLs but never replays authenticated state.
 // 0 = restore all, 1 = skip HTTPS cookies, 2 = restore nothing.
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
-user_pref("browser.sessionstore.privacy_level", 1);
+user_pref("browser.sessionstore.privacy_level", 2);
 // Notifications blocked by default; whitelist per-site in
 // about:preferences#privacy > Permissions > Notifications.
 user_pref("permissions.default.desktop-notification", 2);
@@ -268,16 +275,20 @@ user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("media.memory_cache_max_size", 1048576);
 user_pref("media.memory_caches_combined_limit_kb", 3145728);
 
-// Cap video read-ahead so a single long-running video cannot monopolise RAM.
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("media.cache_readahead_limit", 3600);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("media.cache_resume_threshold", 1800);
+// Larger video buffers for machines with RAM to spare.
+// [SOURCE: CachyOS] [NOTE: double read-ahead and resume threshold]
+user_pref("media.cache_readahead_limit", 7200);
+user_pref("media.cache_resume_threshold", 3600);
 
-// Decoded image cache: 10 MB pool with 32 KB decode chunks.
+// Block all autoplay (audio + video); saves CPU/bandwidth on multi-tab sessions.
+// Per-site allow via URL bar permission icon.
+// [SOURCE: CachyOS] [NOTE: 5 = block all, same as upstream cachyos.js]
+user_pref("media.autoplay.default", 5);
+
+// Decoded image cache: 10 MB pool with 64 KB decode chunks.
 user_pref("image.cache.size", 10485760);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("image.mem.decode_bytes_at_a_time", 32768);
+// [SOURCE: CachyOS] [NOTE: 64 KB decode chunks for faster image rendering]
+user_pref("image.mem.decode_bytes_at_a_time", 65536);
 user_pref("image.mem.shared.unmap.min_expiration_ms", 120000);
 
 // Network buffers and TLS token cache.
@@ -295,14 +306,18 @@ user_pref("browser.tabs.unloadOnLowMemory", true);
 
 // Canvas2D acceleration cache tuning (Figma, Observable etc.).
 user_pref("gfx.canvas.accelerated.cache-items", 32768);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("gfx.canvas.accelerated.cache-size", 512);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("gfx.content.skia-font-cache-size", 20);
+// [SOURCE: CachyOS] [NOTE: 4 MB canvas cache for GPU-accelerated canvas apps]
+user_pref("gfx.canvas.accelerated.cache-size", 4096);
+// [SOURCE: CachyOS] [NOTE: 80 MB Skia font cache, faster text rendering]
+user_pref("gfx.content.skia-font-cache-size", 80);
 
 // Lower Baseline JIT threshold (100 -> 50): warm functions compile sooner.
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("javascript.options.baselinejit.threshold", 50);
+
+// Lower Ion JIT threshold (~1000 -> 500): JS hot-path compiles twice as fast.
+// [SOURCE: CachyOS] [NOTE: IonMonkey aggressive warm-up, safe on modern hardware]
+user_pref("javascript.options.ion.threshold", 500);
 
 // Snappier incremental rendering during slow page loads.
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
@@ -323,6 +338,12 @@ user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
 user_pref("network.http.pacing.requests.enabled", false);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("network.http.request.max-start-delay", 5);
+
+// Force HTTP/3 (QUIC) for lower-latency connections where supported.
+user_pref("network.http.http3.enable", true);
+
+// Cache more back/forward page states for instant history navigation.
+user_pref("browser.sessionhistory.max_total_viewers", 10);
 // -----------------------------------------------------------------------------
 // UI / QoL — ONE-LINE LOOK
 // -----------------------------------------------------------------------------
@@ -334,8 +355,6 @@ user_pref("network.http.request.max-start-delay", 5);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.compactmode.show", true);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("browser.privateWindowSeparation.enabled", false);
 
 // Strip https:// and undecorate the URL bar.
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
@@ -354,7 +373,11 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 // Kill every URL-bar suggestion category (Quicksuggest, trends, addons...).
 // Search suggestions from the default engine are left at Firefox defaults (on).
 user_pref("browser.urlbar.suggest.addons", false);
+// [SOURCE: CachyOS] [NOTE: QuickSuggest master switch + sponsored/nonsponsored off]
+user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.fakespot", false);
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.topsites", false);
 user_pref("browser.urlbar.suggest.trending", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]

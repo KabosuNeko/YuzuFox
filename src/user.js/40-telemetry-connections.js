@@ -16,7 +16,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 // Session restore revives URLs but never replays authenticated state.
 // 0 = restore all, 1 = skip HTTPS cookies, 2 = restore nothing.
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
-user_pref("browser.sessionstore.privacy_level", 1);
+user_pref("browser.sessionstore.privacy_level", 2);
 // Notifications blocked by default; whitelist per-site in
 // about:preferences#privacy > Permissions > Notifications.
 user_pref("permissions.default.desktop-notification", 2);

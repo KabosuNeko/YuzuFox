@@ -132,9 +132,7 @@
       "Locked": true
     },
     "WebsiteFilter": {
-      "Block": [
-        "https://localhost/*"
-      ]
+      "Block": []
     }
   }
 }

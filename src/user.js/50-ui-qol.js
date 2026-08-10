@@ -9,8 +9,6 @@
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
 user_pref("browser.compactmode.show", true);
-// [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
-user_pref("browser.privateWindowSeparation.enabled", false);
 
 // Strip https:// and undecorate the URL bar.
 // [SOURCE: Betterfox] [NOTE: audited against upstream user.js]
@@ -29,7 +27,11 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 // Kill every URL-bar suggestion category (Quicksuggest, trends, addons...).
 // Search suggestions from the default engine are left at Firefox defaults (on).
 user_pref("browser.urlbar.suggest.addons", false);
+// [SOURCE: CachyOS] [NOTE: QuickSuggest master switch + sponsored/nonsponsored off]
+user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.fakespot", false);
+user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.topsites", false);
 user_pref("browser.urlbar.suggest.trending", false);
 // [SOURCE: Arkenfox] [NOTE: audited against upstream user.js]
