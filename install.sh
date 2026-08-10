@@ -18,11 +18,11 @@
 #     macOS  /Applications/Firefox.app/Contents/Resources/browser/defaults/preferences/yuzu.js
 #
 # Usage:
-#   ./scripts/install.sh                   install system settings + ask for profiles
-#   ./scripts/install.sh --system-only     system-wide settings only
-#   ./scripts/install.sh --profiles-only   per-profile user.js only
-#   ./scripts/install.sh --dry-run         preview without writing anything
-#   ./scripts/install.sh --uninstall       remove system settings + user.js
+#   ./install.sh                   install system settings + ask for profiles
+#   ./install.sh --system-only     system-wide settings only
+#   ./install.sh --profiles-only   per-profile user.js only
+#   ./install.sh --dry-run         preview without writing anything
+#   ./install.sh --uninstall       remove system settings + user.js
 
 set -euo pipefail
 
@@ -80,7 +80,7 @@ detect_os() {
 # (e.g. `curl ... | bash` consumes stdin, so read -rp never sees the
 # keyboard). Suggest the two non-interactive escapes.
 require_tty() {
-    [ -t 0 ] || die "cannot prompt: stdin is not a terminal (curl | bash). Use --all, or download and run locally: curl -sSL -o yuzufox-install.sh $REPO_URL/scripts/install.sh && bash yuzufox-install.sh"
+    [ -t 0 ] || die "cannot prompt: stdin is not a terminal (curl | bash). Use --all, or download and run locally: curl -sSL -o yuzufox-install.sh $REPO_URL/install.sh && bash yuzufox-install.sh"
 }
 
 OS="$(detect_os)"

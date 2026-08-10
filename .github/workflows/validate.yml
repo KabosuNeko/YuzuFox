@@ -7,8 +7,8 @@ on:
       - 'policies.json'
       - 'yuzu.js'
       - 'user.js'
-      - 'scripts/install.sh'
-      - 'scripts/install.ps1'
+      - 'install.sh'
+      - 'install.ps1'
       - 'build.py'
       - 'src/user.js/**'
   pull_request:
@@ -16,8 +16,8 @@ on:
       - 'policies.json'
       - 'yuzu.js'
       - 'user.js'
-      - 'scripts/install.sh'
-      - 'scripts/install.ps1'
+      - 'install.sh'
+      - 'install.ps1'
       - 'build.py'
       - 'src/user.js/**'
 
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Check shell syntax (install.sh)
-        run: bash -n scripts/install.sh
+        run: bash -n install.sh
 
   validate-shellcheck:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
       - name: Shellcheck bash scripts
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
-          shellcheck scripts/install.sh scripts/prefsCleaner.sh
+          shellcheck install.sh prefsCleaner.sh
 
   validate-no-pref-dup:
     runs-on: ubuntu-latest
@@ -115,10 +115,10 @@ jobs:
           echo "$FAKE_BIN" >> "$GITHUB_PATH"
           echo "FAKE_ROOT=$FAKE_ROOT" >> "$GITHUB_ENV"
       - name: Dry-run install.sh --all
-        run: ./scripts/install.sh --dry-run --all
+        run: ./install.sh --dry-run --all
       - name: Install user.js with install.sh --all
         run: |
-          ./scripts/install.sh --all
+          ./install.sh --all
           for p in default test; do
             [ -f "$HOME/.mozilla/firefox/Profiles/$p/user.js" ] || { echo "user.js missing in $p"; exit 1; }
           done
@@ -126,7 +126,7 @@ jobs:
           echo "user.js installed and backed up in all fake profiles."
       - name: Uninstall user.js with install.sh --uninstall --all
         run: |
-          ./scripts/install.sh --uninstall --all
+          ./install.sh --uninstall --all
           for p in default test; do
             [ -f "$HOME/.mozilla/firefox/Profiles/$p/user.js" ] && { echo "user.js still present in $p"; exit 1; }
           done
@@ -165,14 +165,14 @@ jobs:
       - name: Dry-run install.ps1 -ProfilesOnly -DryRun -All
         shell: pwsh
         run: |
-          $out = .\scripts\install.ps1 -ProfilesOnly -DryRun -All *>&1
+          $out = .\install.ps1 -ProfilesOnly -DryRun -All *>&1
           $exitCode = $LASTEXITCODE
           $out | Out-String | Write-Host
           if ($exitCode -and $exitCode -ne 0) { throw "install.ps1 dry-run exited with $exitCode" }
       - name: Install user.js with install.ps1 -ProfilesOnly -All
         shell: pwsh
         run: |
-          .\scripts\install.ps1 -ProfilesOnly -All
+          .\install.ps1 -ProfilesOnly -All
           foreach ($p in @('default','test')) {
             $f = "$env:APPDATA\Mozilla\Firefox\Profiles\$p\user.js"
             if (-not (Test-Path $f)) { throw "user.js missing in $p" }
@@ -183,7 +183,7 @@ jobs:
       - name: Uninstall user.js with install.ps1 -ProfilesOnly -Uninstall -All
         shell: pwsh
         run: |
-          .\scripts\install.ps1 -ProfilesOnly -Uninstall -All
+          .\install.ps1 -ProfilesOnly -Uninstall -All
           foreach ($p in @('default','test')) {
             $f = "$env:APPDATA\Mozilla\Firefox\Profiles\$p\user.js"
             if (Test-Path $f) { throw "user.js still present in $p" }
