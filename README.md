@@ -13,45 +13,12 @@ performance — without breaking the sites you visit. It expects a modern machin
 and uses the hardware you paid for.
 
 ---
-
-## Overview
-
-YuzuFox configures Firefox in **two layers**:
-
-| Layer | File | Scope |
-|---|---|---|
-| System-wide | `yuzu.js` + `policies.json` | Every profile, locked prefs, installed once with sudo |
-| Per-profile | `user.js` | Optional per-profile tuning, updated independently |
-
-- **`yuzu.js`** — system base: telemetry block, Mozilla bloat removal,
-  WebRender/GPU, locale, desktop integration. Locked prefs, installed once.
-- **`policies.json`** — enterprise policy: auto-installs uBlock Origin, sets
-  DuckDuckGo as default search, disables telemetry and Pocket at the policy
-  level.
-- **`user.js`** — per-profile tuning: privacy & security, performance, QoL.
-  *Generated from `src/user.js/*.js` by `build.py`.* Install into the profiles
-  you use. Updated separately from the system base.
-- **`install.sh`** — one script for Linux/macOS: system-wide + per-profile.
-- **`install.ps1`** — same for Windows.
-
-### Why two config files
-
-`yuzu.js` rarely changes — only when Mozilla reshuffles a pref. You install it
-once and it stays as a **locked** floor for every profile.
-
-`user.js` tracks Firefox updates more closely. Privacy prefs get renamed or
-deprecated; this file absorbs that churn. **Update it every few weeks** without
-ever touching the system-wide base.
-
-Keeping them separate also prevents per-profile choices from being overwritten
-by a system-wide re-install.
-
 ### Why YuzuFox
 
-YuzuFox sits at the intersection: **Arkenfox-grade telemetry/privacy via
-curated curation + CachyOS-grade performance via aggressive hardware tuning +
-enterprise-policy layer + maintenance tooling** — without the daily-use
-breakage that comes from extremes.
+YuzuFox sits at the intersection: **Arkenfox-grade telemetry/privacy +
+Betterfox-grade daily-use curation + CachyOS-grade performance via aggressive
+hardware tuning + enterprise-policy layer + maintenance tooling** — without
+the daily-use breakage that comes from extremes.
 
 See [TIPS.md](TIPS.md) for the resource-usage rationale and tuning guide.
 
@@ -62,16 +29,14 @@ See [TIPS.md](TIPS.md) for the resource-usage rationale and tuning guide.
 Detects the platform, installs system-wide settings (asks for sudo), then
 lists profiles and asks which ones to install `user.js` into.
 
-> **Piped installs can't prompt.** `curl ... | bash` feeds the script through
-> stdin, so the interactive profile picker has no keyboard to read.
-> Download the script first, then run it locally:
+> Download the script first, then run it locally (recommended):
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
 bash install.sh
 ```
 
-> For a non-interactive install (every profile, no prompt, works in a pipe):
+> For a fast install (run directly, it'll install user.js for every profile):
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --all
@@ -97,35 +62,9 @@ bash install.sh --dry-run       # preview, write nothing
 
 Existing `user.js` is **backed up** as `user.js.yuzubak`.
 
-### Updating
-
-Re-running the installer **is** the update: it always fetches the latest files
-from `main` and compares them against what is installed. Unchanged files are
-skipped ("up to date"); changed ones are replaced (with a backup of the old
-`user.js`).
-
-### Cleaning stale prefs
-
-Prefs removed from `user.js` can linger in a profile's `prefs.js` and keep
-applying old values (e.g. the old Safe Browsing block). `prefsCleaner` resets
-them to Firefox defaults:
-
-```bash
-# Linux / macOS
-bash prefsCleaner.sh --dry-run   # preview
-bash prefsCleaner.sh --all       # clean every profile
-
-# Windows
-.\prefsCleaner.ps1 -DryRun
-.\prefsCleaner.ps1 -All
-```
-
-Each `prefs.js` is backed up to `prefs.js.yuzubak` first. Close Firefox
-before running.
-
 ### Windows
 
-Open an **elevated** PowerShell, download the script, and run it locally:
+Open an **elevated** PowerShell, download the script, and run it locally (recommended):
 
 ```powershell
 irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
@@ -138,7 +77,7 @@ irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFi
 > powershell -ExecutionPolicy Bypass -File .\install.ps1
 > ```
 
-For a non-interactive install (every profile, no prompt), add `-All`:
+For a fast install (run directly, it'll install user.js for every profile):
 
 ```powershell
 irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFile install.ps1
@@ -168,10 +107,27 @@ irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFi
 .\install.ps1 -Uninstall
 ```
 
-## Further reading
+### Updating
 
-See **[TIPS.md](TIPS.md)** for DNS/DoH, Safe Browsing, search engines,
-extensions, and zero-day rationale.
+Re-running the installer **is** the update: it always fetches the latest files
+from `main` and compares them against what is installed. Unchanged files are
+skipped ("up to date"); changed ones are replaced (with a backup of the old
+`user.js`).
+
+### Cleaning stale prefs
+
+Prefs removed from `user.js` can linger in a profile's `prefs.js` and keep
+applying old values (e.g. the old Safe Browsing block). If you see behavior
+from a pref that is no longer in `user.js`, reset the profile's prefs:
+
+```bash
+# Close Firefox, then delete the pref file — it is regenerated from
+# defaults + user.js on next start
+rm ~/.mozilla/firefox/<profile>/prefs.js
+```
+
+The file is regenerated automatically; only manually-set preferences
+(about:config tweaks, permissions granted per-site) are lost.
 
 ## Contributing
 

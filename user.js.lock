@@ -1,38 +1,20 @@
 {
-  "generated_at": "2026-08-10T12:26:22.035107+00:00",
+  "generated_at": "2026-08-11T03:07:32.942871+00:00",
   "prefs": [
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "keep bookmarks menu open after middle-click opening a bookmark",
       "pref": "browser.bookmarks.openInTabClosesMenu",
       "source": "Betterfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "RAM-only cache and JIT/GC tuning for responsiveness",
-      "pref": "browser.cache.disk.enable",
-      "source": "Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "1 GB memory cache",
-      "pref": "browser.cache.memory.capacity",
-      "source": "Betterfox + CachyOS",
-      "value": 1048576
-    },
-    {
-      "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "restore compact density option (removed in Proton redesign)",
       "pref": "browser.compactmode.show",
       "source": "Betterfox",
       "value": true
@@ -41,7 +23,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "ETP Strict enables Total Cookie Protection + FPP for fingerprinting defense",
       "pref": "browser.contentblocking.category",
       "source": "Arkenfox + Betterfox",
       "value": "strict"
@@ -50,7 +32,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "prevents the downloads panel from stealing focus on every download",
       "pref": "browser.download.alwaysOpenPanel",
       "source": "Arkenfox",
       "value": false
@@ -59,7 +41,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "forces explicit user approval before handling unfamiliar MIME types, blocking silent drive-by execution",
       "pref": "browser.download.always_ask_before_handling_new_types",
       "source": "Arkenfox",
       "value": true
@@ -68,7 +50,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "keeps download filenames out of the OS recent documents list, which is visible to other applications",
       "pref": "browser.download.manager.addToRecentDocs",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -77,7 +59,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "open PDF attachments in-browser instead of downloading to temp",
       "pref": "browser.download.open_pdf_attachments_inline",
       "source": "Betterfox",
       "value": true
@@ -86,7 +68,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "isolates downloads in /tmp to avoid file-system fingerprinting of the profile directory",
       "pref": "browser.download.start_downloads_in_tmp_dir",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -95,7 +77,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "forces a save dialog so the user consciously chooses the download location, blocking drive-by saves",
       "pref": "browser.download.useDownloadDir",
       "source": "Arkenfox",
       "value": false
@@ -113,7 +95,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "autocomplete form data readable by third parties; password mgr delegated to external store",
       "pref": "browser.formfill.enable",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -122,7 +104,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "cleans up the temp file after the external helper application exits",
       "pref": "browser.helperApps.deleteTempFileOnExit",
       "source": "Arkenfox",
       "value": true
@@ -131,7 +113,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "clear preloaded default top sites (Facebook, YouTube, etc.) to avoid automated connections to those domains",
       "pref": "browser.newtabpage.activity-stream.default.sites",
       "source": "Arkenfox + Betterfox",
       "value": ""
@@ -140,7 +122,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable Activity Stream on new tabs to prevent content loads and network requests",
       "pref": "browser.newtabpage.enabled",
       "source": "Arkenfox",
       "value": false
@@ -149,25 +131,16 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "bookmarks/history pre-connections on mousedown",
       "pref": "browser.places.speculativeConnect.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "browser.privatebrowsing.forceMediaMemoryCache",
-      "source": "Arkenfox + Betterfox",
-      "value": true
-    },
-    {
-      "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "sends file name, origin, size and hash to Google SB for remote lookup",
       "pref": "browser.safebrowsing.downloads.remote.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -176,25 +149,16 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "show per-window search-engine picker in search settings",
       "pref": "browser.search.separatePrivateDefault.ui.enabled",
       "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": null,
-      "pref": "browser.sessionhistory.max_total_viewers",
-      "source": "YuzuFox",
-      "value": 10
-    },
-    {
-      "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "never store form content, cookies, or POST data in the session — restore open URLs only",
       "pref": "browser.sessionstore.privacy_level",
       "source": "Arkenfox",
       "value": 2
@@ -212,7 +176,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "blank inline page — no external content, no network round-trips at startup or new window",
       "pref": "browser.startup.homepage",
       "source": "Arkenfox",
       "value": "chrome://browser/content/blanktab.html"
@@ -255,18 +219,9 @@
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "tab unloading under memory pressure",
-      "pref": "browser.tabs.unloadOnLowMemory",
-      "source": "CachyOS",
-      "value": true
-    },
-    {
-      "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "hide \"Firefox Suggest\" section labels in urlbar dropdown",
       "pref": "browser.urlbar.groupLabels.enabled",
       "source": "Betterfox",
       "value": false
@@ -275,7 +230,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable Important Dates urlbar suggestion (privacy; not a needed feature)",
       "pref": "browser.urlbar.importantDates.featureGate",
       "source": "Arkenfox",
       "value": false
@@ -284,7 +239,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable stock-market urlbar suggestion (privacy; not a needed feature)",
       "pref": "browser.urlbar.market.featureGate",
       "source": "Arkenfox",
       "value": false
@@ -295,14 +250,14 @@
       ],
       "note": "QuickSuggest master switch + sponsored/nonsponsored off",
       "pref": "browser.urlbar.quicksuggest.enabled",
-      "source": "CachyOS",
+      "source": "cachyos-firefox-settings",
       "value": false
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "show real URL on search-results pages, not the typed search query",
       "pref": "browser.urlbar.showSearchTerms.enabled",
       "source": "Arkenfox",
       "value": false
@@ -311,7 +266,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "urlbar pre-connects to autofill candidates",
       "pref": "browser.urlbar.speculativeConnect.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -374,7 +329,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable trending urlbar suggestions (noise + extra network requests)",
       "pref": "browser.urlbar.trending.featureGate",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -383,7 +338,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "hide https:// scheme in address bar; copied URL still includes it",
       "pref": "browser.urlbar.trimHttps",
       "source": "Betterfox",
       "value": true
@@ -392,7 +347,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "restore full URL on address-bar click, re-trim on blur",
       "pref": "browser.urlbar.untrimOnUserInteraction.featureGate",
       "source": "Betterfox",
       "value": true
@@ -401,28 +356,19 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable Yelp realtime urlbar suggestion (privacy; not a needed feature)",
       "pref": "browser.urlbar.yelpRealtime.featureGate",
       "source": "Arkenfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "show advanced info on insecure-connection pages",
       "pref": "browser.xul.error_pages.expert_bad_cert",
       "source": "Arkenfox + Betterfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "content.notify.interval",
-      "source": "Betterfox",
-      "value": 100000
     },
     {
       "files": [
@@ -446,7 +392,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "prevent scripts from repositioning window — anti-spoofing/phishing defense",
       "pref": "dom.disable_window_move_resize",
       "source": "Arkenfox",
       "value": true
@@ -491,7 +437,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "disable the 3s cleartext HTTP probe — leaks visited domain in plaintext",
       "pref": "dom.security.https_only_mode_send_http_background_request",
       "source": "Arkenfox",
       "value": false
@@ -500,7 +446,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "prevent silent password truncation on paste into maxlength fields",
       "pref": "editor.truncate_user_pastes",
       "source": "Betterfox",
       "value": false
@@ -509,7 +455,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "turn on \"Highlight All\" matches in find bar by default",
       "pref": "findbar.highlightAll",
       "source": "Betterfox",
       "value": true
@@ -518,7 +464,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "remove fullscreen entry fade animation (instant; default 200ms)",
       "pref": "full-screen-api.transition-duration.enter",
       "source": "Betterfox",
       "value": "0 0"
@@ -527,7 +473,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "remove fullscreen exit fade animation (instant; default 200ms)",
       "pref": "full-screen-api.transition-duration.leave",
       "source": "Betterfox",
       "value": "0 0"
@@ -536,7 +482,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "suppress fullscreen warning overlay (default 3s popup; set 1250 if concerned)",
       "pref": "full-screen-api.warning.timeout",
       "source": "Betterfox",
       "value": 0
@@ -554,7 +500,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "tighten MSD motion-update interval for responsive scroll feel (12ms)",
       "pref": "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",
       "source": "Betterfox",
       "value": 12
@@ -563,7 +509,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "enable mass-spring-damper physics scrolling (more natural than step-based)",
       "pref": "general.smoothScroll.msdPhysics.enabled",
       "source": "Betterfox",
       "value": true
@@ -590,7 +536,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "start momentum-deceleration updates sooner for faster scroll dampening",
       "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaMS",
       "source": "Betterfox",
       "value": 25
@@ -608,7 +554,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "moderate slowdown spring tension for controlled momentum fade",
       "pref": "general.smoothScroll.msdPhysics.slowdownSpringConstant",
       "source": "Betterfox",
       "value": 250
@@ -660,129 +606,12 @@
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "canvas cache items + size for GPU acceleration",
-      "pref": "gfx.canvas.accelerated.cache-items",
-      "source": "CachyOS",
-      "value": 32768
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "4 MB canvas cache for GPU-accelerated canvas apps",
-      "pref": "gfx.canvas.accelerated.cache-size",
-      "source": "CachyOS",
-      "value": 4096
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "80 MB Skia font cache, faster text rendering",
-      "pref": "gfx.content.skia-font-cache-size",
-      "source": "CachyOS",
-      "value": 80
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "image decode cache tuning",
-      "pref": "image.cache.size",
-      "source": "CachyOS",
-      "value": 10485760
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "64 KB decode chunks for faster image rendering",
-      "pref": "image.mem.decode_bytes_at_a_time",
-      "source": "CachyOS",
-      "value": 65536
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": null,
-      "pref": "image.mem.shared.unmap.min_expiration_ms",
-      "source": "YuzuFox",
-      "value": 120000
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "javascript.options.baselinejit.threshold",
-      "source": "Betterfox",
-      "value": 50
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "IonMonkey aggressive warm-up, safe on modern hardware",
-      "pref": "javascript.options.ion.threshold",
-      "source": "CachyOS",
-      "value": 500
-    },
-    {
-      "files": [
         "src/user.js/50-ui-qol.js"
       ],
       "note": null,
       "pref": "layout.css.grid-template-masonry-value.enabled",
       "source": "YuzuFox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "5 = block all, same as upstream cachyos.js",
-      "pref": "media.autoplay.default",
-      "source": "CachyOS",
-      "value": 5
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "double read-ahead and resume threshold",
-      "pref": "media.cache_readahead_limit",
-      "source": "CachyOS",
-      "value": 7200
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": null,
-      "pref": "media.cache_resume_threshold",
-      "source": "YuzuFox",
-      "value": 3600
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "media cache stays in RAM, not disk",
-      "pref": "media.memory_cache_max_size",
-      "source": "CachyOS",
-      "value": 1048576
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": null,
-      "pref": "media.memory_caches_combined_limit_kb",
-      "source": "YuzuFox",
-      "value": 3145728
     },
     {
       "files": [
@@ -797,7 +626,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "boost scroll-wheel speed to 3x (default 100; tune to preference)",
       "pref": "mousewheel.default.delta_multiplier_y",
       "source": "Betterfox",
       "value": 300
@@ -806,7 +635,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "show raw punycode to defeat IDN homograph attacks (e.g. Cyrillic apple.com)",
       "pref": "network.IDN_show_punycode",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -815,28 +644,10 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "value 1 blocks cross-origin auth prompts — prevents credential phishing",
       "pref": "network.auth.subresource-http-auth-allow",
       "source": "Arkenfox + Betterfox",
       "value": 1
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.buffer.cache.count",
-      "source": "Betterfox",
-      "value": 48
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.buffer.cache.size",
-      "source": "Betterfox",
-      "value": 65535
     },
     {
       "files": [
@@ -860,7 +671,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "DNS prefetch leaks browsed domains to the resolver",
       "pref": "network.dns.disablePrefetch",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -869,19 +680,10 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "DNS prefetch from HTTPS pages leaks domain info",
       "pref": "network.dns.disablePrefetchFromHTTPS",
       "source": "Arkenfox + Betterfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.dnsCacheExpiration",
-      "source": "Betterfox",
-      "value": 3600
     },
     {
       "files": [
@@ -903,15 +705,6 @@
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": null,
-      "pref": "network.http.http3.enable",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
       "note": null,
@@ -921,63 +714,18 @@
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.http.max-connections",
-      "source": "Betterfox",
-      "value": 1800
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.http.max-persistent-connections-per-server",
-      "source": "Betterfox",
-      "value": 10
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.http.max-urgent-start-excessive-connections-per-host",
-      "source": "Betterfox",
-      "value": 5
-    },
-    {
-      "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "disable request pacing for lower latency",
-      "pref": "network.http.pacing.requests.enabled",
-      "source": "CachyOS",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "value 2=only scheme+host+port — strips path and query from cross-origin referrers",
       "pref": "network.http.referer.XOriginTrimmingPolicy",
       "source": "Arkenfox + Betterfox",
       "value": 2
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "audited against upstream user.js",
-      "pref": "network.http.request.max-start-delay",
-      "source": "Betterfox",
-      "value": 5
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "prevent silent pre-connections on link mouseover",
       "pref": "network.http.speculative-parallel-limit",
       "source": "Arkenfox + Betterfox",
       "value": 0
@@ -986,7 +734,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "predictor-initiated prefetch leaks future intent",
       "pref": "network.predictor.enable-prefetch",
       "source": "Arkenfox",
       "value": false
@@ -995,7 +743,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "predictor learns browsing patterns; leaks habits",
       "pref": "network.predictor.enabled",
       "source": "Arkenfox",
       "value": false
@@ -1004,25 +752,16 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "block speculative page prefetch via link tags",
       "pref": "network.prefetch-next",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/45-performance.js"
-      ],
-      "note": "TLS session cache",
-      "pref": "network.ssl_tokens_cache_capacity",
-      "source": "Betterfox + CachyOS",
-      "value": 32768
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "embedded JS in PDFs is a malware/exploit vector — PDF rendering only",
       "pref": "pdfjs.enableScripting",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -1049,7 +788,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "Firefox ships a permissions file that auto-grants special privileges to mozilla.org domains — clear it",
       "pref": "permissions.manager.defaultsUrl",
       "source": "Arkenfox + Betterfox",
       "value": ""
@@ -1058,7 +797,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "block referrer and storage access via content scripts (cross-origin bridge)",
       "pref": "privacy.antitracking.isolateContentScriptResources",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -1076,7 +815,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "signal Do Not Sell/Share to sites — legal privacy right under CCPA/GDPR",
       "pref": "privacy.globalprivacycontrol.enabled",
       "source": "Betterfox",
       "value": true
@@ -1094,7 +833,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "enable Container Tabs engine (site isolation without separate profiles)",
       "pref": "privacy.userContext.enabled",
       "source": "Arkenfox",
       "value": true
@@ -1112,14 +851,14 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "show Container Tabs UI (context menu + new-tab button picker)",
       "pref": "privacy.userContext.ui.enabled",
       "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
       "note": "offline CRLite revocation + no speculative connections",
       "pref": "security.OCSP.enabled",
@@ -1128,9 +867,9 @@
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "strict PKP to prevent certificate MiTM by hostile CAs",
       "pref": "security.cert_pinning.enforcement_level",
       "source": "Arkenfox",
       "value": 2
@@ -1139,34 +878,34 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "CSP reports leak referrer and policy details to third-party endpoints",
       "pref": "security.csp.reporting.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "block servers lacking RFC 5746 renegotiation (MiTM CVE-2009-3555)",
       "pref": "security.ssl.require_safe_negotiation",
       "source": "Arkenfox",
       "value": true
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "padlock warning on unsafe renegotiation",
       "pref": "security.ssl.treat_unsafe_negotiation_as_broken",
       "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
       "files": [
-        "src/user.js/10-network.js"
+        "src/user.js/30-security.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "0-RTT not forward secret; allows cross-connection replay",
       "pref": "security.tls.enable_0rtt_data",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -1175,7 +914,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "auto-fill leaks credentials via cross-site forms and spoofed fields",
       "pref": "signon.autofillForms",
       "source": "Arkenfox",
       "value": false
@@ -1184,7 +923,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "block password capture on non-standard login forms (attack surface reduction)",
       "pref": "signon.formlessCapture.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -1193,7 +932,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "audited against upstream user.js",
+      "note": "no credential capture in private windows — defeats PB isolation purpose",
       "pref": "signon.privateBrowsingCapture.enabled",
       "source": "Betterfox",
       "value": false
@@ -1242,6 +981,15 @@
       "pref": "urlclassifier.trackingSkipURLs",
       "source": "YuzuFox",
       "value": "*.reddit.com, *.twitter.com, *.twimg.com"
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "use the portal file picker instead of the GTK native dialog",
+      "pref": "widget.use-xdg-desktop-portal.file-picker",
+      "source": "cachyos-firefox-settings",
+      "value": 1
     }
   ],
   "sources": [
@@ -1250,7 +998,6 @@
     "src/user.js/20-privacy.js",
     "src/user.js/30-security.js",
     "src/user.js/40-telemetry-connections.js",
-    "src/user.js/45-performance.js",
     "src/user.js/50-ui-qol.js",
     "src/user.js/60-os-specific.js"
   ]
