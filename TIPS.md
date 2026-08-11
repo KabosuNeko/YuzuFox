@@ -175,20 +175,21 @@ bash install.sh --all
 After a major update, clean stale prefs. Prefs that YuzuFox removed from
 `user.js` can linger in `prefs.js` and keep applying old values (for example
 the old Safe Browsing block would keep malware protection off even though
-`user.js` no longer disables it):
+`user.js` no longer disables it).
+
+The simplest reset is to delete the profile's `prefs.js` while Firefox is
+closed — it is regenerated from defaults + `user.js` on next start:
 
 ```bash
-# Linux / macOS — dry-run first, then clean every profile
-bash prefsCleaner.sh --dry-run
-bash prefsCleaner.sh --all
+# Linux / macOS — replace <profile> with the profile dir from about:profiles
+rm ~/.mozilla/firefox/<profile>/prefs.js
 
 # Windows
-.\prefsCleaner.ps1 -DryRun
-.\prefsCleaner.ps1 -All
+del "%APPDATA%\Mozilla\Firefox\Profiles\<profile>\prefs.js"
 ```
 
-Each cleaned `prefs.js` is backed up to `prefs.js.yuzubak`. Close Firefox
-before running.
+Only manually-set preferences (about:config tweaks, per-site permissions)
+are lost.
 
 ---
 
@@ -449,7 +450,6 @@ Instead, edit the appropriate source file under `src/user.js/`:
 | `20-privacy.js` | HTTPS-only, fingerprinting, referrers, GPC, cookies |
 | `30-security.js` | Safe Browsing, download sandboxing |
 | `40-telemetry-connections.js` | Startup, push, attribution |
-| `45-performance.js` | Cache, rendering, JIT/GC, network feeds |
 | `50-ui-qol.js` | UI tweaks, URL bar, containers, scrolling |
 | `60-os-specific.js` | Linux, Windows, macOS blocks |
 

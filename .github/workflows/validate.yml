@@ -9,8 +9,6 @@ on:
       - 'user.js'
       - 'install.sh'
       - 'install.ps1'
-      - 'prefsCleaner.sh'
-      - 'prefsCleaner.ps1'
       - 'build.py'
       - 'src/user.js/**'
       - '.github/workflows/validate.yml'
@@ -21,8 +19,6 @@ on:
       - 'user.js'
       - 'install.sh'
       - 'install.ps1'
-      - 'prefsCleaner.sh'
-      - 'prefsCleaner.ps1'
       - 'build.py'
       - 'src/user.js/**'
       - '.github/workflows/validate.yml'
@@ -49,7 +45,7 @@ jobs:
       - name: Shellcheck bash scripts
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
-          shellcheck install.sh prefsCleaner.sh
+          shellcheck install.sh
 
   validate-no-pref-dup:
     runs-on: ubuntu-latest
@@ -152,7 +148,7 @@ jobs:
       - name: Lint PowerShell scripts
         shell: pwsh
         run: |
-          $ps1Files = @('install.ps1', 'prefsCleaner.ps1')
+          $ps1Files = @('install.ps1')
           $all = foreach ($f in $ps1Files) { Invoke-ScriptAnalyzer -Path $f -Severity Warning }
           $errors = $all | Where-Object { $_.Severity -eq 'Error' }
           $warnings = $all | Where-Object { $_.Severity -eq 'Warning' }

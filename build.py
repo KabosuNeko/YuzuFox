@@ -61,7 +61,7 @@ def parse_sources(sources, repo_root):
                     current_source = "YuzuFox"
                     current_note = None
                     continue
-                if stripped.startswith("//"):
+                if stripped.startswith(("//", "/*", "*")):
                     m = SOURCE_RE.search(stripped)
                     if m:
                         current_source = m.group(1)
@@ -100,9 +100,15 @@ def validate_no_cross_file_duplicates(pref_files):
 
 
 def generate_user_js(repo_root, sources):
+    # Strip [SOURCE: ...] tags and unwrap [NOTE: ...] from the human-facing
+    # user.js; they are machine metadata that belongs only in user.js.lock.
+    source_tag_re = re.compile(r"\[SOURCE:\s*.*?\]\s*")
+    note_tag_re = re.compile(r"\[NOTE:\s*(.*?)\][ \t]*")
     parts = [HEADER]
     for i, src in enumerate(sources):
         content = src.read_text(encoding="utf-8")
+        content = source_tag_re.sub("", content)
+        content = note_tag_re.sub(r"\1", content)
         if i > 0 and not parts[-1].endswith("\n"):
             parts.append("\n")
         parts.append(content)
