@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Install or uninstall YuzuFox on Windows — system-wide settings + per-profile user.js.
 
