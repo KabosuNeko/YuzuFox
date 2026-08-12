@@ -96,63 +96,70 @@ function Check-Elevated {
 #   SYSTEM-WIDE
 # ==========================================================================
 if ($Mode -ne "profiles") {
-    if (-not (Check-Elevated)) {
+    $isAdmin = Check-Elevated
+    if (-not $isAdmin -and $Mode -eq "system") {
         Write-Host "!!! Error: Administrator rights required for system-wide." -ForegroundColor Red
         Write-Host "    Use -ProfilesOnly for per-profile only, or re-run elevated." -ForegroundColor Red
         return
     }
-    $FirefoxDir = Find-FirefoxDir
-    if (-not $FirefoxDir) {
-        Write-Host "!!! Error: Firefox not found (default location). Install it first." -ForegroundColor Red
-        return
+    if (-not $isAdmin) {
+        Write-Host "!! Warning: Not elevated — skipping system-wide settings (policies.json + yuzu.js)." -ForegroundColor Yellow
+        Write-Host "    Install user.js per-profile only; re-run elevated for the full install." -ForegroundColor Yellow
     }
-    $PoliciesDest = Join-Path $FirefoxDir "distribution\policies.json"
-    $PrefsDest    = Join-Path $FirefoxDir "browser\defaults\preferences\yuzu.js"
-
-    Say "YuzuFox [Windows]  —  Firefox: $FirefoxDir"
-
-    if ($DryRun) {
-        Say "[DRY-RUN] Would install:"
-        SayNote "$PoliciesDest"
-        SayNote "$PrefsDest"
-    }
-    elseif ($Uninstall) {
-        Say "Uninstall system settings — this will remove:"
-        SayNote "$PoliciesDest"
-        SayNote "$PrefsDest"
-        $c = Read-Host "    Continue? [y/N]"
-        if ($c -notmatch '^[yY]') { Say "Aborted."; return }
-        Remove-Item -Force -ErrorAction SilentlyContinue $PoliciesDest
-        Remove-Item -Force -ErrorAction SilentlyContinue $PrefsDest
-        SayNote "System-wide settings removed."
-    }
-    else {
-        $tmp = Join-Path $env:TEMP "yuzufox-sys"
-        New-Item -ItemType Directory -Force -Path $tmp | Out-Null
-        try {
-            Say "Downloading system configuration..."
-            Invoke-WebRequest -Uri $PoliciesUrl -OutFile "$tmp\policies.json" -UseBasicParsing
-            Invoke-WebRequest -Uri $PrefsUrl    -OutFile "$tmp\yuzu.js"     -UseBasicParsing
-
-            $changed = $false
-            if (Test-UpToDate "$tmp\policies.json" $PoliciesDest) { SayNote "policies.json: up to date" }
-            else { $changed = $true; SayNote "policies.json: new version" }
-            if (Test-UpToDate "$tmp\yuzu.js" $PrefsDest) { SayNote "yuzu.js: up to date" }
-            else { $changed = $true; SayNote "yuzu.js: new version" }
-
-            if (-not $changed) {
-                SayNote "System settings already up to date."
-                return
-            }
-
-            Say "Installing system-wide (requires Administrator)..."
-            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PoliciesDest) | Out-Null
-            Copy-Item -Force "$tmp\policies.json" $PoliciesDest
-            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PrefsDest) | Out-Null
-            Copy-Item -Force "$tmp\yuzu.js" $PrefsDest
-            SayNote "System settings installed. DNS is left to the system resolver."
+    if ($isAdmin) {
+        $FirefoxDir = Find-FirefoxDir
+        if (-not $FirefoxDir) {
+            Write-Host "!!! Error: Firefox not found (default location). Install it first." -ForegroundColor Red
+            return
         }
-        finally { Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue }
+        $PoliciesDest = Join-Path $FirefoxDir "distribution\policies.json"
+        $PrefsDest    = Join-Path $FirefoxDir "browser\defaults\preferences\yuzu.js"
+
+        Say "YuzuFox [Windows]  —  Firefox: $FirefoxDir"
+
+        if ($DryRun) {
+            Say "[DRY-RUN] Would install:"
+            SayNote "$PoliciesDest"
+            SayNote "$PrefsDest"
+        }
+        elseif ($Uninstall) {
+            Say "Uninstall system settings — this will remove:"
+            SayNote "$PoliciesDest"
+            SayNote "$PrefsDest"
+            $c = Read-Host "    Continue? [y/N]"
+            if ($c -notmatch '^[yY]') { Say "Aborted."; return }
+            Remove-Item -Force -ErrorAction SilentlyContinue $PoliciesDest
+            Remove-Item -Force -ErrorAction SilentlyContinue $PrefsDest
+            SayNote "System-wide settings removed."
+        }
+        else {
+            $tmp = Join-Path $env:TEMP "yuzufox-sys"
+            New-Item -ItemType Directory -Force -Path $tmp | Out-Null
+            try {
+                Say "Downloading system configuration..."
+                Invoke-WebRequest -Uri $PoliciesUrl -OutFile "$tmp\policies.json" -UseBasicParsing
+                Invoke-WebRequest -Uri $PrefsUrl    -OutFile "$tmp\yuzu.js"     -UseBasicParsing
+
+                $changed = $false
+                if (Test-UpToDate "$tmp\policies.json" $PoliciesDest) { SayNote "policies.json: up to date" }
+                else { $changed = $true; SayNote "policies.json: new version" }
+                if (Test-UpToDate "$tmp\yuzu.js" $PrefsDest) { SayNote "yuzu.js: up to date" }
+                else { $changed = $true; SayNote "yuzu.js: new version" }
+
+                if (-not $changed) {
+                    SayNote "System settings already up to date."
+                    return
+                }
+
+                Say "Installing system-wide (requires Administrator)..."
+                New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PoliciesDest) | Out-Null
+                Copy-Item -Force "$tmp\policies.json" $PoliciesDest
+                New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PrefsDest) | Out-Null
+                Copy-Item -Force "$tmp\yuzu.js" $PrefsDest
+                SayNote "System settings installed. DNS is left to the system resolver."
+            }
+            finally { Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue }
+        }
     }
 }
 
@@ -160,11 +167,10 @@ if ($Mode -ne "profiles") {
 #   PER-PROFILE  user.js
 # ==========================================================================
 if ($Mode -ne "system") {
-    # Firefox must be closed when we're about to write into profile folders.
-    if (-not $DryRun) {
+    # Firefox reads user.js only at startup — writing is safe while it runs.
+    if (-not $DryRun -and -not $Uninstall) {
         if (Get-Process firefox -ErrorAction SilentlyContinue) {
-            Write-Host "!!! Error: Firefox is running. Please close it first." -ForegroundColor Red
-            return
+            Write-Host "!! Warning: Firefox is running — user.js takes effect after restart." -ForegroundColor Yellow
         }
     }
 
@@ -263,7 +269,14 @@ if ($Mode -ne "system") {
             New-Item -ItemType Directory -Force -Path $tmp | Out-Null
             try {
                 Say "Downloading user.js..."
-                Invoke-WebRequest -Uri $UserJsUrl -OutFile "$tmp\user.js" -UseBasicParsing
+                try {
+                    Invoke-WebRequest -Uri $UserJsUrl -OutFile "$tmp\user.js" -UseBasicParsing
+                }
+                catch {
+                    Write-Host "!!! Error: Could not download user.js from $UserJsUrl" -ForegroundColor Red
+                    Write-Host "    $($_.Exception.Message)" -ForegroundColor Red
+                    return
+                }
 
                 foreach ($i in $Selected) {
                     $p = $Profiles[$i]
