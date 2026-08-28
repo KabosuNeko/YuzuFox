@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T03:07:32.942871+00:00",
+  "generated_at": "2026-08-28T18:04:36.262548+00:00",
   "prefs": [
     {
       "files": [
@@ -396,15 +396,6 @@
       "pref": "dom.disable_window_move_resize",
       "source": "Arkenfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "clipboard event access disabled",
-      "pref": "dom.event.clipboardevents.enabled",
-      "source": "Arkenfox",
-      "value": false
     },
     {
       "files": [
