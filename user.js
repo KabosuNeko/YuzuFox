@@ -138,10 +138,6 @@ user_pref("editor.truncate_user_pastes", false);
 // prevent scripts from repositioning window — anti-spoofing/phishing defense
 user_pref("dom.disable_window_move_resize", true);
 
-// Block site access to clipboard events (fingerprinting + data leak vector)
-// clipboard event access disabled
-user_pref("dom.event.clipboardevents.enabled", false);
-
 // Disable device sensor APIs — accelerometer, gyroscope, proximity
 // sensor API disabled per Arkenfox 4200+
 user_pref("device.sensors.enabled", false);
