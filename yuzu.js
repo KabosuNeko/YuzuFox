@@ -96,8 +96,6 @@ pref("gfx.webrender.all", true);
 pref("gfx.webrender.precache-shaders", true);
 // cache compiled shader programs to disk for faster cold starts
 pref("gfx.webrender.program-binary-disk", true);
-// force WebRender compositor mode; needed on some Mesa/Driver configs
-pref("gfx.webrender.compositor.force-enabled", true);
 
 // Run GPU work in a dedicated OS process so a driver crash cannot take
 // down the browser chrome.
