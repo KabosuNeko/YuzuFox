@@ -276,7 +276,6 @@ multi-core CPU this is imperceptible; the result is faster Time-to-Interactive.
 
 | Pref                                          | Firefox default | YuzuFox | What it does                                      |
 | --------------------------------------------- | --------------- | ------- | ------------------------------------------------- |
-| `gfx.webrender.compositor.force-enabled`        | auto             | `true`    | Compositor always uses GPU (~50-100 MB VRAM extra) |
 | `media.hardware-video-decoding.force-enabled`   | auto             | `true`    | Video decode always on GPU hardware               |
 | `media.gpu-process-decoder`                     | auto             | `true`    | Dedicated GPU process for video (extra ~30 MB)    |
 | `gfx.webrender.precache-shaders`                | auto             | `true`    | Compile shaders ahead of time (faster first paint) |
