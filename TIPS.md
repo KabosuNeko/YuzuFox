@@ -64,14 +64,14 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 
 ## Search engines
 
-Startpage is the default (also in private windows). Five engines are
+DuckDuckGo is the default (also in private windows). Five engines are
 configured via `policies.json` — use an alias by typing it before your query
 in the URL bar:
 
 | Engine           | Alias | What it is                                                     |
 | ---------------- | ----- | -------------------------------------------------------------- |
-| Startpage        | `sp`  | Default; proxies Google results without Google tracking         |
-| DuckDuckGo       | —     | Privacy-friendly results                                       |
+| DuckDuckGo       | —     | Default; privacy-friendly results                               |
+| Startpage        | `sp`  | Proxies Google results without Google tracking                  |
 | DuckDuckGo Lite  | `dl`  | Text-only DDG — fast, minimal, good on slow networks            |
 | SearXNG          | `sx`  | Metasearch that aggregates many engines without tracking        |
 | MetaGer          | `mg`  | German metasearch engine, privacy-first                         |

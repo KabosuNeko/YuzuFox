@@ -12,7 +12,7 @@ Hardened, zero-bloat Firefox configuration focused on performance and privacy wi
 
 - **`yuzu.js`** (System-wide, locked): Hardware video decoding, WebRender, RAM cache (zero disk writes), aggressive connection tuning, complete telemetry and Mozilla bloat/AI removal.
 - **`user.js`** (Per-profile, unlocked): Privacy hardening (ETP strict, FPP, query stripping), security (CRLite mode 2, safe renegotiation), quiet startup, and UI/QoL tweaks.
-- **`policies.json`** (Enterprise policy): Preinstalls uBlock Origin, configures private search engines (Startpage default), removes sponsored tiles and promotional services.
+- **`policies.json`** (Enterprise policy): Preinstalls uBlock Origin, configures private search engines (DuckDuckGo default), removes sponsored tiles and promotional services.
 
 System DNS resolver is preserved (`network.trr.*` untouched). For details and resource tuning, see [TIPS.md](TIPS.md).
 
