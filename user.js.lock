@@ -1,11 +1,38 @@
 {
-  "generated_at": "2026-08-28T18:04:36.262548+00:00",
+  "generated_at": "2026-09-08T16:40:26.096018+00:00",
   "prefs": [
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "keep bookmarks menu open after middle-click opening a bookmark",
+      "note": null,
+      "pref": "apz.overscroll.enabled",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "disable about:config warning and welcome onboarding",
+      "pref": "browser.aboutConfig.showWarning",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.aboutwelcome.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "keep bookmarks menu open on middle-click",
       "pref": "browser.bookmarks.openInTabClosesMenu",
       "source": "Betterfox",
       "value": false
@@ -14,7 +41,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "restore compact density option (removed in Proton redesign)",
+      "note": "enable compact density option",
       "pref": "browser.compactmode.show",
       "source": "Betterfox",
       "value": true
@@ -23,7 +50,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "ETP Strict enables Total Cookie Protection + FPP for fingerprinting defense",
+      "note": "ETP strict mode and fingerprinting protection",
       "pref": "browser.contentblocking.category",
       "source": "Arkenfox + Betterfox",
       "value": "strict"
@@ -32,7 +59,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "prevents the downloads panel from stealing focus on every download",
+      "note": "do not open download panel automatically",
       "pref": "browser.download.alwaysOpenPanel",
       "source": "Arkenfox",
       "value": false
@@ -41,7 +68,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "forces explicit user approval before handling unfamiliar MIME types, blocking silent drive-by execution",
+      "note": "always ask before handling new MIME types",
       "pref": "browser.download.always_ask_before_handling_new_types",
       "source": "Arkenfox",
       "value": true
@@ -50,7 +77,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "keeps download filenames out of the OS recent documents list, which is visible to other applications",
+      "note": "do not add downloads to recent documents",
       "pref": "browser.download.manager.addToRecentDocs",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -59,7 +86,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "open PDF attachments in-browser instead of downloading to temp",
+      "note": "open PDF attachments inline",
       "pref": "browser.download.open_pdf_attachments_inline",
       "source": "Betterfox",
       "value": true
@@ -68,7 +95,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "isolates downloads in /tmp to avoid file-system fingerprinting of the profile directory",
+      "note": "isolate downloads in temp directory",
       "pref": "browser.download.start_downloads_in_tmp_dir",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -77,25 +104,16 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "forces a save dialog so the user consciously chooses the download location, blocking drive-by saves",
+      "note": "always prompt for download location",
       "pref": "browser.download.useDownloadDir",
       "source": "Arkenfox",
       "value": false
     },
     {
       "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": null,
-      "pref": "browser.download.viewableInternally.typeWasRegistered.pdf",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "autocomplete form data readable by third parties; password mgr delegated to external store",
+      "note": "disable form autofill and saved passwords",
       "pref": "browser.formfill.enable",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -104,7 +122,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "cleans up the temp file after the external helper application exits",
+      "note": "delete temp file after external app exits",
       "pref": "browser.helperApps.deleteTempFileOnExit",
       "source": "Arkenfox",
       "value": true
@@ -113,7 +131,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "clear preloaded default top sites (Facebook, YouTube, etc.) to avoid automated connections to those domains",
+      "note": "clear preloaded top sites",
       "pref": "browser.newtabpage.activity-stream.default.sites",
       "source": "Arkenfox + Betterfox",
       "value": ""
@@ -122,7 +140,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "disable Activity Stream on new tabs to prevent content loads and network requests",
+      "note": "disable new tab page",
       "pref": "browser.newtabpage.enabled",
       "source": "Arkenfox",
       "value": false
@@ -131,16 +149,25 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "bookmarks/history pre-connections on mousedown",
+      "note": "disable bookmarks/history speculative connections",
       "pref": "browser.places.speculativeConnect.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
       "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "keep private windows grouped in taskbar",
+      "pref": "browser.privateWindowSeparation.enabled",
+      "source": "Betterfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "sends file name, origin, size and hash to Google SB for remote lookup",
+      "note": "disable remote Safe Browsing download reputation",
       "pref": "browser.safebrowsing.downloads.remote.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -149,16 +176,43 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "show per-window search-engine picker in search settings",
+      "note": null,
+      "pref": "browser.search.separatePrivateDefault",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "separate search engine for private windows",
       "pref": "browser.search.separatePrivateDefault.ui.enabled",
       "source": "Arkenfox + Betterfox",
       "value": true
     },
     {
       "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "disable live search suggestions",
+      "pref": "browser.search.suggest.enabled",
+      "source": "Arkenfox + Betterfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "never store form content, cookies, or POST data in the session — restore open URLs only",
+      "note": "write session state every 60 seconds",
+      "pref": "browser.sessionstore.interval",
+      "source": "Betterfox",
+      "value": 60000
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "restore open URLs only, no form or auth session data",
       "pref": "browser.sessionstore.privacy_level",
       "source": "Arkenfox",
       "value": 2
@@ -167,7 +221,7 @@
       "files": [
         "src/user.js/60-os-specific.js"
       ],
-      "note": "disable taskbar favicons and app restart registration",
+      "note": "disable taskbar shortcut favicons",
       "pref": "browser.shell.shortcutFavicons",
       "source": "Arkenfox",
       "value": false
@@ -176,7 +230,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "blank inline page — no external content, no network round-trips at startup or new window",
+      "note": "set homepage to blank page",
       "pref": "browser.startup.homepage",
       "source": "Arkenfox",
       "value": "chrome://browser/content/blanktab.html"
@@ -185,7 +239,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "quiet startup and disable push/attribution pings",
+      "note": "set startup page to blank",
       "pref": "browser.startup.page",
       "source": "Arkenfox",
       "value": 0
@@ -194,18 +248,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
+      "note": "disable Firefox View button",
       "pref": "browser.tabs.firefox-view",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.tabs.firefox-view-next",
-      "source": "YuzuFox",
+      "source": "Betterfox",
       "value": false
     },
     {
@@ -221,7 +266,16 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "hide \"Firefox Suggest\" section labels in urlbar dropdown",
+      "note": null,
+      "pref": "browser.urlbar.amp.featureGate",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "disable urlbar suggestion group labels",
       "pref": "browser.urlbar.groupLabels.enabled",
       "source": "Betterfox",
       "value": false
@@ -230,7 +284,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable Important Dates urlbar suggestion (privacy; not a needed feature)",
+      "note": "disable urlbar feature gate suggestions",
       "pref": "browser.urlbar.importantDates.featureGate",
       "source": "Arkenfox",
       "value": false
@@ -239,25 +293,25 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable stock-market urlbar suggestion (privacy; not a needed feature)",
+      "note": null,
       "pref": "browser.urlbar.market.featureGate",
-      "source": "Arkenfox",
+      "source": "YuzuFox",
       "value": false
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "QuickSuggest master switch + sponsored/nonsponsored off",
+      "note": null,
       "pref": "browser.urlbar.quicksuggest.enabled",
-      "source": "cachyos-firefox-settings",
+      "source": "YuzuFox",
       "value": false
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "show real URL on search-results pages, not the typed search query",
+      "note": "show real URL instead of search terms in address bar",
       "pref": "browser.urlbar.showSearchTerms.enabled",
       "source": "Arkenfox",
       "value": false
@@ -266,18 +320,18 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "urlbar pre-connects to autofill candidates",
+      "note": "disable urlbar speculative connections",
       "pref": "browser.urlbar.speculativeConnect.enabled",
-      "source": "Arkenfox + Betterfox",
+      "source": "Betterfox",
       "value": false
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
+      "note": "disable urlbar suggestions and quicksuggest",
       "pref": "browser.urlbar.suggest.addons",
-      "source": "YuzuFox",
+      "source": "cachyos-firefox-settings",
       "value": false
     },
     {
@@ -321,6 +375,15 @@
         "src/user.js/50-ui-qol.js"
       ],
       "note": null,
+      "pref": "browser.urlbar.suggest.searches",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
       "pref": "browser.urlbar.suggest.trending",
       "source": "YuzuFox",
       "value": false
@@ -329,16 +392,16 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable trending urlbar suggestions (noise + extra network requests)",
+      "note": null,
       "pref": "browser.urlbar.trending.featureGate",
-      "source": "Arkenfox + Betterfox",
+      "source": "YuzuFox",
       "value": false
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "hide https:// scheme in address bar; copied URL still includes it",
+      "note": "trim https scheme from urlbar, restore on interaction",
       "pref": "browser.urlbar.trimHttps",
       "source": "Betterfox",
       "value": true
@@ -347,25 +410,34 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "restore full URL on address-bar click, re-trim on blur",
+      "note": null,
       "pref": "browser.urlbar.untrimOnUserInteraction.featureGate",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": true
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable Yelp realtime urlbar suggestion (privacy; not a needed feature)",
+      "note": null,
+      "pref": "browser.urlbar.wikipedia.featureGate",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
       "pref": "browser.urlbar.yelpRealtime.featureGate",
-      "source": "Arkenfox",
+      "source": "YuzuFox",
       "value": false
     },
     {
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "show advanced info on insecure-connection pages",
+      "note": "show advanced info on bad cert error pages",
       "pref": "browser.xul.error_pages.expert_bad_cert",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -374,7 +446,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "sensor API disabled per Arkenfox 4200+",
+      "note": "disable device sensor APIs",
       "pref": "device.sensors.enabled",
       "source": "Arkenfox",
       "value": false
@@ -383,7 +455,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "battery API disabled per Arkenfox 4200+",
+      "note": "disable battery status API",
       "pref": "dom.battery.enabled",
       "source": "Arkenfox",
       "value": false
@@ -392,7 +464,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "prevent scripts from repositioning window — anti-spoofing/phishing defense",
+      "note": "prevent scripts from moving or resizing windows",
       "pref": "dom.disable_window_move_resize",
       "source": "Arkenfox",
       "value": true
@@ -401,16 +473,16 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": null,
+      "note": "disable private attribution reporting",
       "pref": "dom.private-attribution.submission.enabled",
-      "source": "YuzuFox",
+      "source": "Betterfox",
       "value": false
     },
     {
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "HTTPS-only, tracking protection, and query stripping",
+      "note": "enable HTTPS-Only mode",
       "pref": "dom.security.https_only_mode",
       "source": "Betterfox",
       "value": true
@@ -419,7 +491,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "no \"continue to HTTP\" suggestion on error page",
+      "note": "disable continue-to-HTTP suggestion on error page",
       "pref": "dom.security.https_only_mode_error_page_user_suggestions",
       "source": "Betterfox",
       "value": false
@@ -428,7 +500,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "disable the 3s cleartext HTTP probe — leaks visited domain in plaintext",
+      "note": "disable HTTP background probe",
       "pref": "dom.security.https_only_mode_send_http_background_request",
       "source": "Arkenfox",
       "value": false
@@ -437,16 +509,25 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "prevent silent password truncation on paste into maxlength fields",
+      "note": "preserve pasted text without truncation",
       "pref": "editor.truncate_user_pastes",
       "source": "Betterfox",
       "value": false
     },
     {
       "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "enable SmartBlock webcompat shims",
+      "pref": "extensions.webcompat.enable_shims",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "turn on \"Highlight All\" matches in find bar by default",
+      "note": "highlight all findbar matches",
       "pref": "findbar.highlightAll",
       "source": "Betterfox",
       "value": true
@@ -455,7 +536,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "remove fullscreen entry fade animation (instant; default 200ms)",
+      "note": "instant fullscreen transitions",
       "pref": "full-screen-api.transition-duration.enter",
       "source": "Betterfox",
       "value": "0 0"
@@ -464,18 +545,18 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "remove fullscreen exit fade animation (instant; default 200ms)",
+      "note": null,
       "pref": "full-screen-api.transition-duration.leave",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": "0 0"
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "suppress fullscreen warning overlay (default 3s popup; set 1250 if concerned)",
+      "note": null,
       "pref": "full-screen-api.warning.timeout",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": 0
     },
     {
@@ -491,7 +572,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "tighten MSD motion-update interval for responsive scroll feel (12ms)",
+      "note": "MSD physics smooth scrolling",
       "pref": "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",
       "source": "Betterfox",
       "value": 12
@@ -500,9 +581,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "enable mass-spring-damper physics scrolling (more natural than step-based)",
+      "note": null,
       "pref": "general.smoothScroll.msdPhysics.enabled",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": true
     },
     {
@@ -527,9 +608,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "start momentum-deceleration updates sooner for faster scroll dampening",
+      "note": null,
       "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaMS",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": 25
     },
     {
@@ -545,9 +626,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "moderate slowdown spring tension for controlled momentum fade",
+      "note": null,
       "pref": "general.smoothScroll.msdPhysics.slowdownSpringConstant",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": 250
     },
     {
@@ -563,7 +644,7 @@
       "files": [
         "src/user.js/60-os-specific.js"
       ],
-      "note": "disable Windows geolocation and UNC paths",
+      "note": "disable Windows geolocation service",
       "pref": "geo.provider.ms-windows-location",
       "source": "Arkenfox",
       "value": false
@@ -572,10 +653,10 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "disable Google network geolocation",
+      "note": "use BeaconDB for geolocation",
       "pref": "geo.provider.network.url",
       "source": "Betterfox",
-      "value": ""
+      "value": "https://beacondb.net/v1/geolocate"
     },
     {
       "files": [
@@ -599,7 +680,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
+      "note": "enable CSS masonry layout",
       "pref": "layout.css.grid-template-masonry-value.enabled",
       "source": "YuzuFox",
       "value": true
@@ -608,7 +689,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "WebRTC local-IP leak prevention",
+      "note": "expose only public IP via WebRTC",
       "pref": "media.peerconnection.ice.default_address_only",
       "source": "Arkenfox",
       "value": true
@@ -617,16 +698,16 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "boost scroll-wheel speed to 3x (default 100; tune to preference)",
+      "note": null,
       "pref": "mousewheel.default.delta_multiplier_y",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": 300
     },
     {
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "show raw punycode to defeat IDN homograph attacks (e.g. Cyrillic apple.com)",
+      "note": "always show Punycode for IDNs",
       "pref": "network.IDN_show_punycode",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -635,7 +716,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "value 1 blocks cross-origin auth prompts — prevents credential phishing",
+      "note": "block cross-origin subresource HTTP auth prompts",
       "pref": "network.auth.subresource-http-auth-allow",
       "source": "Arkenfox + Betterfox",
       "value": 1
@@ -644,9 +725,9 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": null,
+      "note": "opt-in cookie partitioning",
       "pref": "network.cookie.cookieBehavior.optInPartitioning",
-      "source": "YuzuFox",
+      "source": "Arkenfox",
       "value": true
     },
     {
@@ -662,7 +743,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "DNS prefetch leaks browsed domains to the resolver",
+      "note": "disable DNS prefetching",
       "pref": "network.dns.disablePrefetch",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -671,7 +752,7 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "DNS prefetch from HTTPS pages leaks domain info",
+      "note": "disable DNS prefetch from HTTPS pages",
       "pref": "network.dns.disablePrefetchFromHTTPS",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -687,63 +768,45 @@
     },
     {
       "files": [
-        "src/user.js/60-os-specific.js"
-      ],
-      "note": "block GVfs from acting as protocol handler",
-      "pref": "network.gio.supported-protocols",
-      "source": "Arkenfox",
-      "value": ""
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
-      "note": null,
+      "note": "disable HTTP/3 0-RTT",
       "pref": "network.http.http3.enable_0rtt",
-      "source": "YuzuFox",
+      "source": "Betterfox",
       "value": false
     },
     {
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "value 2=only scheme+host+port — strips path and query from cross-origin referrers",
+      "note": "trim cross-origin referrers to scheme+host+port",
       "pref": "network.http.referer.XOriginTrimmingPolicy",
       "source": "Arkenfox + Betterfox",
       "value": 2
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "do not spoof referrer source",
+      "pref": "network.http.referer.spoofSource",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "prevent silent pre-connections on link mouseover",
+      "note": "disable link-mouseover speculative connections",
       "pref": "network.http.speculative-parallel-limit",
-      "source": "Arkenfox + Betterfox",
+      "source": "Betterfox",
       "value": 0
     },
     {
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "predictor-initiated prefetch leaks future intent",
-      "pref": "network.predictor.enable-prefetch",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/10-network.js"
-      ],
-      "note": "predictor learns browsing patterns; leaks habits",
-      "pref": "network.predictor.enabled",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/10-network.js"
-      ],
-      "note": "block speculative page prefetch via link tags",
+      "note": "disable link prefetching",
       "pref": "network.prefetch-next",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -752,7 +815,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "embedded JS in PDFs is a malware/exploit vector — PDF rendering only",
+      "note": "disable PDF.js scripting",
       "pref": "pdfjs.enableScripting",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -761,16 +824,16 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": null,
+      "note": "block desktop notifications by default",
       "pref": "permissions.default.desktop-notification",
-      "source": "YuzuFox",
+      "source": "Arkenfox",
       "value": 2
     },
     {
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "geolocation default-blocked, allow per site",
+      "note": "block geolocation by default",
       "pref": "permissions.default.geo",
       "source": "Betterfox",
       "value": 2
@@ -779,7 +842,7 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "Firefox ships a permissions file that auto-grants special privileges to mozilla.org domains — clear it",
+      "note": "clear default permissions URL",
       "pref": "permissions.manager.defaultsUrl",
       "source": "Arkenfox + Betterfox",
       "value": ""
@@ -788,7 +851,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "block referrer and storage access via content scripts (cross-origin bridge)",
+      "note": "isolate content script resources",
       "pref": "privacy.antitracking.isolateContentScriptResources",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -806,7 +869,16 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "signal Do Not Sell/Share to sites — legal privacy right under CCPA/GDPR",
+      "note": "disable legacy First Party Isolation",
+      "pref": "privacy.firstparty.isolate",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "enable Global Privacy Control",
       "pref": "privacy.globalprivacycontrol.enabled",
       "source": "Betterfox",
       "value": true
@@ -815,16 +887,16 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": null,
+      "note": "strip tracking query parameters",
       "pref": "privacy.query_stripping.strip_list",
-      "source": "YuzuFox",
+      "source": "Arkenfox",
       "value": "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid"
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "enable Container Tabs engine (site isolation without separate profiles)",
+      "note": "enable Container Tabs and UI",
       "pref": "privacy.userContext.enabled",
       "source": "Arkenfox",
       "value": true
@@ -842,16 +914,16 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "show Container Tabs UI (context menu + new-tab button picker)",
+      "note": null,
       "pref": "privacy.userContext.ui.enabled",
-      "source": "Arkenfox + Betterfox",
+      "source": "YuzuFox",
       "value": true
     },
     {
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "offline CRLite revocation + no speculative connections",
+      "note": "disable OCSP in favor of CRLite",
       "pref": "security.OCSP.enabled",
       "source": "Betterfox",
       "value": 0
@@ -860,7 +932,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "strict PKP to prevent certificate MiTM by hostile CAs",
+      "note": "strict Public Key Pinning",
       "pref": "security.cert_pinning.enforcement_level",
       "source": "Arkenfox",
       "value": 2
@@ -869,7 +941,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "CSP reports leak referrer and policy details to third-party endpoints",
+      "note": "disable CSP reporting",
       "pref": "security.csp.reporting.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -878,7 +950,34 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "block servers lacking RFC 5746 renegotiation (MiTM CVE-2009-3555)",
+      "note": "add delay on security confirmation dialogs",
+      "pref": "security.dialog_enable_delay",
+      "source": "Arkenfox",
+      "value": 1000
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "enforce CRLite mode 2",
+      "pref": "security.pki.crlite_mode",
+      "source": "Arkenfox",
+      "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "security.remote_settings.crlite_filters.enabled",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "require safe TLS renegotiation",
       "pref": "security.ssl.require_safe_negotiation",
       "source": "Arkenfox",
       "value": true
@@ -887,7 +986,7 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "padlock warning on unsafe renegotiation",
+      "note": "warn on unsafe SSL renegotiation",
       "pref": "security.ssl.treat_unsafe_negotiation_as_broken",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -896,16 +995,34 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "0-RTT not forward secret; allows cross-connection replay",
+      "note": "disable TLS 1.3 0-RTT",
       "pref": "security.tls.enable_0rtt_data",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
     {
       "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "disable deprecated TLS versions",
+      "pref": "security.tls.version.enable-deprecated",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "disable passkey direct attestation",
+      "pref": "security.webauthn.always_allow_direct_attestation",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "auto-fill leaks credentials via cross-site forms and spoofed fields",
+      "note": "disable password autofill",
       "pref": "signon.autofillForms",
       "source": "Arkenfox",
       "value": false
@@ -914,7 +1031,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "block password capture on non-standard login forms (attack surface reduction)",
+      "note": "disable formless and private browsing password capture",
       "pref": "signon.formlessCapture.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -923,9 +1040,9 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "no credential capture in private windows — defeats PB isolation purpose",
+      "note": null,
       "pref": "signon.privateBrowsingCapture.enabled",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": false
     },
     {
@@ -941,7 +1058,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "compact UI, URL-bar cleanup, and physics scrolling",
+      "note": "enable userChrome/userContent stylesheets",
       "pref": "toolkit.legacyUserProfileCustomizations.stylesheets",
       "source": "Betterfox",
       "value": true
@@ -959,10 +1076,10 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": null,
+      "note": "URL classifier skip lists for social embeds",
       "pref": "urlclassifier.features.socialtracking.skipURLs",
       "source": "YuzuFox",
-      "value": "*.instagram.com, *.twitter.com, *.twimg.com"
+      "value": "*.instagram.com, *.twitter.com, *.twimg.com, *.x.com"
     },
     {
       "files": [
@@ -971,13 +1088,13 @@
       "note": null,
       "pref": "urlclassifier.trackingSkipURLs",
       "source": "YuzuFox",
-      "value": "*.reddit.com, *.twitter.com, *.twimg.com"
+      "value": "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com"
     },
     {
       "files": [
         "src/user.js/60-os-specific.js"
       ],
-      "note": "use the portal file picker instead of the GTK native dialog",
+      "note": "use XDG portal file picker",
       "pref": "widget.use-xdg-desktop-portal.file-picker",
       "source": "cachyos-firefox-settings",
       "value": 1
