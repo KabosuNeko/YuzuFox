@@ -12,7 +12,6 @@ pref("spellchecker.dictionary_path", "/usr/share/hunspell");
 
 // Disable default browser check
 pref("browser.shell.checkDefaultBrowser", false, locked);
-pref("skipDefaultBrowserCheckOnFirstRun", false, locked);
 
 // Extension scope & blocklist
 pref("extensions.autoDisableScopes", 11);
@@ -63,8 +62,10 @@ pref("gfx.content.skia-font-cache-size", 80);
 pref("javascript.options.baselinejit.threshold", 50);
 pref("javascript.options.ion.threshold", 500);
 pref("content.notify.interval", 100000);
+pref("content.notify.ontimer", true);
 
 // Parallel connections & HTTP/3
+pref("network.dnsCacheEntries", 1000);
 pref("network.dnsCacheExpiration", 3600);
 pref("network.http.max-connections", 1800);
 pref("network.http.max-persistent-connections-per-server", 10);
@@ -92,7 +93,6 @@ pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false, locked);
 pref("browser.tabs.crashReporting.sendReport", false, locked);
 
 // Activity stream telemetry
-pref("browser.newtabpage.activity-stream.feeds.telemetry", false, locked);
 pref("browser.newtabpage.activity-stream.telemetry", false, locked);
 
 // Search telemetry
@@ -161,12 +161,8 @@ pref("browser.preferences.moreFromMozilla", false, locked);
 // IP Protection
 pref("browser.ipProtection.enabled", false, locked);
 pref("browser.ipProtection.guardian.endpoint", "", locked);
-pref("browser.ipProtection.variant", "", locked);
 
 // Activity Stream & sponsored feeds
-pref("browser.newtabpage.activity-stream.feeds.aboutpreferences", false, locked);
-pref("browser.newtabpage.activity-stream.feeds.adsfeed", false, locked);
-pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false, locked);
 pref("browser.newtabpage.activity-stream.feeds.system.topsites", false, locked);
 pref("browser.newtabpage.activity-stream.feeds.system.topstories", false, locked);
 pref("browser.newtabpage.activity-stream.feeds.topsites", false, locked);
@@ -176,7 +172,6 @@ pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false, locked);
 pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false, locked);
 pref("browser.newtabpage.activity-stream.system.showSponsored", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.adsFeed.enabled", false, locked);
-pref("browser.newtabpage.activity-stream.unifiedAds.adsFeed.spocs.enabled", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.adsFeed.tiles.enabled", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.endpoint", "", locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.spocs.enabled", false, locked);
@@ -187,11 +182,9 @@ pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false, 
 pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false, locked);
 
 // Places feed & interaction tracking
-pref("browser.newtabpage.activity-stream.feeds.places", false, locked);
 pref("browser.places.interactions.enabled", false, locked);
 
 // Onboarding promos & captive portal
-pref("browser.promo.cookiebanners.enabled", false, locked);
 pref("browser.promo.pin.enabled", false, locked);
 pref("browser.protections_panel.infoMessage.seen", true);
 pref("browser.send_to_device_locales", "");
@@ -200,7 +193,6 @@ pref("browser.uitour.enabled", false, locked);
 pref("browser.uitour.url", "", locked);
 pref("browser.vpn_promo.enabled", false, locked);
 pref("captivedetect.canonicalURL", "", locked);
-pref("cookiebanners.ui.desktop.showCallout", false, locked);
 pref("devtools.debugger.remote-enabled", false, locked);
 
 // Mozilla AI / ML & smart tab groups

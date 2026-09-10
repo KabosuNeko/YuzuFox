@@ -1,10 +1,16 @@
 {
   "policies": {
+    "AutofillAddressEnabled": false,
+    "AutofillCreditCardEnabled": false,
+    "BackgroundAppUpdate": false,
+    "DisableDefaultBrowserAgent": true,
     "DisableFeedbackCommands": true,
     "DisableFirefoxStudies": true,
     "DisablePocket": true,
+    "DisableRemoteImprovements": true,
     "DisableSetDesktopBackground": true,
     "DisableTelemetry": true,
+    "SkipTermsOfUse": true,
     "DNSOverHTTPS": {
       "Enabled": false,
       "Locked": false
@@ -67,6 +73,8 @@
     "FirefoxHome": {
       "SponsoredPocket": false,
       "Pocket": false,
+      "Stories": false,
+      "SponsoredStories": false,
       "Highlights": false,
       "SponsoredTopSites": false,
       "TopSites": false,

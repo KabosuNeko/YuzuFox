@@ -12,9 +12,6 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.urlbar.trimHttps", true);
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
 
-// [SOURCE: Betterfox] [NOTE: disable Firefox View button]
-user_pref("browser.tabs.firefox-view", false);
-
 // [SOURCE: Betterfox] [NOTE: disable urlbar suggestion group labels]
 user_pref("browser.urlbar.groupLabels.enabled", false);
 
@@ -24,10 +21,8 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 // [SOURCE: cachyos-firefox-settings] [NOTE: disable urlbar suggestions and quicksuggest]
 user_pref("browser.urlbar.suggest.addons", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.fakespot", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.topsites", false);
 user_pref("browser.urlbar.suggest.trending", false);
 
 // [SOURCE: Arkenfox] [NOTE: disable urlbar feature gate suggestions]
@@ -58,16 +53,20 @@ user_pref("full-screen-api.warning.timeout", 0);
 // [SOURCE: Betterfox] [NOTE: open PDF attachments inline]
 user_pref("browser.download.open_pdf_attachments_inline", true);
 
+// [SOURCE: Betterfox] [NOTE: open bookmarks in new tab]
+user_pref("browser.tabs.loadBookmarksInTabs", true);
+
 // [SOURCE: Betterfox] [NOTE: keep bookmarks menu open on middle-click]
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 
-// [SOURCE: Betterfox] [NOTE: highlight all findbar matches]
+// [SOURCE: Betterfox] [NOTE: highlight all findbar matches and modal dimming]
 user_pref("findbar.highlightAll", true);
+user_pref("findbar.modalHighlight", true);
 
-// [SOURCE: Arkenfox] [NOTE: enable Container Tabs and UI]
+// [SOURCE: Arkenfox + Mozilla] [NOTE: enable Container Tabs, UI, and open container menu on new tab left click]
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-user_pref("privacy.userContext.longPressBehavior", 2);
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
 // [SOURCE: Betterfox] [NOTE: MSD physics smooth scrolling]
 user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
@@ -87,3 +86,6 @@ user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 // [SOURCE: Arkenfox] [NOTE: disable middle-click clipboard search]
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
+
+// [SOURCE: Betterfox + Arkenfox] [NOTE: block media autoplay with sound by default]
+user_pref("media.autoplay.default", 1);

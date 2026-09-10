@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T16:40:26.096018+00:00",
+  "generated_at": "2026-09-10T04:27:08.321989+00:00",
   "prefs": [
     {
       "files": [
@@ -113,7 +113,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "disable form autofill and saved passwords",
+      "note": "disable form autofill, addresses, credit cards, and saved passwords",
       "pref": "browser.formfill.enable",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -201,6 +201,15 @@
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "disable hyperlink auditing pings",
+      "pref": "browser.send_pings",
+      "source": "Arkenfox + Betterfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
       "note": "write session state every 60 seconds",
@@ -216,6 +225,15 @@
       "pref": "browser.sessionstore.privacy_level",
       "source": "Arkenfox",
       "value": 2
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "load pinned tabs on demand when restoring session",
+      "pref": "browser.sessionstore.restore_pinned_tabs_on_demand",
+      "source": "Betterfox",
+      "value": true
     },
     {
       "files": [
@@ -248,10 +266,10 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable Firefox View button",
-      "pref": "browser.tabs.firefox-view",
+      "note": "open bookmarks in new tab",
+      "pref": "browser.tabs.loadBookmarksInTabs",
       "source": "Betterfox",
-      "value": false
+      "value": true
     },
     {
       "files": [
@@ -339,15 +357,6 @@
         "src/user.js/50-ui-qol.js"
       ],
       "note": null,
-      "pref": "browser.urlbar.suggest.quicksuggest.fakespot",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
       "pref": "browser.urlbar.suggest.quicksuggest.nonsponsored",
       "source": "YuzuFox",
       "value": false
@@ -358,15 +367,6 @@
       ],
       "note": null,
       "pref": "browser.urlbar.suggest.quicksuggest.sponsored",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.urlbar.suggest.quicksuggest.topsites",
       "source": "YuzuFox",
       "value": false
     },
@@ -471,12 +471,12 @@
     },
     {
       "files": [
-        "src/user.js/40-telemetry-connections.js"
+        "src/user.js/20-privacy.js"
       ],
-      "note": "disable private attribution reporting",
-      "pref": "dom.private-attribution.submission.enabled",
-      "source": "Betterfox",
-      "value": false
+      "note": "restrict popup events to click and dblclick",
+      "pref": "dom.popup_allowed_events",
+      "source": "Arkenfox + Betterfox",
+      "value": "click dblclick"
     },
     {
       "files": [
@@ -516,6 +516,24 @@
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "extensions.formautofill.addresses.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "extensions.formautofill.creditCards.enabled",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/30-security.js"
       ],
       "note": "enable SmartBlock webcompat shims",
@@ -527,9 +545,18 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "highlight all findbar matches",
+      "note": "highlight all findbar matches and modal dimming",
       "pref": "findbar.highlightAll",
       "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "findbar.modalHighlight",
+      "source": "YuzuFox",
       "value": true
     },
     {
@@ -558,6 +585,15 @@
       "pref": "full-screen-api.warning.timeout",
       "source": "YuzuFox",
       "value": 0
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "enable middle-click autoscroll (matches Windows behavior)",
+      "pref": "general.autoScroll",
+      "source": "Betterfox",
+      "value": true
     },
     {
       "files": [
@@ -687,6 +723,15 @@
     },
     {
       "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "block media autoplay with sound by default",
+      "pref": "media.autoplay.default",
+      "source": "Betterfox + Arkenfox",
+      "value": 1
+    },
+    {
+      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "expose only public IP via WebRTC",
@@ -804,6 +849,15 @@
     },
     {
       "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "disable silent Windows SSO authentication",
+      "pref": "network.http.windows-sso.enabled",
+      "source": "Arkenfox + Betterfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "disable link prefetching",
@@ -851,6 +905,15 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
+      "note": "strict tracking protection list channels",
+      "pref": "privacy.annotate_channels.strict_list.enabled",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
       "note": "isolate content script resources",
       "pref": "privacy.antitracking.isolateContentScriptResources",
       "source": "Arkenfox + Betterfox",
@@ -860,8 +923,26 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
+      "note": "bounce tracking protection purge mode",
+      "pref": "privacy.bounceTrackingProtection.mode",
+      "source": "Arkenfox + Betterfox",
+      "value": 1
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
       "note": null,
       "pref": "privacy.fingerprintingProtection",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "privacy.fingerprintingProtection.pbmode",
       "source": "YuzuFox",
       "value": true
     },
@@ -888,17 +969,35 @@
         "src/user.js/20-privacy.js"
       ],
       "note": "strip tracking query parameters",
+      "pref": "privacy.query_stripping.enabled",
+      "source": "Arkenfox + Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
+      "pref": "privacy.query_stripping.enabled.pbmode",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": null,
       "pref": "privacy.query_stripping.strip_list",
-      "source": "Arkenfox",
+      "source": "YuzuFox",
       "value": "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid"
     },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "enable Container Tabs and UI",
+      "note": "enable Container Tabs, UI, and open container menu on new tab left click",
       "pref": "privacy.userContext.enabled",
-      "source": "Arkenfox",
+      "source": "Arkenfox + Mozilla",
       "value": true
     },
     {
@@ -906,9 +1005,9 @@
         "src/user.js/50-ui-qol.js"
       ],
       "note": null,
-      "pref": "privacy.userContext.longPressBehavior",
+      "pref": "privacy.userContext.newTabContainerOnLeftClick.enabled",
       "source": "YuzuFox",
-      "value": 2
+      "value": true
     },
     {
       "files": [
