@@ -24,6 +24,10 @@ user_pref("security.tls.enable_0rtt_data", false);
 // [SOURCE: Arkenfox] [NOTE: add delay on security confirmation dialogs]
 user_pref("security.dialog_enable_delay", 1000);
 
+// [SOURCE: Arkenfox] [NOTE: show not secure text on insecure HTTP pages]
+user_pref("security.insecure_connection_text.enabled", true);
+user_pref("security.insecure_connection_text.pbmode.enabled", true);
+
 // [SOURCE: Arkenfox + Betterfox] [NOTE: show advanced info on bad cert error pages]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 

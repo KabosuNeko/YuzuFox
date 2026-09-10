@@ -11,9 +11,6 @@ user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 // [SOURCE: Arkenfox] [NOTE: disable new tab page]
 user_pref("browser.newtabpage.enabled", false);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: clear preloaded top sites]
-user_pref("browser.newtabpage.activity-stream.default.sites", "");
-
 // [SOURCE: Arkenfox] [NOTE: restore open URLs only, no form or auth session data]
 user_pref("browser.sessionstore.privacy_level", 2);
 

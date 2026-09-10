@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T11:24:21.988188+00:00",
+  "generated_at": "2026-09-10T12:30:43.630127+00:00",
   "prefs": [
     {
       "files": [
@@ -126,15 +126,6 @@
       "pref": "browser.helperApps.deleteTempFileOnExit",
       "source": "Arkenfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "clear preloaded top sites",
-      "pref": "browser.newtabpage.activity-stream.default.sites",
-      "source": "Arkenfox + Betterfox",
-      "value": ""
     },
     {
       "files": [
@@ -705,6 +696,15 @@
     },
     {
       "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "use natural ClearType font rendering on Windows",
+      "pref": "gfx.font_rendering.cleartype_params.rendering_mode",
+      "source": "Betterfox",
+      "value": 5
+    },
+    {
+      "files": [
         "src/user.js/50-ui-qol.js"
       ],
       "note": "enable CSS masonry layout",
@@ -813,6 +813,15 @@
     },
     {
       "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "reduce maximum redirection hops to limit bounce tracking",
+      "pref": "network.http.redirection-limit",
+      "source": "Arkenfox",
+      "value": 10
+    },
+    {
+      "files": [
         "src/user.js/20-privacy.js"
       ],
       "note": "trim cross-origin referrers to scheme+host+port",
@@ -846,6 +855,15 @@
       "pref": "network.prefetch-next",
       "source": "Arkenfox + Betterfox",
       "value": false
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": "resolve DNS remotely when using SOCKS proxy",
+      "pref": "network.proxy.socks_remote_dns",
+      "source": "Arkenfox",
+      "value": true
     },
     {
       "files": [
@@ -1031,6 +1049,24 @@
       "files": [
         "src/user.js/30-security.js"
       ],
+      "note": "show not secure text on insecure HTTP pages",
+      "pref": "security.insecure_connection_text.enabled",
+      "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": null,
+      "pref": "security.insecure_connection_text.pbmode.enabled",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/30-security.js"
+      ],
       "note": "enforce CRLite mode 2",
       "pref": "security.pki.crlite_mode",
       "source": "Arkenfox",
@@ -1152,6 +1188,15 @@
       "pref": "widget.use-xdg-desktop-portal.file-picker",
       "source": "cachyos-firefox-settings",
       "value": 1
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "enable fractional scaling on Wayland",
+      "pref": "widget.wayland.fractional-scale.enabled",
+      "source": "cachyos-firefox-settings",
+      "value": true
     }
   ],
   "sources": [

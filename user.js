@@ -36,6 +36,12 @@ user_pref("browser.places.speculativeConnect.enabled", false);
 
 // expose only public IP via WebRTC
 user_pref("media.peerconnection.ice.default_address_only", true);
+
+// reduce maximum redirection hops to limit bounce tracking
+user_pref("network.http.redirection-limit", 10);
+
+// resolve DNS remotely when using SOCKS proxy
+user_pref("network.proxy.socks_remote_dns", true);
 // -----------------------------------------------------------------------------
 // PRIVACY
 // -----------------------------------------------------------------------------
@@ -153,6 +159,10 @@ user_pref("security.tls.enable_0rtt_data", false);
 // add delay on security confirmation dialogs
 user_pref("security.dialog_enable_delay", 1000);
 
+// show not secure text on insecure HTTP pages
+user_pref("security.insecure_connection_text.enabled", true);
+user_pref("security.insecure_connection_text.pbmode.enabled", true);
+
 // show advanced info on bad cert error pages
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
@@ -195,9 +205,6 @@ user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 
 // disable new tab page
 user_pref("browser.newtabpage.enabled", false);
-
-// clear preloaded top sites
-user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // restore open URLs only, no form or auth session data
 user_pref("browser.sessionstore.privacy_level", 2);
@@ -318,6 +325,9 @@ user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
 // enable middle-click autoscroll (matches Windows behavior)
 user_pref("general.autoScroll", true);
 
+// enable fractional scaling on Wayland
+user_pref("widget.wayland.fractional-scale.enabled", true);
+
 // Windows: disable location, block UNC paths, disable favicons & restart
 // disable Windows geolocation service
 user_pref("geo.provider.ms-windows-location", false);
@@ -333,6 +343,9 @@ user_pref("toolkit.winRegisterApplicationRestart", false);
 
 // keep private windows grouped in taskbar
 user_pref("browser.privateWindowSeparation.enabled", false);
+
+// use natural ClearType font rendering on Windows
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
 
 // macOS: disable CoreLocation
 // disable macOS CoreLocation geolocation
