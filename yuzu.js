@@ -72,6 +72,7 @@ pref("network.http.max-persistent-connections-per-server", 10);
 pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
 pref("network.http.pacing.requests.enabled", false);
 pref("network.http.request.max-start-delay", 5);
+pref("network.http.http2.send-buffer-size", 131072);
 pref("network.http.http3.enable", true);
 pref("browser.sessionhistory.max_total_viewers", 10);
 

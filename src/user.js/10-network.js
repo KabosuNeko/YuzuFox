@@ -25,3 +25,9 @@ user_pref("browser.places.speculativeConnect.enabled", false);
 
 // [SOURCE: Arkenfox] [NOTE: expose only public IP via WebRTC]
 user_pref("media.peerconnection.ice.default_address_only", true);
+
+// [SOURCE: Arkenfox] [NOTE: reduce maximum redirection hops to limit bounce tracking]
+user_pref("network.http.redirection-limit", 10);
+
+// [SOURCE: Arkenfox] [NOTE: resolve DNS remotely when using SOCKS proxy]
+user_pref("network.proxy.socks_remote_dns", true);
