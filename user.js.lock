@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T11:20:30.941038+00:00",
+  "generated_at": "2026-09-10T11:24:21.988188+00:00",
   "prefs": [
     {
       "files": [
@@ -196,6 +196,15 @@
       ],
       "note": "disable live search suggestions",
       "pref": "browser.search.suggest.enabled",
+      "source": "Arkenfox + Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "disable hyperlink auditing pings",
+      "pref": "browser.send_pings",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
