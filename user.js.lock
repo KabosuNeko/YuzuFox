@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T04:27:08.321989+00:00",
+  "generated_at": "2026-09-10T11:20:30.941038+00:00",
   "prefs": [
     {
       "files": [
@@ -196,15 +196,6 @@
       ],
       "note": "disable live search suggestions",
       "pref": "browser.search.suggest.enabled",
-      "source": "Arkenfox + Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable hyperlink auditing pings",
-      "pref": "browser.send_pings",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
@@ -473,10 +464,10 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "restrict popup events to click and dblclick",
+      "note": "restrict popup events to direct user interaction",
       "pref": "dom.popup_allowed_events",
       "source": "Arkenfox + Betterfox",
-      "value": "click dblclick"
+      "value": "click dblclick mousedown pointerdown"
     },
     {
       "files": [
@@ -486,15 +477,6 @@
       "pref": "dom.security.https_only_mode",
       "source": "Betterfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable continue-to-HTTP suggestion on error page",
-      "pref": "dom.security.https_only_mode_error_page_user_suggestions",
-      "source": "Betterfox",
-      "value": false
     },
     {
       "files": [
@@ -831,15 +813,6 @@
     },
     {
       "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "do not spoof referrer source",
-      "pref": "network.http.referer.spoofSource",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "disable link-mouseover speculative connections",
@@ -945,15 +918,6 @@
       "pref": "privacy.fingerprintingProtection.pbmode",
       "source": "YuzuFox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable legacy First Party Isolation",
-      "pref": "privacy.firstparty.isolate",
-      "source": "Arkenfox",
-      "value": false
     },
     {
       "files": [
@@ -1097,24 +1061,6 @@
       "note": "disable TLS 1.3 0-RTT",
       "pref": "security.tls.enable_0rtt_data",
       "source": "Arkenfox + Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "disable deprecated TLS versions",
-      "pref": "security.tls.version.enable-deprecated",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "disable passkey direct attestation",
-      "pref": "security.webauthn.always_allow_direct_attestation",
-      "source": "Arkenfox",
       "value": false
     },
     {
