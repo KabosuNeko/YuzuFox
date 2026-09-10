@@ -21,12 +21,6 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable TLS 1.3 0-RTT]
 user_pref("security.tls.enable_0rtt_data", false);
 
-// [SOURCE: Arkenfox] [NOTE: disable deprecated TLS versions]
-user_pref("security.tls.version.enable-deprecated", false);
-
-// [SOURCE: Arkenfox] [NOTE: disable passkey direct attestation]
-user_pref("security.webauthn.always_allow_direct_attestation", false);
-
 // [SOURCE: Arkenfox] [NOTE: add delay on security confirmation dialogs]
 user_pref("security.dialog_enable_delay", 1000);
 

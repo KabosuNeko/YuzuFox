@@ -60,14 +60,8 @@ user_pref("security.csp.reporting.enabled", false);
 // trim cross-origin referrers to scheme+host+port
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-// do not spoof referrer source
-user_pref("network.http.referer.spoofSource", false);
-
 // enable Global Privacy Control
 user_pref("privacy.globalprivacycontrol.enabled", true);
-
-// disable legacy First Party Isolation
-user_pref("privacy.firstparty.isolate", false);
 
 // opt-in cookie partitioning
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
@@ -106,11 +100,8 @@ user_pref("editor.truncate_user_pastes", false);
 // prevent scripts from moving or resizing windows
 user_pref("dom.disable_window_move_resize", true);
 
-// restrict popup events to click and dblclick
-user_pref("dom.popup_allowed_events", "click dblclick");
-
-// disable hyperlink auditing pings
-user_pref("browser.send_pings", false);
+// restrict popup events to direct user interaction
+user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 // disable silent Windows SSO authentication
 user_pref("network.http.windows-sso.enabled", false);
@@ -133,8 +124,6 @@ user_pref("permissions.default.geo", 2);
 // use BeaconDB for geolocation
 user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
 
-// disable continue-to-HTTP suggestion on error page
-user_pref("dom.security.https_only_mode_error_page_user_suggestions", false);
 // -----------------------------------------------------------------------------
 // SECURITY
 // -----------------------------------------------------------------------------
@@ -157,12 +146,6 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
 // disable TLS 1.3 0-RTT
 user_pref("security.tls.enable_0rtt_data", false);
-
-// disable deprecated TLS versions
-user_pref("security.tls.version.enable-deprecated", false);
-
-// disable passkey direct attestation
-user_pref("security.webauthn.always_allow_direct_attestation", false);
 
 // add delay on security confirmation dialogs
 user_pref("security.dialog_enable_delay", 1000);

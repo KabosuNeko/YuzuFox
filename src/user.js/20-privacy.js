@@ -22,14 +22,8 @@ user_pref("security.csp.reporting.enabled", false);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: trim cross-origin referrers to scheme+host+port]
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-// [SOURCE: Arkenfox] [NOTE: do not spoof referrer source]
-user_pref("network.http.referer.spoofSource", false);
-
 // [SOURCE: Betterfox] [NOTE: enable Global Privacy Control]
 user_pref("privacy.globalprivacycontrol.enabled", true);
-
-// [SOURCE: Arkenfox] [NOTE: disable legacy First Party Isolation]
-user_pref("privacy.firstparty.isolate", false);
 
 // [SOURCE: Arkenfox] [NOTE: opt-in cookie partitioning]
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
@@ -68,11 +62,8 @@ user_pref("editor.truncate_user_pastes", false);
 // [SOURCE: Arkenfox] [NOTE: prevent scripts from moving or resizing windows]
 user_pref("dom.disable_window_move_resize", true);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: restrict popup events to click and dblclick]
-user_pref("dom.popup_allowed_events", "click dblclick");
-
-// [SOURCE: Arkenfox + Betterfox] [NOTE: disable hyperlink auditing pings]
-user_pref("browser.send_pings", false);
+// [SOURCE: Arkenfox + Betterfox] [NOTE: restrict popup events to direct user interaction]
+user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable silent Windows SSO authentication]
 user_pref("network.http.windows-sso.enabled", false);
@@ -95,5 +86,3 @@ user_pref("permissions.default.geo", 2);
 // [SOURCE: Betterfox] [NOTE: use BeaconDB for geolocation]
 user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
 
-// [SOURCE: Betterfox] [NOTE: disable continue-to-HTTP suggestion on error page]
-user_pref("dom.security.https_only_mode_error_page_user_suggestions", false);
