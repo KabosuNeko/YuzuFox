@@ -20,11 +20,11 @@ user_pref("browser.sessionstore.privacy_level", 2);
 // [SOURCE: Betterfox] [NOTE: write session state every 60 seconds]
 user_pref("browser.sessionstore.interval", 60000);
 
+// [SOURCE: Betterfox] [NOTE: load pinned tabs on demand when restoring session]
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+
 // [SOURCE: Arkenfox] [NOTE: block desktop notifications by default]
 user_pref("permissions.default.desktop-notification", 2);
-
-// [SOURCE: Betterfox] [NOTE: disable private attribution reporting]
-user_pref("dom.private-attribution.submission.enabled", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: clear default permissions URL]
 user_pref("permissions.manager.defaultsUrl", "");

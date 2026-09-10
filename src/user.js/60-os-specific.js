@@ -2,12 +2,15 @@
 // OS SPECIFIC
 // -----------------------------------------------------------------------------
 
-// Linux: disable geoclue, portal file picker
+// Linux: disable geoclue, portal file picker, enable middle-click autoscroll
 // [SOURCE: Arkenfox] [NOTE: disable Red Hat geoclue location service]
 user_pref("geo.provider.use_geoclue", false);
 
 // [SOURCE: cachyos-firefox-settings] [NOTE: use XDG portal file picker]
 user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+
+// [SOURCE: Betterfox] [NOTE: enable middle-click autoscroll (matches Windows behavior)]
+user_pref("general.autoScroll", true);
 
 // Windows: disable location, block UNC paths, disable favicons & restart
 // [SOURCE: Arkenfox] [NOTE: disable Windows geolocation service]

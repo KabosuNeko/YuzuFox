@@ -49,6 +49,7 @@ user_pref("dom.security.https_only_mode_send_http_background_request", false);
 // ETP strict mode and fingerprinting protection
 user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.fingerprintingProtection", true);
+user_pref("privacy.fingerprintingProtection.pbmode", true);
 
 // isolate content script resources
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
@@ -73,10 +74,20 @@ user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
 user_pref("network.cookie.cookieBehavior.optInPartitioning.pbmode", true);
 
 // strip tracking query parameters
+user_pref("privacy.query_stripping.enabled", true);
+user_pref("privacy.query_stripping.enabled.pbmode", true);
 user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid");
 
-// disable form autofill and saved passwords
+// strict tracking protection list channels
+user_pref("privacy.annotate_channels.strict_list.enabled", true);
+
+// bounce tracking protection purge mode
+user_pref("privacy.bounceTrackingProtection.mode", 1);
+
+// disable form autofill, addresses, credit cards, and saved passwords
 user_pref("browser.formfill.enable", false);
+user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("signon.rememberSignons", false);
 
 // disable formless and private browsing password capture
@@ -94,6 +105,15 @@ user_pref("editor.truncate_user_pastes", false);
 
 // prevent scripts from moving or resizing windows
 user_pref("dom.disable_window_move_resize", true);
+
+// restrict popup events to click and dblclick
+user_pref("dom.popup_allowed_events", "click dblclick");
+
+// disable hyperlink auditing pings
+user_pref("browser.send_pings", false);
+
+// disable silent Windows SSO authentication
+user_pref("network.http.windows-sso.enabled", false);
 
 // disable device sensor APIs
 user_pref("device.sensors.enabled", false);
@@ -199,11 +219,11 @@ user_pref("browser.sessionstore.privacy_level", 2);
 // write session state every 60 seconds
 user_pref("browser.sessionstore.interval", 60000);
 
+// load pinned tabs on demand when restoring session
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+
 // block desktop notifications by default
 user_pref("permissions.default.desktop-notification", 2);
-
-// disable private attribution reporting
-user_pref("dom.private-attribution.submission.enabled", false);
 
 // clear default permissions URL
 user_pref("permissions.manager.defaultsUrl", "");
@@ -221,9 +241,6 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.urlbar.trimHttps", true);
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
 
-// disable Firefox View button
-user_pref("browser.tabs.firefox-view", false);
-
 // disable urlbar suggestion group labels
 user_pref("browser.urlbar.groupLabels.enabled", false);
 
@@ -233,10 +250,8 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 // disable urlbar suggestions and quicksuggest
 user_pref("browser.urlbar.suggest.addons", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.fakespot", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.topsites", false);
 user_pref("browser.urlbar.suggest.trending", false);
 
 // disable urlbar feature gate suggestions
@@ -267,16 +282,20 @@ user_pref("full-screen-api.warning.timeout", 0);
 // open PDF attachments inline
 user_pref("browser.download.open_pdf_attachments_inline", true);
 
+// open bookmarks in new tab
+user_pref("browser.tabs.loadBookmarksInTabs", true);
+
 // keep bookmarks menu open on middle-click
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 
-// highlight all findbar matches
+// highlight all findbar matches and modal dimming
 user_pref("findbar.highlightAll", true);
+user_pref("findbar.modalHighlight", true);
 
-// enable Container Tabs and UI
+// enable Container Tabs, UI, and open container menu on new tab left click
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-user_pref("privacy.userContext.longPressBehavior", 2);
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
 // MSD physics smooth scrolling
 user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
@@ -296,16 +315,22 @@ user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 // disable middle-click clipboard search
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
+
+// block media autoplay with sound by default
+user_pref("media.autoplay.default", 1);
 // -----------------------------------------------------------------------------
 // OS SPECIFIC
 // -----------------------------------------------------------------------------
 
-// Linux: disable geoclue, portal file picker
+// Linux: disable geoclue, portal file picker, enable middle-click autoscroll
 // disable Red Hat geoclue location service
 user_pref("geo.provider.use_geoclue", false);
 
 // use XDG portal file picker
 user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+
+// enable middle-click autoscroll (matches Windows behavior)
+user_pref("general.autoScroll", true);
 
 // Windows: disable location, block UNC paths, disable favicons & restart
 // disable Windows geolocation service
