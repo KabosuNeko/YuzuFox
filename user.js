@@ -103,6 +103,9 @@ user_pref("dom.disable_window_move_resize", true);
 // restrict popup events to direct user interaction
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
+// disable hyperlink auditing pings
+user_pref("browser.send_pings", false);
+
 // disable silent Windows SSO authentication
 user_pref("network.http.windows-sso.enabled", false);
 

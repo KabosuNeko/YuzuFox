@@ -65,6 +65,9 @@ user_pref("dom.disable_window_move_resize", true);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: restrict popup events to direct user interaction]
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
 
+// [SOURCE: Arkenfox + Betterfox] [NOTE: disable hyperlink auditing pings]
+user_pref("browser.send_pings", false);
+
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable silent Windows SSO authentication]
 user_pref("network.http.windows-sso.enabled", false);
 
