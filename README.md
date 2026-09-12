@@ -72,7 +72,7 @@ yay -S yuzufox-git
 > [!TIP]
 > **Using Wayland? Pair YuzuFox with `firefox-pure` (CachyOS)**
 >
-> [`firefox-pure`](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/firefox-pure) is an ultra-fast, Wayland-only Firefox build by the CachyOS team with `-O3`, PGO, cross-language LTO, and all Mozilla telemetry purged at compile time. *(If you are using X11, please skip this — `firefox-pure` does not support X11; stick with standard `firefox`).*
+> [`firefox-pure`](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/firefox-pure) is an ultra-fast, Wayland-only Firefox build by the CachyOS team with `-O3`, PGO, cross-language LTO, and all Mozilla telemetry purged at compile time. *(This is completely optional — if you are using X11 or simply prefer standard Firefox, you can skip this).*
 >
 > By default, `firefox-pure` pulls in `cachyos-firefox-settings`, which conflicts with YuzuFox. To install YuzuFox on `firefox-pure`:
 > 1. **Install `yuzufox-git` first**:
