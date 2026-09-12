@@ -66,7 +66,25 @@ paru -S yuzufox-git
 yay -S yuzufox-git
 ```
 
-> **Note**: The AUR package automatically applies the unified system configuration, enterprise policies, and privacy defaults. It seamlessly provides and replaces `firefox-settings` on CachyOS.
+> [!NOTE]
+> The AUR package automatically applies the unified system configuration, enterprise policies, and privacy defaults (`provides=('firefox-settings')`).
+
+> [!TIP]
+> **Using Wayland? Pair YuzuFox with `firefox-pure` (CachyOS)**
+>
+> [`firefox-pure`](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/firefox-pure) is an ultra-fast, Wayland-only Firefox build by the CachyOS team with `-O3`, PGO, cross-language LTO, and all Mozilla telemetry purged at compile time.
+>
+> By default, `firefox-pure` pulls in `cachyos-firefox-settings`, which conflicts with YuzuFox. To install YuzuFox on `firefox-pure`:
+> 1. **Install `yuzufox-git` first**:
+>    ```bash
+>    paru -S yuzufox-git   # or: yay -S yuzufox-git
+>    ```
+>    *(If you don't have Firefox yet, this will pull regular Firefox as a dependency).*
+> 2. **Then install `firefox-pure`**:
+>    ```bash
+>    sudo pacman -S firefox-pure
+>    ```
+> 3. Pacman will prompt that `firefox-pure` conflicts with `firefox`. Press **`y`** to remove regular Firefox. It will replace it with `firefox-pure` and keep YuzuFox without pulling in `cachyos-firefox-settings`.
 
 ### Linux & macOS (Installer Script)
 
