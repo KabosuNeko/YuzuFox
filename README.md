@@ -207,7 +207,7 @@ Do not edit `user.js` directly; make your modifications in `src/user.js/*.js` an
 >    *(If you don't have Firefox yet, this will pull regular Firefox as a dependency).*
 > 2. **Then install `firefox-pure`**:
 >    ```bash
->    sudo pacman -S firefox-pure
+>    paru -S firefox-pure   # or: yay -S firefox-pure
 >    ```
 > 3. Pacman will prompt that `firefox-pure` conflicts with `firefox`. Press **`y`** to remove regular Firefox. It will replace it with `firefox-pure` and keep YuzuFox without pulling in `cachyos-firefox-settings`.
 
