@@ -74,6 +74,9 @@ yay -S yuzufox-git
 >
 > [`firefox-pure`](https://aur.archlinux.org/packages/firefox-pure) is an ultra-fast, Wayland-only Firefox build by the CachyOS team with `-O3`, PGO, cross-language LTO, and all Mozilla telemetry purged at compile time. *(This is completely optional — if you are using X11 or simply prefer standard Firefox, you can skip this).*
 >
+> **Why replace `cachyos-firefox-settings`?**  
+> `cachyos-firefox-settings` has not been updated in a long time, leaving several preferences outdated. Notably, it completely disables Safe Browsing. While we understand the privacy rationale behind that choice, disabling Safe Browsing entirely for daily use is ill-advised for most users and actually makes your browser fingerprint significantly more unique. No disrespect intended whatsoever — YuzuFox was heavily inspired by CachyOS's work in the first place, and YuzuFox aims to keep those performance gains while modernizing security and privacy for a daily driver.
+>
 > By default, `firefox-pure` pulls in `cachyos-firefox-settings`, which conflicts with YuzuFox. To install YuzuFox on `firefox-pure`:
 > 1. **Install `yuzufox-git` first**:
 >    ```bash
