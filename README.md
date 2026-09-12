@@ -5,7 +5,6 @@
   <p>
     <a href="https://aur.archlinux.org/packages/yuzufox-git"><img src="https://img.shields.io/aur/version/yuzufox-git?color=1793d1&label=AUR&style=flat-square" alt="AUR" /></a>
     <a href="https://www.mozilla.org/firefox"><img src="https://img.shields.io/badge/Target-Firefox_Gecko-e66000?style=flat-square" alt="Firefox" /></a>
-    <a href="https://cachyos.org"><img src="https://img.shields.io/badge/Optimized-CachyOS-00a3e0?style=flat-square" alt="CachyOS" /></a>
     <a href="https://github.com/KabosuNeko/YuzuFox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-a3be8c?style=flat-square" alt="License" /></a>
   </p>
 </div>
