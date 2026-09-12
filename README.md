@@ -189,17 +189,6 @@ Do not edit `user.js` directly; make your modifications in `src/user.js/*.js` an
 
 ---
 
-## Related Configurations
-
-Additional configuration repositories from my personal setup:
-
-- [Ringo](https://github.com/KabosuNeko/Ringo) — A clean, distraction-free Niri desktop driven by Quickshell
-- [MPV](https://github.com/KabosuNeko/mpv) — Video player configuration and scripts
-- [Wallpapers](https://github.com/KabosuNeko/Wallpapers) — Curated wallpaper collection
-- [Nvim](https://github.com/KabosuNeko/nvim) — Neovim configuration
-
----
-
 ## Credits
 
 - [Betterfox](https://github.com/yokoffing/Betterfox)
