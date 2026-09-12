@@ -1,20 +1,55 @@
-# YuzuFox
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cffdbb1c-2676-4df8-94fb-0369edbb86bd" alt="YuzuFox Logo" style="width: 192px" />
-</p>
-
-Hardened, zero-bloat Firefox configuration focused on performance and privacy without breaking web compatibility.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/cffdbb1c-2676-4df8-94fb-0369edbb86bd" alt="YuzuFox Logo" width="160" />
+  <h1>YuzuFox</h1>
+  <p><b>Hardened, zero-bloat Firefox configuration focused on performance and privacy without breaking web compatibility.</b></p>
+  <p>
+    <a href="https://aur.archlinux.org/packages/yuzufox-git"><img src="https://img.shields.io/aur/version/yuzufox-git?color=1793d1&label=AUR&style=flat-square" alt="AUR" /></a>
+    <a href="https://www.mozilla.org/firefox"><img src="https://img.shields.io/badge/Target-Firefox_Gecko-e66000?style=flat-square" alt="Firefox" /></a>
+    <a href="https://cachyos.org"><img src="https://img.shields.io/badge/Optimized-CachyOS-00a3e0?style=flat-square" alt="CachyOS" /></a>
+    <a href="https://github.com/KabosuNeko/YuzuFox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-a3be8c?style=flat-square" alt="License" /></a>
+  </p>
+</div>
 
 ---
 
-## Architecture
+## Architecture & Components
 
-- **`yuzu.js`** (System-wide, locked): Hardware video decoding, WebRender, RAM cache (zero disk writes), aggressive connection tuning, complete telemetry and Mozilla bloat/AI removal.
-- **`user.js`** (Per-profile, unlocked): Privacy hardening (ETP strict, FPP, query stripping), security (CRLite mode 2, safe renegotiation), quiet startup, and UI/QoL tweaks.
-- **`policies.json`** (Enterprise policy): Preinstalls uBlock Origin, configures private search engines (DuckDuckGo default), removes sponsored tiles and promotional services.
+| Component | Target Location | Scope & Role |
+| :--- | :--- | :--- |
+| **`yuzu.js`** | `browser/defaults/preferences/yuzu.js` | **System-wide (Locked)**: Hardware video decoding, WebRender, RAM cache (zero disk writes), aggressive connection tuning, and complete telemetry/Normandy purge. |
+| **`user.js`** | `<profile>/user.js` | **Per-profile (Unlocked)**: Privacy hardening (ETP strict, FPP, query stripping), security (CRLite mode 2, safe renegotiation), quiet startup, and MSD smooth scrolling. |
+| **`policies.json`** | `distribution/policies.json` | **Enterprise Policy**: Pre-configures uBlock Origin, sets DuckDuckGo as default private engine, disables sponsored tiles, telemetry, and promotional bloat. |
 
-System DNS resolver is preserved (`network.trr.*` untouched). For details and resource tuning, see [TIPS.md](TIPS.md).
+> System DNS resolver is strictly preserved (`network.trr.*` untouched). For details and resource tuning, see [TIPS.md](TIPS.md).
+
+---
+
+## Features
+
+- **RAM-Only Cache & Zero Disk Writes**  
+  Eliminates browser disk wear and lag by redirecting cache entirely to memory (`browser.cache.disk.enable = false`, 1GB memory cache allocation).
+
+- **Complete Telemetry & Bloatware Purge**  
+  All Mozilla diagnostics, Normandy rollouts, Shield studies, PingCentre, Pocket, Activity Stream, and sponsored URLbar suggestions are permanently locked and disabled.
+
+- **Hardened Privacy with Zero Web Breakage**  
+  Leverages Mozilla's modern Fingerprinting Protection (FPP), Enhanced Tracking Protection (ETP Strict), bounce tracking purge, and strict referrer trimming without breaking bank logins or everyday sites.
+
+- **URL Tracking Strip**  
+  Cleans invasive tracker queries (`fbclid`, `gclid`, `igshid`, `mc_eid`, etc.) upon link navigation, ensuring clean URLs and preventing cross-site behavioral profiling.
+
+- **High-End Usability & Polish**  
+  MSD Physics spring smooth scrolling, XDG Desktop Portal native file picker on Linux, middle-click autoscroll, and anti-homograph Punycode display for phishing prevention.
+
+---
+
+## Why YuzuFox?
+
+Most existing Firefox hardening setups fall into two extremes:
+1. **Too Aggressive (e.g., Arkenfox)**: Enables extreme Resist Fingerprinting (RFP) that locks your monitor refresh rate to 60Hz, forces light mode, breaks canvas elements, and resets your `about:config` adjustments every time Firefox restarts.
+2. **Too Bloated (Default Firefox)**: Filled with sponsored shortcuts, telemetry surveys, AI experiments, and background pre-connections.
+
+**YuzuFox** strikes the perfect balance: **clean, fast, and respectful of your privacy while keeping everyday websites fully functional.** It acts as a rock-solid, production-ready daily driver for power users and privacy enthusiasts alike.
 
 ---
 
@@ -22,7 +57,19 @@ System DNS resolver is preserved (`network.trr.*` untouched). For details and re
 
 Close Firefox before installing.
 
-### Linux & macOS
+### Arch Linux / CachyOS (AUR)
+
+Install via your preferred AUR helper:
+
+```bash
+paru -S yuzufox-git
+# or
+yay -S yuzufox-git
+```
+
+> **Note**: The AUR package automatically applies the unified system configuration, enterprise policies, and privacy defaults. It seamlessly provides and replaces `firefox-settings` on CachyOS.
+
+### Linux & macOS (Installer Script)
 
 ```bash
 # Recommended: download and run interactively (selects profiles)
@@ -35,7 +82,9 @@ bash install.sh
 curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --all
 ```
 
-Installer options:
+<details>
+<summary><b>Installer options & Target paths</b></summary>
+
 ```bash
 bash install.sh                 # Interactive profile picker
 bash install.sh --all           # All profiles, no prompt
@@ -44,15 +93,15 @@ bash install.sh --profiles-only # user.js only (no sudo)
 bash install.sh --dry-run       # Preview target paths without writing
 ```
 
-Target paths:
 | OS | `policies.json` | `yuzu.js` | `user.js` |
 |---|---|---|---|
 | **Linux** | `/etc/firefox/policies/policies.json` | `/usr/lib/firefox/browser/defaults/preferences/yuzu.js` | `~/.mozilla/firefox/<profile>/user.js` |
 | **macOS** | `/Applications/Firefox.app/.../distribution/policies.json` | `/Applications/Firefox.app/.../browser/defaults/preferences/yuzu.js` | `~/Library/Application Support/Firefox/Profiles/<profile>/user.js` |
 
-*Existing `user.js` in a profile is backed up as `user.js.yuzubak`.*
+*Existing `user.js` in a profile is automatically backed up as `user.js.yuzubak`.*
+</details>
 
-### Windows
+### Windows (PowerShell)
 
 Open an elevated PowerShell (Run as Administrator):
 
@@ -67,7 +116,9 @@ irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1 -OutFi
 .\install.ps1 -All
 ```
 
-Installer options:
+<details>
+<summary><b>Installer options & Target paths</b></summary>
+
 ```powershell
 .\install.ps1                   # Interactive profile picker
 .\install.ps1 -All              # All profiles, no prompt
@@ -76,40 +127,56 @@ Installer options:
 .\install.ps1 -DryRun           # Preview target paths
 ```
 
-Target paths:
 | File | Destination |
 |---|---|
 | `policies.json` | `%ProgramFiles%\Mozilla Firefox\distribution\policies.json` |
 | `yuzu.js` | `%ProgramFiles%\Mozilla Firefox\browser\defaults\preferences\yuzu.js` |
 | `user.js` | `%APPDATA%\Mozilla\Firefox\Profiles\<profile>\user.js` |
+</details>
 
 ---
 
 ## Updating
 
-Re-run the installer. It downloads the latest configuration from `main` and overwrites installed files (backing up existing profile `user.js` to `user.js.yuzubak`).
+### Arch Linux / CachyOS (AUR)
+
+```bash
+paru -Syu --devel
+# or
+yay -Syu --devel
+```
+
+### Script Installer (Linux, macOS, Windows)
+
+Re-run the installer. It downloads the latest configuration from `main` and updates the files (preserving backups of previous configurations).
 
 ---
 
 ## Uninstall
 
+### Arch Linux / CachyOS (AUR)
+
+```bash
+sudo pacman -R yuzufox-git
+```
+
+### Script Installer
+
 ```bash
 # Linux / macOS
 bash install.sh --uninstall --all
-```
 
-```powershell
-# Windows
+# Windows (PowerShell)
 .\install.ps1 -Uninstall -All
 ```
 
-To restore your previous profile configuration, rename `user.js.yuzubak` back to `user.js` (or delete `user.js` if you had none).
+To restore your previous profile configuration, rename `user.js.yuzubak` back to `user.js` (or remove `user.js` if you had none).
 
 ---
 
 ## Development & Build
 
-`user.js` is compiled from modular sources in `src/user.js/`:
+`user.js` is compiled from modular sources inside `src/user.js/`:
 
 ```bash
 # Rebuild user.js and user.js.lock
@@ -119,7 +186,18 @@ python3 build.py
 python3 build.py --check
 ```
 
-Do not edit `user.js` directly; make changes in `src/user.js/*.js` and run `python3 build.py`.
+Do not edit `user.js` directly; make your modifications in `src/user.js/*.js` and run `python3 build.py`.
+
+---
+
+## Related Configurations
+
+Additional configuration repositories from my personal setup:
+
+- [Ringo](https://github.com/KabosuNeko/Ringo) — A clean, distraction-free Niri desktop driven by Quickshell
+- [MPV](https://github.com/KabosuNeko/mpv) — Video player configuration and scripts
+- [Wallpapers](https://github.com/KabosuNeko/Wallpapers) — Curated wallpaper collection
+- [Nvim](https://github.com/KabosuNeko/nvim) — Neovim configuration
 
 ---
 
