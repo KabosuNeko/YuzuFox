@@ -67,22 +67,9 @@ user_pref("findbar.modalHighlight", true);
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
-
-// [SOURCE: Betterfox] [NOTE: MSD physics smooth scrolling]
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 200);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 250);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2.0");
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
-user_pref("general.smoothScroll.currentVelocityWeighting", "1.0");
-user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
+// [SOURCE: Betterfox] [NOTE: mouse wheel scroll multiplier and overscroll bounce]
 user_pref("mousewheel.default.delta_multiplier_y", 300);
 user_pref("apz.overscroll.enabled", true);
-
-// [SOURCE: YuzuFox] [NOTE: enable CSS masonry layout]
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 // [SOURCE: Arkenfox] [NOTE: disable middle-click clipboard search]
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
