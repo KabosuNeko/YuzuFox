@@ -195,8 +195,8 @@ Install complete system font coverage:
 
 Firefox Multi-Account Containers let you separate cookies and sessions per tab:
 
-- Containers engine is enabled out of the box (`privacy.userContext.enabled = true`).
-- Left-clicking the **+** (new tab) button opens the container selection menu (`privacy.userContext.newTabContainerOnLeftClick.enabled = true`).
+- Containers engine is enabled out of the box (`privacy.userContext.enabled = true`, `privacy.userContext.ui.enabled = true`).
+- Left-clicking the **+** button opens a normal tab instantly without interruption. Long-press or right-click the **+** button to open the container selection menu.
 - Install Mozilla's official [Multi-Account Containers extension](https://addons.mozilla.org/firefox/addon/multi-account-containers/) if you want automatic domain-to-container routing rules.
 
 ---

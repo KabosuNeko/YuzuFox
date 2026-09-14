@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T10:40:26.130552+00:00",
+  "generated_at": "2026-09-14T11:08:34.278305+00:00",
   "prefs": [
     {
       "files": [
@@ -860,18 +860,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "enable Container Tabs, UI, and open container menu on new tab left click",
+      "note": "enable Container Tabs and UI",
       "pref": "privacy.userContext.enabled",
       "source": "Arkenfox + Mozilla",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "privacy.userContext.newTabContainerOnLeftClick.enabled",
-      "source": "YuzuFox",
       "value": true
     },
     {

@@ -63,10 +63,9 @@ user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("findbar.highlightAll", true);
 user_pref("findbar.modalHighlight", true);
 
-// [SOURCE: Arkenfox + Mozilla] [NOTE: enable Container Tabs, UI, and open container menu on new tab left click]
+// [SOURCE: Arkenfox + Mozilla] [NOTE: enable Container Tabs and UI]
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 // [SOURCE: Betterfox] [NOTE: mouse wheel scroll multiplier and overscroll bounce]
 user_pref("mousewheel.default.delta_multiplier_y", 300);
 user_pref("apz.overscroll.enabled", true);
