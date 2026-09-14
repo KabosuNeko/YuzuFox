@@ -81,7 +81,7 @@ Enable your region-specific filters directly in uBlock Origin:
 
 ## Passwords and Credential Security
 
-YuzuFox hardens form behavior out of the box (`signon.autofillForms = false` prevents silent credential injection into hidden iframes, and `signon.formlessCapture.enabled = false` stops background credential scraping). However, **we strongly recommend avoiding Firefox's built-in password manager entirely and using a dedicated external password manager.**
+YuzuFox hardens form behavior out of the box (`signon.autofillForms = false` prevents silent credential injection into hidden iframes, and `signon.formlessCapture.enabled = false` stops background credential scraping). However, **I strongly recommend avoiding Firefox's built-in password manager entirely and using a dedicated external password manager.**
 
 ### Why Avoid Built-in Browser Password Storage?
 1. **Target for Info-Stealers**: Browser credential databases (`logins.json` / `key4.db`) are the primary target of generic commodity malware and info-stealers (Lumma, RedLine, Vidar). An external vault requires separate master key authentication and memory protection.
