@@ -94,7 +94,7 @@ YuzuFox hardens form behavior out of the box (`signon.autofillForms = false` pre
 | :--- | :--- | :--- |
 | **[Bitwarden](https://bitwarden.com/)** | Cloud (or self-hosted Vaultwarden) | Open-source, audited, easy multi-device sync. |
 | **[KeePassXC](https://keepassxc.org/)** | Local file (`.kdbx`) | Offline security purists, no cloud dependency, Argon2id KDF. |
-| **[1Password](https://1password.com/)** | Commercial cloud | Polished cross-platform UX with secret key architecture. |
+| **[Proton Pass](https://proton.me/pass)** | Open-source cloud | End-to-end encrypted, audited, privacy-first Swiss ecosystem. |
 | **[pass](https://www.passwordstore.org/)** | CLI (GPG + Git) | Minimalist Unix philosophy. |
 
 ### How to Disable Built-in Password Prompts
