@@ -22,9 +22,6 @@ user_pref("security.csp.reporting.enabled", false);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: trim cross-origin referrers to scheme+host+port]
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-// [SOURCE: Betterfox] [NOTE: enable Global Privacy Control]
-user_pref("privacy.globalprivacycontrol.enabled", true);
-
 // [SOURCE: Arkenfox] [NOTE: opt-in cookie partitioning]
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
 user_pref("network.cookie.cookieBehavior.optInPartitioning.pbmode", true);
@@ -40,13 +37,13 @@ user_pref("privacy.annotate_channels.strict_list.enabled", true);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: bounce tracking protection purge mode]
 user_pref("privacy.bounceTrackingProtection.mode", 1);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: disable form autofill, addresses, credit cards, and saved passwords]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: disable search and form history]
 user_pref("browser.formfill.enable", false);
-user_pref("extensions.formautofill.addresses.enabled", false);
-user_pref("extensions.formautofill.creditCards.enabled", false);
-user_pref("signon.rememberSignons", false);
+// user_pref("extensions.formautofill.addresses.enabled", false);
+// user_pref("extensions.formautofill.creditCards.enabled", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable formless and private browsing password capture]
+// user_pref("signon.rememberSignons", false);
 user_pref("signon.formlessCapture.enabled", false);
 user_pref("signon.privateBrowsingCapture.enabled", false);
 
@@ -73,9 +70,6 @@ user_pref("network.http.windows-sso.enabled", false);
 
 // [SOURCE: Arkenfox] [NOTE: disable device sensor APIs]
 user_pref("device.sensors.enabled", false);
-
-// [SOURCE: Arkenfox] [NOTE: disable battery status API]
-user_pref("dom.battery.enabled", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: always show Punycode for IDNs]
 user_pref("network.IDN_show_punycode", true);

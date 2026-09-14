@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T12:30:43.630127+00:00",
+  "generated_at": "2026-09-14T10:40:26.130552+00:00",
   "prefs": [
     {
       "files": [
@@ -113,7 +113,7 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "disable form autofill, addresses, credit cards, and saved passwords",
+      "note": "disable search and form history",
       "pref": "browser.formfill.enable",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -446,15 +446,6 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "disable battery status API",
-      "pref": "dom.battery.enabled",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
       "note": "prevent scripts from moving or resizing windows",
       "pref": "dom.disable_window_move_resize",
       "source": "Arkenfox",
@@ -494,24 +485,6 @@
       "note": "preserve pasted text without truncation",
       "pref": "editor.truncate_user_pastes",
       "source": "Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": null,
-      "pref": "extensions.formautofill.addresses.enabled",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": null,
-      "pref": "extensions.formautofill.creditCards.enabled",
-      "source": "YuzuFox",
       "value": false
     },
     {
@@ -579,87 +552,6 @@
     },
     {
       "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.currentVelocityWeighting",
-      "source": "YuzuFox",
-      "value": "1.0"
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "MSD physics smooth scrolling",
-      "pref": "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",
-      "source": "Betterfox",
-      "value": 12
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.enabled",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.motionBeginSpringConstant",
-      "source": "YuzuFox",
-      "value": 200
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.regularSpringConstant",
-      "source": "YuzuFox",
-      "value": 250
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaMS",
-      "source": "YuzuFox",
-      "value": 25
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",
-      "source": "YuzuFox",
-      "value": "2.0"
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.msdPhysics.slowdownSpringConstant",
-      "source": "YuzuFox",
-      "value": 250
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "general.smoothScroll.stopDecelerationWeighting",
-      "source": "YuzuFox",
-      "value": "1.0"
-    },
-    {
-      "files": [
         "src/user.js/60-os-specific.js"
       ],
       "note": "disable Windows geolocation service",
@@ -707,15 +599,6 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "enable CSS masonry layout",
-      "pref": "layout.css.grid-template-masonry-value.enabled",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
       "note": "block media autoplay with sound by default",
       "pref": "media.autoplay.default",
       "source": "Betterfox + Arkenfox",
@@ -734,9 +617,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
+      "note": "mouse wheel scroll multiplier and overscroll bounce",
       "pref": "mousewheel.default.delta_multiplier_y",
-      "source": "YuzuFox",
+      "source": "Betterfox",
       "value": 300
     },
     {
@@ -950,15 +833,6 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "enable Global Privacy Control",
-      "pref": "privacy.globalprivacycontrol.enabled",
-      "source": "Betterfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
       "note": "strip tracking query parameters",
       "pref": "privacy.query_stripping.enabled",
       "source": "Arkenfox + Betterfox",
@@ -1132,15 +1006,6 @@
       ],
       "note": null,
       "pref": "signon.privateBrowsingCapture.enabled",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": null,
-      "pref": "signon.rememberSignons",
       "source": "YuzuFox",
       "value": false
     },

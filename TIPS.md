@@ -1,455 +1,256 @@
-# Tips & rationale
+# Tips & Technical Rationale
+
+This document explains the technical choices in YuzuFox, how to customize specific behaviors, and how to troubleshoot common issues.
 
 ---
 
 ## DNS and DoH
 
-YuzuFox leaves DNS resolution to the operating system. **No DoH is forced**;
-`network.trr.*` stays at Firefox defaults. Your system resolver
-(systemd-resolved, unbound, Pi-hole, whatever) handles DNS — the browser
-stays out of that path.
+YuzuFox leaves DNS resolution to the operating system (`network.trr.*` untouched). Your system resolver (`systemd-resolved`, `unbound`, Pi-hole, local DNS daemon) handles lookups.
 
-### Enabling DoH
-
-If you prefer DoH, add these to `user.js`:
+If you prefer DoH managed directly inside Firefox, add these lines to your profile `user.js` or configure via `about:preferences#privacy`:
 
 ```js
-user_pref("network.trr.mode", 3);                     // 3 = DoH only, no fallback
+user_pref("network.trr.mode", 3);                     // 3 = DoH only, no fallback to plaintext
 user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
 user_pref("network.trr.resolvers", '[{"name":"Quad9","url":"https://dns.quad9.net/dns-query"}]');
 ```
 
-Swap `quad9.net` for Cloudflare, NextDNS, or Mullvad. Mode values:
-
-| `network.trr.mode` | Behaviour |
-|---|---|
-| `0` (default) | Off — system resolver |
-| `2` | DoH with system fallback |
-| `3` | DoH only, no fallback |
-| `5` | DoH explicitly disabled |
-
-**Mode 3** is the safest if you go this route — *a silent fallback to plain DNS
-defeats the point.*
+Values for `network.trr.mode`:
+- `0`: Default (OS resolver)
+- `2`: DoH first with system fallback
+- `3`: Strict DoH only (no plaintext fallback)
+- `5`: DoH explicitly disabled
 
 ---
 
 ## Safe Browsing
 
-Core Safe Browsing (malware + phishing) is **enabled** at Firefox defaults.
-Firefox sends only 32-bit hash prefixes to Google, then matches locally — no
-full URLs leave the browser. DNS-level blocking (Pi-hole, NextDNS, Quad9) plus
-uBlock Origin's filter lists are an additional layer on top, not a
-replacement.
+Core Safe Browsing (local hash matching for malware and phishing domains) is active at Firefox defaults. Firefox downloads 32-bit hash prefix lists and matches URLs locally on your machine—full URLs are never sent to Google.
 
-The one thing YuzuFox disables is **remote download reputation**
-(`browser.safebrowsing.downloads.remote.enabled = false`) — the same choice
-Arkenfox makes. That feature uploads file metadata to Google on every
-download, with little marginal protection if you already have DNS-level
-blocking.
+YuzuFox disables only **remote binary reputation checks**:
+```js
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+```
+This prevents Firefox from sending download metadata (filename, size, URL) to Google servers when downloading executables.
 
-### Verify you have DNS-level blocking (optional hardening)
-
-- **Pi-hole / AdGuard Home** — you maintain the blocklist
-- **NextDNS / Quad9** — DNS provider filters malware/phishing domains upstream
-- **Stock ISP router DNS** — Safe Browsing alone still protects you; the
-  DNS layer is merely a bonus
-
-If you want remote download reputation back:
-
+If you want remote executable analysis re-enabled:
 ```js
 user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 ```
 
 ---
 
-## Search engines
+## Search Engines
 
-DuckDuckGo is the default (also in private windows). Five engines are
-configured via `policies.json` — use an alias by typing it before your query
-in the URL bar:
+DuckDuckGo is configured as the default search engine in `policies.json`. Five engines with quick-search aliases are included:
 
-| Engine           | Alias | What it is                                                     |
-| ---------------- | ----- | -------------------------------------------------------------- |
-| DuckDuckGo       | —     | Default; privacy-friendly results                               |
-| Startpage        | `sp`  | Proxies Google results without Google tracking                  |
-| DuckDuckGo Lite  | `dl`  | Text-only DDG — fast, minimal, good on slow networks            |
-| SearXNG          | `sx`  | Metasearch that aggregates many engines without tracking        |
-| MetaGer          | `mg`  | German metasearch engine, privacy-first                         |
+| Engine | Alias | Description |
+| :--- | :--- | :--- |
+| DuckDuckGo | *(default)* | Default private search |
+| Startpage | `sp` | Google search results without user tracking |
+| DuckDuckGo Lite | `dl` | Minimal, text-only DuckDuckGo interface |
+| SearXNG | `sx` | Decentralized privacy metasearch |
+| MetaGer | `mg` | Privacy-focused metasearch engine |
 
-Example: `sx best noise cancelling headphones` searches SearXNG directly.
-
-Default/aliases live in `policies.json` (`SearchEngines`), so they apply to
-every profile. To change the default engine, edit that file.
+Usage in URL bar: type `sp Arch Linux wiki` to search Startpage directly.
 
 ---
 
-## Extensions
+## Extensions & Fingerprinting
 
-uBlock Origin is the only extension YuzuFox installs. Adding more blockers
-(CanvasBlocker, Privacy Badger, HTTPS Everywhere…) works **against** you:
+YuzuFox installs **uBlock Origin** via enterprise policy. Adding multiple privacy extensions (e.g., CanvasBlocker, Privacy Badger, User-Agent switchers) is counter-productive:
 
-- uBO and Firefox's built-in fingerprinting protection already cover
-  canvas, user-agent, referrer trimming, and tracking.
-- Extra blockers double-write rules, break sites, and make your fingerprint
-  **more** unique — each extension has recognisable behaviour patterns.
-- More code = more attack surface.
+1. **Fingerprint Uniqueness**: Obscure extensions alter JavaScript prototypes or inject predictable DOM artifacts that fingerprinting scripts (CreepJS, FingerprintJS) flag immediately.
+2. **Redundancy**: Firefox native Fingerprinting Protection (FPP) and uBlock Origin already handle canvas noise, tracker script blocking, and third-party cookie isolation.
+3. **Rule Conflicts**: Multiple content blockers running concurrently increase memory usage and cause site breakage.
 
-Use uBO + one extension you actually need (Bitwarden, Tridactyl,
-Violentmonkey). **One, not ten.**
+Stick to uBlock Origin plus any tools you strictly need (e.g., password manager, vim bindings).
+
+### Regional Ad Filter Lists (uBlock Origin)
+`policies.json` configures uBlock Origin with universal ad and tracking filters. However, domestic websites (news, video streaming, forums in Vietnam, Germany, Russia, Japan, etc.) frequently use local advertising networks that bypass global English rules.
+
+Enable your region-specific filters directly in uBlock Origin:
+1. Click the **uBlock Origin** extension icon → click the **Dashboard (gears icon)**.
+2. Switch to the **Filter lists** tab.
+3. Expand the **Regions, languages** group.
+4. Check the list matching your language (e.g. `VIE: ABPVN List`, `DEU: EasyList Germany`, etc.).
+5. Click **Apply changes** at the top.
 
 ---
 
-## Password manager
+## Passwords and Credential Security
 
-Firefox's built-in password manager is disabled:
+YuzuFox hardens form behavior out of the box (`signon.autofillForms = false` prevents silent credential injection into hidden iframes, and `signon.formlessCapture.enabled = false` stops background credential scraping). However, **we strongly recommend avoiding Firefox's built-in password manager entirely and using a dedicated external password manager.**
+
+### Why Avoid Built-in Browser Password Storage?
+1. **Target for Info-Stealers**: Browser credential databases (`logins.json` / `key4.db`) are the primary target of generic commodity malware and info-stealers (Lumma, RedLine, Vidar). An external vault requires separate master key authentication and memory protection.
+2. **Weak Local Encryption by Default**: Unless you manually configure a strong **Primary Password** in Firefox settings, saved credentials on disk can be extracted by any process running under your user session.
+3. **Application Sandboxing & Blast Radius**: Storing your digital identity inside the same process space that parses arbitrary, untrusted web JavaScript and runs third-party extensions increases your overall attack surface.
+4. **Portability**: External managers work across multiple browsers, native desktop applications, mobile devices, and CLI environments without locking you into Firefox Sync.
+
+### Recommended Alternatives
+| Manager | Model | Best For |
+| :--- | :--- | :--- |
+| **[Bitwarden](https://bitwarden.com/)** | Cloud (or self-hosted Vaultwarden) | Open-source, audited, easy multi-device sync. |
+| **[KeePassXC](https://keepassxc.org/)** | Local file (`.kdbx`) | Offline security purists, no cloud dependency, Argon2id KDF. |
+| **[1Password](https://1password.com/)** | Commercial cloud | Polished cross-platform UX with secret key architecture. |
+| **[pass](https://www.passwordstore.org/)** | CLI (GPG + Git) | Minimalist Unix philosophy. |
+
+### How to Disable Built-in Password Prompts
+If you use an external manager, disable Firefox's built-in password saving prompts completely by adding this to your profile `user.js`:
+```js
+user_pref("signon.rememberSignons", false);
+```
+
+---
+
+## Scrolling & Ergonomics
+
+- **Mouse Wheel Delta**: `mousewheel.default.delta_multiplier_y = 300` compensates for the historically sluggish notched mouse wheel scrolling on Linux desktops (where default 100 scrolls only ~3 lines per notch compared to Chrome's ~100-120px).
+- **Overscroll**: `apz.overscroll.enabled = true` enables the subtle bounce animation when reaching the top or bottom of a page.
+- **Stock Physics**: YuzuFox relies on Firefox's standard cubic-bezier scroll smoothing, avoiding experimental Mass-Spring-Damper (MSD) physics that can cause input latency or `scrollend` event desync.
+
+To revert mouse wheel speed to stock Firefox default:
+```js
+user_pref("mousewheel.default.delta_multiplier_y", 100);
+```
+
+### Media Autoplay Exceptions
+YuzuFox blocks media from playing audio automatically (`media.autoplay.default = 1`) to prevent intrusive auto-playing video ads with sound on news and blog pages.
+
+To allow media to autoplay on streaming sites (YouTube, Twitch, Spotify):
+1. Open the target website.
+2. Click the **permissions icon** (left of the address bar, next to the padlock).
+3. Find **Autoplay** and select **Allow Audio and Video**.
+
+---
+
+## Hardware Acceleration & Resource Usage
+
+YuzuFox trades idle memory headroom for lower rendering latency and disk endurance:
+
+### Memory Caching (Zero Disk Cache Writes)
+| Preference | Default | YuzuFox | Purpose |
+| :--- | :--- | :--- | :--- |
+| `browser.cache.disk.enable` | `true` | `false` | Eliminates disk cache I/O; protects SSDs from continuous small writes |
+| `browser.cache.memory.capacity` | `-1` (auto) | `1048576` | 1 GB memory cache pool |
+| `media.memory_cache_max_size` | auto | `1048576` | 1 GB per media element buffer |
+| `media.memory_caches_combined_limit_kb` | auto | `3145728` | 3 GB total media buffer cap |
+| `browser.sessionhistory.max_total_viewers` | auto | `10` | Keeps up to 10 recent tabs in memory for instant back/forward navigation |
+
+### GPU Acceleration
+| Preference | Default | YuzuFox | Purpose |
+| :--- | :--- | :--- | :--- |
+| `media.hardware-video-decoding.force-enabled` | auto | `true` | Enforces hardware video decoding |
+| `media.gpu-process-decoder` | auto | `true` | Isolates video decoding inside dedicated GPU process |
+| `gfx.webrender.precache-shaders` | auto | `true` | Pre-compiles shaders to avoid first-paint stutter |
+| `gfx.webrender.program-binary-disk` | auto | `true` | Caches compiled shader binaries to disk |
+
+### Verifying Hardware Video Decoding
+To confirm that your GPU is decoding video rather than consuming CPU:
+1. Open `about:support` in Firefox.
+2. Under **Graphics**, verify **Compositing** is `WebRender` and hardware decoding flags show `Supported`.
+3. Under Linux terminal, play a 4K 60fps YouTube video and inspect GPU activity:
+   - Intel: `sudo intel_gpu_top` (observe the `Video` bar).
+   - NVIDIA / AMD: `nvtop` (observe the `DEC` percentage).
+
+> [!TIP]
+> **Older iGPUs (H.264 fallback)**: If your CPU spikes to 100% on YouTube because an older GPU lacks native VP9/AV1 hardware decoding, install the [enhanced-h264ify](https://addons.mozilla.org/firefox/addon/enhanced-h264ify/) extension to force YouTube to serve lightweight H.264 streams that your GPU handles natively.
+
+### Low-RAM Profile Override (Systems with ≤ 4–6 GB RAM)
+If your system has limited physical memory, add these lines to your profile `user.js`:
 
 ```js
-browser.formfill.enable = false
-signon.rememberSignons = false
-signon.autofillForms = false
-signon.formlessCapture.enabled = false
-signon.privateBrowsingCapture.enabled = false
-```
-
-Use an **external password manager** instead. It keeps credentials encrypted
-outside the browser and syncs across devices:
-
-| Manager | Type | Notes |
-|---|---|---|
-| [Bitwarden](https://bitwarden.com/) | Cloud | Free tier, open-source, browser extension + mobile |
-| [KeePassXC](https://keepassxc.org/) | Local | Offline .kdbx file, sync via Syncthing/Nextcloud |
-| [pass](https://www.passwordstore.org/) | CLI | GPG + Git, minimal, Unix philosophy |
-
-**Recommended:** Bitwarden for most people (easiest), KeePassXC if you want
-full offline control, `pass` if you live in terminal.
-
-If you must use Firefox's built-in manager, re-enable:
-
-```js
-user_pref("browser.formfill.enable", true);
-user_pref("signon.rememberSignons", true);
-user_pref("signon.autofillForms", true);
+user_pref("browser.cache.memory.capacity", 524288);          // 512 MB cache
+user_pref("media.memory_caches_combined_limit_kb", 1048576);   // 1 GB media limit
+user_pref("browser.sessionhistory.max_total_viewers", 3);    // 3 back/forward pages
+user_pref("media.memory_cache_max_size", 262144);            // 256 MB per media stream
+user_pref("network.http.max-connections", 900);              // Stock connection count
 ```
 
 ---
 
-## Region-specific filter lists
+## Linux Font & Emoji Rendering
 
-YuzuFox ships with a universal uBO filter set. After installing, open
-uBlock Origin → *Dashboard* → *Filter lists* to enable region-specific
-filters (Vietnamese, RU AdList, etc. — see
-[yokoffing's filterlists guide](https://github.com/yokoffing/filterlists)).
-No regional list is forced on everyone.
+Under Fingerprinting Protection (FPP), Firefox restricts font visibility to system-packaged fonts to avoid local font enumeration attacks. Minimal Linux installations may display tofu boxes for Asian diacritics or emojis if base fonts are missing.
 
----
-
-## Firefox forks and zero-days
-
-Zen, Waterfox, Pulse, Floorp and similar forks are maintained by small
-teams that ship security patches slower than Mozilla. A zero-day exploited
-in the wild hours after disclosure can sit unpatched in a fork for weeks.
-
-YuzuFox targets **stock Firefox** so zero-day coverage comes from Mozilla
-directly. You can copy the config files into a fork, but the fork itself
-remains the *bottleneck* — every layer between you and Mozilla's release
-cycle is added delay.
+Install complete system font coverage:
+- **Arch Linux / CachyOS**:
+  ```bash
+  sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono
+  ```
+- **Fedora**:
+  ```bash
+  sudo dnf install google-noto-sans-cjk-fonts google-noto-color-emoji-fonts jetbrains-mono-fonts
+  ```
+- **Debian / Ubuntu**:
+  ```bash
+  sudo apt install fonts-noto-core fonts-noto-cjk fonts-noto-color-emoji fonts-jetbrains-mono
+  ```
 
 ---
 
-## Updating & maintenance
+## Container Tabs
 
-Re-running the installer **is** the update — it always fetches the latest files
-from `main` and applies them directly; the old `user.js` is backed up as
-`user.js.yuzubak` automatically.
+Firefox Multi-Account Containers let you separate cookies and sessions per tab:
 
-```bash
-# Linux / macOS
-bash install.sh --all
-
-# Windows
-.\install.ps1 -All
-```
-
-After a major update, clean stale prefs. Prefs that YuzuFox removed from
-`user.js` can linger in `prefs.js` and keep applying old values (for example
-the old Safe Browsing block would keep malware protection off even though
-`user.js` no longer disables it).
-
-The simplest reset is to delete the profile's `prefs.js` while Firefox is
-closed — it is regenerated from defaults + `user.js` on next start:
-
-```bash
-# Linux / macOS — replace <profile> with the profile dir from about:profiles
-rm ~/.mozilla/firefox/<profile>/prefs.js
-
-# Windows
-del "%APPDATA%\Mozilla\Firefox\Profiles\<profile>\prefs.js"
-```
-
-Only manually-set preferences (about:config tweaks, per-site permissions)
-are lost.
-
----
-
-## Notifications & Push
-
-Web Push is left at Firefox defaults (enabled), but the **notification
-permission defaults to blocked** (`permissions.default.desktop-notification
-= 2`). Sites can still request it, and you can allow individual sites:
-
-1. Visit the site.
-2. Click the permission icon in the URL bar (or the notification bell on the
-   permission prompt) and choose **Allow**.
-
-Or manage everything in one place: `about:preferences#privacy` →
-*Permissions* → *Notifications* → *Settings*. There you can also block a
-site that keeps asking.
-
----
-
-## Geolocation & WebRTC
-
-Geolocation is **blocked by default** (`permissions.default.geo = 2`) and Google's
-network geolocation is replaced with the privacy-respecting [BeaconDB](https://beacondb.net/)
-provider. Sites can still ask, and you allow per-site the same way as notifications
-(URL bar permission icon). If a site genuinely needs location (maps, weather),
-grant it there.
-
-WebRTC exposes only your **public IP** — the LAN address (192.168.x.x) is
-never leaked to websites
-(`media.peerconnection.ice.default_address_only`). Video calls, screen
-sharing, and file transfer over WebRTC keep working; only the local-network
-address is hidden.
-
----
-
-## Containers
-
-Container tabs isolate first-party storage per tab: work vs personal, dev
-vs prod, one account per site — all in one window.
-
-- **Open a container tab**: long-press the **+** (new tab) button → pick a
-  container (`privacy.userContext.longPressBehavior = 2`). If the long-press
-  does nothing, the picker also lives in the menu: *New Container Tab*.
-- Or install the official
-  [Multi-Account Containers](https://addons.mozilla.org/firefox/addon/multi-account-containers/)
-  extension for per-site rules ("always open example.com in Work").
-
-Containers do **not** replace a VPN or a separate browser profile — they
-separate cookies/storage, not network identity.
-
----
-
-## Why YuzuFox uses more RAM / CPU / GPU than vanilla Firefox
-
-YuzuFox prioritises **speed over resource frugality** — it trades idle RAM /
-GPU / CPU headroom for lower latency and snappier browsing. Every pref below
-is deliberate; if your machine has 8+ GB of RAM and a modern GPU, the
-trade-off is a pure win. If you are on 4 GB or an integrated-only GPU, some
-values can be dialled down (see "Tuning for low-RAM machines" at the bottom).
-
-### RAM — cache everything in memory, never touch the SSD
-
-| Pref                                           | Firefox default | YuzuFox   | What it does                                                |
-| ---------------------------------------------- | --------------- | --------- | ----------------------------------------------------------- |
-| `browser.cache.disk.enable`                      | `true`            | `false`     | All cached pages live in RAM; SSD write wear is eliminated  |
-| `browser.cache.memory.capacity`                  | `-1` (auto)      | `1048576`   | 1 GB pool for page cache                                    |
-| `media.memory_cache_max_size`                    | auto             | `1048576`   | 1 GB per media element (video, audio)                       |
-| `media.memory_caches_combined_limit_kb`          | auto             | `3145728`   | 3 GB total media cache                                      |
-| `image.cache.size`                               | auto             | `10485760`  | 10 MB decoded-image pool — images re-render from cache      |
-| `gfx.content.skia-font-cache-size`               | auto             | `80` (MB)   | Larger font cache → fewer glyph re-renders during scroll    |
-| `browser.sessionhistory.max_total_viewers`       | `-1` (auto)      | `10`        | Back/forward cache holds 10 full page states (~20-50 MB each) |
-
-### CPU — compile JavaScript sooner, render faster
-
-| Pref                                        | Firefox default | YuzuFox | What it does                                                   |
-| ------------------------------------------- | --------------- | ------- | -------------------------------------------------------------- |
-| `javascript.options.baselinejit.threshold`    | `100`             | `50`     | Warm functions compile to Baseline JIT after 50 iterations     |
-| `javascript.options.ion.threshold`            | `~1000`           | `500`    | Hot-paths compile to Ion JIT (optimising compiler) sooner      |
-| `content.notify.interval`                     | `120000` (μs)    | `100000` | Incremental reflow timer fires more often → pages paint faster |
-
-More JIT compilation = higher CPU usage during page load. On a modern
-multi-core CPU this is imperceptible; the result is faster Time-to-Interactive.
-
-### GPU — force hardware acceleration for everything
-
-| Pref                                          | Firefox default | YuzuFox | What it does                                      |
-| --------------------------------------------- | --------------- | ------- | ------------------------------------------------- |
-| `media.hardware-video-decoding.force-enabled`   | auto             | `true`    | Video decode always on GPU hardware               |
-| `media.gpu-process-decoder`                     | auto             | `true`    | Dedicated GPU process for video (extra ~30 MB)    |
-| `gfx.webrender.precache-shaders`                | auto             | `true`    | Compile shaders ahead of time (faster first paint) |
-| `gfx.webrender.program-binary-disk`             | auto             | `true`    | Cache compiled shaders on disk → skip recompile    |
-
-GPU stays active and uses more VRAM, but video playback is smooth and page
-compositing never falls back to software rendering.
-
-### Network — more connections, more socket buffers
-
-| Pref                                             | Firefox default | YuzuFox  | What it does                                              |
-| ------------------------------------------------ | --------------- | -------- | --------------------------------------------------------- |
-| `network.http.max-connections`                     | `900`             | `1800`     | Twice as many parallel connections → more socket buffers  |
-| `network.http.max-persistent-connections-per-server` | `6`               | `10`       | More keep-alive sockets per host                          |
-| `network.http.http3.enable`                        | `true` (default) | `true`     | Explicitly enforce QUIC (HTTP/3)                          |
-
-### Total estimate
-
-YuzuFox uses roughly **500 MB to 1.5 GB more RAM** than vanilla Firefox
-(depends on open-tab count and media load). GPU is always active. CPU spikes
-are higher during page load but settle faster.
-
-### Tuning for low-RAM machines (4-6 GB)
-
-Add these overrides to your `user.js` *after* YuzuFox is installed (they go
-at the end of the file so they take precedence):
-
-```js
-user_pref("browser.cache.memory.capacity", 524288);        // 512 MB instead of 1 GB
-user_pref("media.memory_caches_combined_limit_kb", 1048576); // 1 GB instead of 3 GB
-user_pref("browser.sessionhistory.max_total_viewers", 3);  // 3 pages instead of 10
-user_pref("gfx.content.skia-font-cache-size", 40);         // 40 MB instead of 80 MB
-user_pref("media.memory_cache_max_size", 524288);          // 512 MB per media element
-user_pref("network.http.max-connections", 900);            // Firefox default
-```
-
-Restart Firefox after editing. You keep the privacy/security hardening while
-cutting RAM usage roughly in half.
+- Containers engine is enabled out of the box (`privacy.userContext.enabled = true`).
+- Left-clicking the **+** (new tab) button opens the container selection menu (`privacy.userContext.newTabContainerOnLeftClick.enabled = true`).
+- Install Mozilla's official [Multi-Account Containers extension](https://addons.mozilla.org/firefox/addon/multi-account-containers/) if you want automatic domain-to-container routing rules.
 
 ---
 
 ## Troubleshooting
 
-### Firefox won't start or pages won't load
+### Handling Broken Websites (Smart Unbreak)
+If a strict banking portal, university login, or government service fails to load under Strict Tracking Protection or FPP, **never downgrade your browser-wide security settings**:
 
-Close Firefox, then temporarily disable the per-profile tuning:
+1. Click the **shield icon** on the left of the address bar.
+2. Toggle **Enhanced Tracking Protection** to **OFF** for that specific website.
+3. Refresh the page.
 
+Firefox stores this exception exclusively for that single domain, keeping all your other browsing sessions fully hardened.
+
+### Inspecting Profile Preferences
+Check currently applied preferences by navigating to `about:config` or `about:support`.
+To check system-wide preferences, inspect `/usr/lib/firefox/browser/defaults/preferences/yuzu.js` or open `about:preferences`.
+
+### Reverting Profile Overrides
+If an individual website behaves unexpectedly, test without `user.js`:
 ```bash
-mv <profile>/user.js <profile>/user.js.off
+# Temporarily disable profile user.js
+mv ~/.mozilla/firefox/<profile>/user.js ~/.mozilla/firefox/<profile>/user.js.bak
+
+# Restore backup generated by installer
+mv ~/.mozilla/firefox/<profile>/user.js.yuzubak ~/.mozilla/firefox/<profile>/user.js
 ```
 
-Start Firefox. If it starts, the issue is in `user.js`. Restore the backup:
-
-```bash
-mv <profile>/user.js.yuzubak <profile>/user.js
-```
-
-If you don't have a backup, remove `user.js.off` and run the uninstaller
-(see [How to fully revert](#how-to-fully-revert)).
-
-If Firefox still won't start, remove the system-wide files:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
-```
-
-### Some website breaks
-
-First try disabling uBlock Origin on that site. If the site still breaks,
-test without `user.js`:
-
-1. Close Firefox.
-2. Rename `<profile>/user.js` to `<profile>/user.js.off`.
-3. Restart Firefox and revisit the site.
-
-If the site works, the cause is a `user.js` pref. Restore `user.js.yuzubak`
-if you have it, or narrow the issue by re-enabling half the prefs at a time.
-
-### DNS/DoH issues
-
-If pages fail to resolve, make sure Firefox is using the system resolver.
-In `about:config`, confirm:
-
-```js
-network.trr.mode = 0
-```
-
-If you enabled DoH earlier, see [DNS and DoH](#dns-and-doh) for the correct
-settings. You can also clear the DNS cache at `about:networking#dns`.
-
-### Safe Browsing warnings missing
-
-Safe Browsing core (malware + phishing) is on by default. If warnings are
-missing, something else has switched them off — check under
-`about:preferences#privacy` → *Security* that "Block dangerous and
-deceptive content" and "Block dangerous downloads" are ticked, or verify in
-`about:config` that `browser.safebrowsing.malware.enabled` and
-`browser.safebrowsing.phishing.enabled` are `true`.
-
-The only Safe Browsing feature YuzuFox keeps off is *remote download
-reputation* (`browser.safebrowsing.downloads.remote.enabled`) — see
-[Safe Browsing](#safe-browsing) for why, and how to turn it back on.
-
-### How to fully revert
-
-Run the uninstall command for your platform:
-
+### Full Clean Uninstall
 ```bash
 # Linux / macOS
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh | bash -s -- --uninstall --all
-```
+bash install.sh --uninstall --all
 
-```powershell
 # Windows
-$s = irm https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.ps1
-& ([scriptblock]::Create($s)) -Uninstall
+.\install.ps1 -Uninstall -All
 ```
-
-Then restore each profile's backup:
-
-```bash
-mv <profile>/user.js.yuzubak <profile>/user.js
-```
-
-If `user.js.yuzubak` does not exist, the installer had no previous `user.js`
-to back up. In that case, simply delete `<profile>/user.js`.
-
-Restart Firefox.
-
-### Permission denied on Linux/macOS
-
-The installer uses `sudo` for system-wide paths (`/etc/firefox`,
-`/usr/lib/firefox`, `/Applications/Firefox.app`). Make sure your account has
-sudo rights and that Firefox is not running. Do not run the profile step with
-sudo, because `user.js` belongs in your own profile directory.
-
-If you need to install manually:
-
-```bash
-sudo mkdir -p /etc/firefox/policies
-sudo cp policies.json /etc/firefox/policies/policies.json
-sudo mkdir -p /usr/lib/firefox/browser/defaults/preferences
-sudo cp yuzu.js /usr/lib/firefox/browser/defaults/preferences/yuzu.js
-```
-
-On macOS, replace `/usr/lib/firefox/...` with the paths inside
-`/Applications/Firefox.app/Contents/Resources/`.
 
 ---
 
-## Credits
+## Editing Preferences in Source
 
-`yuzu.js` and `user.js` draw from
-[Betterfox](https://github.com/yokoffing/Betterfox),
-[Arkenfox](https://github.com/arkenfox/user.js), and
-[cachyos-firefox-settings](https://github.com/CachyOS/CachyOS-PKGBUILDS/tree/master/cachyos-firefox-settings).
-Installers verified against [Firefox admin docs](https://firefox-admin-docs.mozilla.org/)
-and [policy templates](https://github.com/mozilla/policy-templates).
+`user.js` is automatically assembled by `build.py`. **Do not edit `user.js` directly in the repository root.**
 
-## Editing preferences
+Source organization:
+- `src/user.js/10-network.js`: Sockets, speculative connections, prefetching
+- `src/user.js/20-privacy.js`: ETP Strict, FPP, query stripping, form security
+- `src/user.js/30-security.js`: CRLite, TLS, certificate verification
+- `src/user.js/40-telemetry-connections.js`: Startup pages, session storage
+- `src/user.js/50-ui-qol.js`: UI layout, search suggestions, URL bar, scroll settings
+- `src/user.js/60-os-specific.js`: Linux (Wayland/XDG portal), Windows, macOS
 
-`user.js` is generated. **Do not edit `user.js` directly** — your changes
-will be overwritten the next time `python3 build.py` runs.
-
-Instead, edit the appropriate source file under `src/user.js/`:
-
-| Source file | Contents |
-|---|---|
-| `00-header.js` | Project header |
-| `10-network.js` | Connection behavior, speculative connections, prefetching |
-| `20-privacy.js` | HTTPS-only, fingerprinting, referrers, GPC, cookies |
-| `30-security.js` | CRLite, safe renegotiation, Safe Browsing, download sandboxing |
-| `40-telemetry-connections.js` | Startup, push, attribution |
-| `50-ui-qol.js` | UI tweaks, URL bar, containers, scrolling |
-| `60-os-specific.js` | Linux, Windows, macOS blocks |
-
-After editing, run `python3 build.py` to regenerate `user.js` and `user.js.lock`
-before committing.
+Rebuild after editing:
+```bash
+python3 build.py
+python3 build.py --check
+```

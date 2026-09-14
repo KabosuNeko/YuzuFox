@@ -66,9 +66,6 @@ user_pref("security.csp.reporting.enabled", false);
 // trim cross-origin referrers to scheme+host+port
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-// enable Global Privacy Control
-user_pref("privacy.globalprivacycontrol.enabled", true);
-
 // opt-in cookie partitioning
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
 user_pref("network.cookie.cookieBehavior.optInPartitioning.pbmode", true);
@@ -84,13 +81,13 @@ user_pref("privacy.annotate_channels.strict_list.enabled", true);
 // bounce tracking protection purge mode
 user_pref("privacy.bounceTrackingProtection.mode", 1);
 
-// disable form autofill, addresses, credit cards, and saved passwords
+// disable search and form history
 user_pref("browser.formfill.enable", false);
-user_pref("extensions.formautofill.addresses.enabled", false);
-user_pref("extensions.formautofill.creditCards.enabled", false);
-user_pref("signon.rememberSignons", false);
+// user_pref("extensions.formautofill.addresses.enabled", false);
+// user_pref("extensions.formautofill.creditCards.enabled", false);
 
 // disable formless and private browsing password capture
+// user_pref("signon.rememberSignons", false);
 user_pref("signon.formlessCapture.enabled", false);
 user_pref("signon.privateBrowsingCapture.enabled", false);
 
@@ -117,9 +114,6 @@ user_pref("network.http.windows-sso.enabled", false);
 
 // disable device sensor APIs
 user_pref("device.sensors.enabled", false);
-
-// disable battery status API
-user_pref("dom.battery.enabled", false);
 
 // always show Punycode for IDNs
 user_pref("network.IDN_show_punycode", true);
@@ -289,22 +283,9 @@ user_pref("findbar.modalHighlight", true);
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
 user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
-
-// MSD physics smooth scrolling
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 200);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 250);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2.0");
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
-user_pref("general.smoothScroll.currentVelocityWeighting", "1.0");
-user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
+// mouse wheel scroll multiplier and overscroll bounce
 user_pref("mousewheel.default.delta_multiplier_y", 300);
 user_pref("apz.overscroll.enabled", true);
-
-// enable CSS masonry layout
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 // disable middle-click clipboard search
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
