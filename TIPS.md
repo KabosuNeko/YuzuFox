@@ -107,12 +107,13 @@ user_pref("signon.rememberSignons", false);
 
 ## Scrolling & Ergonomics
 
-- **Mouse Wheel Delta**: `mousewheel.default.delta_multiplier_y = 300` compensates for the historically sluggish notched mouse wheel scrolling on Linux desktops (where default 100 scrolls only ~3 lines per notch compared to Chrome's ~100-120px).
+- **MSD Physics Smoothing**: Employs Mass-Spring-Damper physics simulation (`general.smoothScroll.msdPhysics.enabled = true`) to calculate natural motion curves in real time. This replaces Firefox's rigid step-based scroll easing with fluid inertia.
+- **Mouse Wheel Delta**: `mousewheel.default.delta_multiplier_y = 300` compensates for the historically sluggish notched mouse wheel scrolling on Linux desktops (where default 100 scrolls only ~3 lines per notch compared to Chrome's ~100-120px). The MSD spring physics buffers the higher delta smoothly without jarring jumps.
 - **Overscroll**: `apz.overscroll.enabled = true` enables the subtle bounce animation when reaching the top or bottom of a page.
-- **Stock Physics**: YuzuFox relies on Firefox's standard cubic-bezier scroll smoothing, avoiding experimental Mass-Spring-Damper (MSD) physics that can cause input latency or `scrollend` event desync.
 
-To revert mouse wheel speed to stock Firefox default:
+To revert to stock mechanical scrolling:
 ```js
+user_pref("general.smoothScroll.msdPhysics.enabled", false);
 user_pref("mousewheel.default.delta_multiplier_y", 100);
 ```
 
