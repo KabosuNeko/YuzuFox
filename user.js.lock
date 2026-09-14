@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T11:08:34.278305+00:00",
+  "generated_at": "2026-09-14T11:17:48.809110+00:00",
   "prefs": [
     {
       "files": [
@@ -552,6 +552,87 @@
     },
     {
       "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.currentVelocityWeighting",
+      "source": "YuzuFox",
+      "value": "1.0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "MSD physics smooth scrolling",
+      "pref": "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",
+      "source": "Betterfox",
+      "value": 12
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.enabled",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.motionBeginSpringConstant",
+      "source": "YuzuFox",
+      "value": 200
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.regularSpringConstant",
+      "source": "YuzuFox",
+      "value": 250
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaMS",
+      "source": "YuzuFox",
+      "value": 25
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",
+      "source": "YuzuFox",
+      "value": "2.0"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.msdPhysics.slowdownSpringConstant",
+      "source": "YuzuFox",
+      "value": 250
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "general.smoothScroll.stopDecelerationWeighting",
+      "source": "YuzuFox",
+      "value": "1.0"
+    },
+    {
+      "files": [
         "src/user.js/60-os-specific.js"
       ],
       "note": "disable Windows geolocation service",
@@ -617,9 +698,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "mouse wheel scroll multiplier and overscroll bounce",
+      "note": null,
       "pref": "mousewheel.default.delta_multiplier_y",
-      "source": "Betterfox",
+      "source": "YuzuFox",
       "value": 300
     },
     {

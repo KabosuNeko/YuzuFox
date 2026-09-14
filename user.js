@@ -282,7 +282,16 @@ user_pref("findbar.modalHighlight", true);
 // enable Container Tabs and UI
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-// mouse wheel scroll multiplier and overscroll bounce
+// MSD physics smooth scrolling
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 200);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 250);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2.0");
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.currentVelocityWeighting", "1.0");
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
 user_pref("mousewheel.default.delta_multiplier_y", 300);
 user_pref("apz.overscroll.enabled", true);
 

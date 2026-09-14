@@ -31,7 +31,7 @@ YuzuFox separates configuration into three layers:
 - **Query Stripping**: Removes tracking tokens (`fbclid`, `gclid`, `mc_eid`, `twclid`, etc.) on navigation.
 - **Security Baseline**: CRLite mode 2 (offline push-based certificate revocation, avoids real-time OCSP leaks to CAs), safe TLS renegotiation, and disabled speculative pre-connections.
 - **Linux & Wayland Polish**: Native XDG Desktop Portal file picker, Wayland fractional scaling, and middle-click autoscroll.
-- **Desktop Ergonomics**: Mouse wheel multiplier set to 300 to fix slow notch-scrolling on Linux desktops, with overscroll bounce enabled.
+- **Fluid Scrolling & Ergonomics**: MSD Physics (Mass-Spring-Damper) paired with a 300 mouse wheel multiplier eliminates sluggish, jarring notch-scrolling on Linux desktops, with overscroll bounce enabled.
 - **Password & Form Safety**: Form history harvesting is disabled (`browser.formfill.enable = false`) to prevent hidden-field credential scraping. Standard password saving remains enabled, while silent autofill is blocked until direct user interaction.
 
 ---
