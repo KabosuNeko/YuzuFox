@@ -12,6 +12,7 @@
     "DisableSetDesktopBackground": true,
     "DisableTelemetry": true,
     "SkipTermsOfUse": true,
+    "OverridePostUpdatePage": "",
     "DNSOverHTTPS": {
       "Enabled": false
     },
@@ -20,9 +21,16 @@
     "NetworkPrediction": false,
     "EnableTrackingProtection": {
       "Value": true,
+      "Category": "strict",
       "Fingerprinting": true,
       "Cryptomining": true,
       "EmailTracking": true
+    },
+    "FirefoxSuggest": {
+      "WebSuggestions": false,
+      "SponsoredSuggestions": false,
+      "ImproveSuggest": false,
+      "Locked": true
     },
     "GenerativeAI": {
       "Enabled": false,
@@ -146,9 +154,6 @@
       "FirefoxLabs": false,
       "MoreFromMozilla": false,
       "Locked": true
-    },
-    "WebsiteFilter": {
-      "Block": []
     }
   }
 }
