@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T08:01:22.237416+00:00",
+  "generated_at": "2026-09-16T13:11:15.535679+00:00",
   "prefs": [
     {
       "files": [
@@ -102,15 +102,6 @@
     },
     {
       "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "always prompt for download location",
-      "pref": "browser.download.useDownloadDir",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
       "note": "disable search and form history",
@@ -158,16 +149,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
-      "pref": "browser.search.separatePrivateDefault",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "separate search engine for private windows",
+      "note": "separate search engine for private windows UI",
       "pref": "browser.search.separatePrivateDefault.ui.enabled",
       "source": "Arkenfox + Betterfox",
       "value": true
@@ -178,15 +160,6 @@
       ],
       "note": "disable live search suggestions and engine switcher buttons",
       "pref": "browser.search.suggest.enabled",
-      "source": "Arkenfox + Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable hyperlink auditing pings",
-      "pref": "browser.send_pings",
       "source": "Arkenfox + Betterfox",
       "value": false
     },
@@ -275,45 +248,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
-      "pref": "browser.urlbar.amp.featureGate",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
       "note": "disable urlbar suggestion group labels",
       "pref": "browser.urlbar.groupLabels.enabled",
       "source": "Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "disable urlbar feature gate suggestions",
-      "pref": "browser.urlbar.importantDates.featureGate",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.urlbar.market.featureGate",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.urlbar.quicksuggest.enabled",
-      "source": "YuzuFox",
       "value": false
     },
     {
@@ -338,7 +275,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable urlbar suggestions and quicksuggest",
+      "note": "disable urlbar suggestions and trending",
       "pref": "browser.urlbar.suggest.addons",
       "source": "cachyos-firefox-settings",
       "value": false
@@ -417,24 +354,6 @@
     },
     {
       "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.urlbar.wikipedia.featureGate",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "browser.urlbar.yelpRealtime.featureGate",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/30-security.js"
       ],
       "note": "show advanced info on bad cert error pages",
@@ -507,15 +426,6 @@
     },
     {
       "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "enable SmartBlock webcompat shims",
-      "pref": "extensions.webcompat.enable_shims",
-      "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
         "src/user.js/50-ui-qol.js"
       ],
       "note": "highlight all findbar matches and modal dimming",
@@ -536,27 +446,9 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "instant fullscreen transitions",
-      "pref": "full-screen-api.transition-duration.enter",
-      "source": "Betterfox",
-      "value": "0 0"
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "full-screen-api.transition-duration.leave",
-      "source": "YuzuFox",
-      "value": "0 0"
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
+      "note": "disable fullscreen warning delay",
       "pref": "full-screen-api.warning.timeout",
-      "source": "YuzuFox",
+      "source": "Betterfox",
       "value": 0
     },
     {
@@ -984,24 +876,6 @@
     },
     {
       "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "enable Container Tabs and UI",
-      "pref": "privacy.userContext.enabled",
-      "source": "Arkenfox + Mozilla",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "privacy.userContext.ui.enabled",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
         "src/user.js/30-security.js"
       ],
       "note": "disable OCSP in favor of CRLite",
@@ -1031,46 +905,10 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "add delay on security confirmation dialogs",
-      "pref": "security.dialog_enable_delay",
-      "source": "Arkenfox",
-      "value": 1000
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "show not secure text on insecure HTTP pages",
-      "pref": "security.insecure_connection_text.enabled",
-      "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": null,
-      "pref": "security.insecure_connection_text.pbmode.enabled",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
       "note": "enforce CRLite mode 2",
       "pref": "security.pki.crlite_mode",
       "source": "Arkenfox",
       "value": 2
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": null,
-      "pref": "security.remote_settings.crlite_filters.enabled",
-      "source": "YuzuFox",
-      "value": true
     },
     {
       "files": [

@@ -84,11 +84,8 @@ user_pref("privacy.bounceTrackingProtection.mode", 1);
 
 // disable search and form history
 user_pref("browser.formfill.enable", false);
-// user_pref("extensions.formautofill.addresses.enabled", false);
-// user_pref("extensions.formautofill.creditCards.enabled", false);
 
 // disable formless and private browsing password capture
-// user_pref("signon.rememberSignons", false);
 user_pref("signon.formlessCapture.enabled", false);
 user_pref("signon.privateBrowsingCapture.enabled", false);
 
@@ -106,9 +103,6 @@ user_pref("dom.disable_window_move_resize", true);
 
 // restrict popup events to direct user interaction
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
-// disable hyperlink auditing pings
-user_pref("browser.send_pings", false);
 
 // disable silent Windows SSO authentication
 user_pref("network.http.windows-sso.enabled", false);
@@ -137,7 +131,6 @@ user_pref("security.OCSP.enabled", 0);
 
 // enforce CRLite mode 2
 user_pref("security.pki.crlite_mode", 2);
-user_pref("security.remote_settings.crlite_filters.enabled", true);
 
 // strict Public Key Pinning
 user_pref("security.cert_pinning.enforcement_level", 2);
@@ -150,13 +143,6 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
 // disable TLS 1.3 0-RTT
 user_pref("security.tls.enable_0rtt_data", false);
-
-// add delay on security confirmation dialogs
-user_pref("security.dialog_enable_delay", 1000);
-
-// show not secure text on insecure HTTP pages
-user_pref("security.insecure_connection_text.enabled", true);
-user_pref("security.insecure_connection_text.pbmode.enabled", true);
 
 // prevent WebAuthn hardware batch cert attestation leak
 user_pref("security.webauthn.always_allow_direct_attestation", false);
@@ -171,9 +157,6 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com, *.x.com");
 user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com");
 
-// enable SmartBlock webcompat shims
-user_pref("extensions.webcompat.enable_shims", true);
-
 // isolate downloads in temp directory
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 
@@ -186,8 +169,6 @@ user_pref("browser.download.manager.addToRecentDocs", false);
 // do not open download panel automatically
 user_pref("browser.download.alwaysOpenPanel", false);
 
-// always prompt for download location
-user_pref("browser.download.useDownloadDir", false);
 
 // always ask before handling new MIME types
 user_pref("browser.download.always_ask_before_handling_new_types", true);
@@ -230,20 +211,12 @@ user_pref("browser.urlbar.groupLabels.enabled", false);
 // show real URL instead of search terms in address bar
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
-// disable urlbar suggestions and quicksuggest
+// disable urlbar suggestions and trending
 user_pref("browser.urlbar.suggest.addons", false);
-user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.trending", false);
-
-// disable urlbar feature gate suggestions
-user_pref("browser.urlbar.importantDates.featureGate", false);
-user_pref("browser.urlbar.market.featureGate", false);
-user_pref("browser.urlbar.yelpRealtime.featureGate", false);
 user_pref("browser.urlbar.trending.featureGate", false);
-user_pref("browser.urlbar.amp.featureGate", false);
-user_pref("browser.urlbar.wikipedia.featureGate", false);
 
 // disable about:config warning and welcome onboarding
 user_pref("browser.aboutConfig.showWarning", false);
@@ -254,13 +227,10 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.suggest.engines", false);
 
-// separate search engine for private windows
+// separate search engine for private windows UI
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
-user_pref("browser.search.separatePrivateDefault", true);
 
-// instant fullscreen transitions
-user_pref("full-screen-api.transition-duration.enter", "0 0");
-user_pref("full-screen-api.transition-duration.leave", "0 0");
+// disable fullscreen warning delay
 user_pref("full-screen-api.warning.timeout", 0);
 
 // open PDF attachments inline
@@ -283,9 +253,6 @@ user_pref("browser.tabs.insertAfterCurrent", true);
 user_pref("findbar.highlightAll", true);
 user_pref("findbar.modalHighlight", true);
 
-// enable Container Tabs and UI
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
 // MSD physics smooth scrolling
 user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
 user_pref("general.smoothScroll.msdPhysics.enabled", true);
