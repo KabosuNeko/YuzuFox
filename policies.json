@@ -85,7 +85,7 @@
       "Widgets": {
         "Enabled": false
       },
-      "Locked": true
+      "Locked": false
     },
     "Extensions": {
       "Install": [
