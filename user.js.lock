@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T07:56:53.340985+00:00",
+  "generated_at": "2026-09-16T08:01:22.237416+00:00",
   "prefs": [
     {
       "files": [
@@ -125,24 +125,6 @@
       "note": "delete temp file after external app exits",
       "pref": "browser.helperApps.deleteTempFileOnExit",
       "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": null,
-      "pref": "browser.newtabpage.activity-stream.default.sites",
-      "source": "YuzuFox",
-      "value": ""
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "enable clean new tab page with shortcuts",
-      "pref": "browser.newtabpage.enabled",
-      "source": "Betterfox",
       "value": true
     },
     {

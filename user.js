@@ -195,9 +195,6 @@ user_pref("browser.download.always_ask_before_handling_new_types", true);
 // STARTUP & QUIET SESSION
 // -----------------------------------------------------------------------------
 
-// enable clean new tab page with shortcuts
-user_pref("browser.newtabpage.enabled", true);
-user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // restore open URLs only, no form or auth session data
 user_pref("browser.sessionstore.privacy_level", 2);
