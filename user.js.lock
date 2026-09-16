@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T14:07:30.260450+00:00",
+  "generated_at": "2026-09-16T14:26:26.912821+00:00",
   "prefs": [
     {
       "files": [
@@ -102,15 +102,6 @@
     },
     {
       "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "disable new tab page",
-      "pref": "browser.newtabpage.enabled",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "disable bookmarks/history speculative connections",
@@ -189,24 +180,6 @@
       "pref": "browser.shell.shortcutFavicons",
       "source": "Arkenfox",
       "value": false
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "set homepage to blank page",
-      "pref": "browser.startup.homepage",
-      "source": "Arkenfox",
-      "value": "chrome://browser/content/blanktab.html"
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "set startup page to blank",
-      "pref": "browser.startup.page",
-      "source": "Arkenfox",
-      "value": 0
     },
     {
       "files": [
@@ -369,6 +342,15 @@
       "pref": "browser.xul.error_pages.expert_bad_cert",
       "source": "Arkenfox + Betterfox",
       "value": true
+    },
+    {
+      "files": [
+        "src/user.js/60-os-specific.js"
+      ],
+      "note": "disable automatic copy to primary clipboard on text selection",
+      "pref": "clipboard.autocopy",
+      "source": "YuzuFox",
+      "value": false
     },
     {
       "files": [

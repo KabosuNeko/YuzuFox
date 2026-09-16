@@ -76,8 +76,8 @@
       ]
     },
     "FirefoxHome": {
-      "Search": false,
-      "TopSites": false,
+      "Search": true,
+      "TopSites": true,
       "SponsoredTopSites": false,
       "Highlights": false,
       "Pocket": false,
@@ -88,8 +88,7 @@
       "Weather": false,
       "Widgets": {
         "Enabled": false
-      },
-      "Locked": true
+      }
     },
     "Extensions": {
       "Install": [

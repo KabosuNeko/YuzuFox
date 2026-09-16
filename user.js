@@ -143,15 +143,6 @@ user_pref("browser.download.always_ask_before_handling_new_types", true);
 // -----------------------------------------------------------------------------
 
 
-// set startup page to blank
-user_pref("browser.startup.page", 0);
-
-// set homepage to blank page
-user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
-
-// disable new tab page
-user_pref("browser.newtabpage.enabled", false);
-
 // restore open URLs only, no form or auth session data
 user_pref("browser.sessionstore.privacy_level", 2);
 
@@ -269,6 +260,9 @@ user_pref("general.autoScroll", true);
 
 // enable fractional scaling on Wayland
 user_pref("widget.wayland.fractional-scale.enabled", true);
+
+// disable automatic copy to primary clipboard on text selection
+user_pref("clipboard.autocopy", false);
 
 // Windows: disable location, block UNC paths, disable favicons & restart
 // disable Windows geolocation service
