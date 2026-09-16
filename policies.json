@@ -82,6 +82,9 @@
       "SponsoredStories": false,
       "Snippets": false,
       "Weather": false,
+      "Widgets": {
+        "Enabled": false
+      },
       "Locked": false
     },
     "Extensions": {
