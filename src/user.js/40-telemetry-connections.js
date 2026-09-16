@@ -2,9 +2,6 @@
 // STARTUP & QUIET SESSION
 // -----------------------------------------------------------------------------
 
-// [SOURCE: Betterfox] [NOTE: enable clean new tab page with shortcuts]
-user_pref("browser.newtabpage.enabled", true);
-user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // [SOURCE: Arkenfox] [NOTE: restore open URLs only, no form or auth session data]
 user_pref("browser.sessionstore.privacy_level", 2);
