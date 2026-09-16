@@ -211,8 +211,9 @@ user_pref("browser.urlbar.groupLabels.enabled", false);
 // show real URL instead of search terms in address bar
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
-// disable urlbar suggestions and trending
+// disable urlbar suggestions, quicksuggest, and trending
 user_pref("browser.urlbar.suggest.addons", false);
+user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.trending", false);
