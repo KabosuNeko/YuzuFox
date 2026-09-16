@@ -26,7 +26,11 @@
       "EmailTracking": true
     },
     "GenerativeAI": {
-      "Enabled": false
+      "Enabled": false,
+      "Chatbot": false,
+      "LinkPreviews": false,
+      "TabGroups": false,
+      "Locked": true
     },
     "SearchEngines": {
       "Default": "DuckDuckGo",
