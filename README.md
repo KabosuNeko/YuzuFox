@@ -49,7 +49,27 @@ yay -S yuzufox-git
 ```
 
 > [!NOTE]
-> The AUR package installs `yuzu.js` and `policies.json` system-wide. Run `./install.sh --profiles-only` if you also want to drop `user.js` into existing profiles.
+> The AUR package installs `yuzu.js`, `user.js` (as system defaults in `/usr/lib/firefox/browser/defaults/preferences/user.js`), and `policies.json` entirely system-wide (`provides=('firefox-settings')`). All existing and newly created profiles automatically inherit the entire configuration out-of-the-box—no profile scripts required.
+
+> [!TIP]
+> **Using Wayland? Pair YuzuFox with `firefox-pure` (CachyOS)**
+>
+> [`firefox-pure`](https://aur.archlinux.org/packages/firefox-pure) is an ultra-fast, Wayland-only Firefox build by the CachyOS team with `-O3`, PGO, cross-language LTO, and all Mozilla telemetry purged at compile time. *(This is completely optional — if you are using X11 or simply prefer standard Firefox, you can skip this).*
+>
+> **Why replace `cachyos-firefox-settings`?**  
+> `cachyos-firefox-settings` has not been updated in a long time, leaving several preferences outdated. Notably, it completely disables Safe Browsing. While I understand the privacy rationale behind that choice, disabling Safe Browsing entirely for daily use is ill-advised for most users and actually makes your browser fingerprint significantly more unique. No disrespect intended whatsoever — YuzuFox was heavily inspired by CachyOS's work in the first place, and YuzuFox aims to keep those performance gains while modernizing security and privacy for a daily driver.
+>
+> By default, `firefox-pure` pulls in `cachyos-firefox-settings`, which conflicts with YuzuFox. To install YuzuFox on `firefox-pure`:
+> 1. **Install `yuzufox-git` first**:
+>    ```bash
+>    paru -S yuzufox-git   # or: yay -S yuzufox-git
+>    ```
+>    *(If you don't have Firefox yet, this will pull regular Firefox as a dependency).*
+> 2. **Then install `firefox-pure`**:
+>    ```bash
+>    paru -S firefox-pure   # or: yay -S firefox-pure
+>    ```
+> 3. Pacman will prompt that `firefox-pure` conflicts with `firefox`. Press **`y`** to remove regular Firefox. It will replace it with `firefox-pure` and keep YuzuFox without pulling in `cachyos-firefox-settings`.
 
 ### Linux & macOS (Interactive Script)
 

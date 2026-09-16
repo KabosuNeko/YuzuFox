@@ -6,6 +6,7 @@
     "DisableDefaultBrowserAgent": true,
     "DisableFeedbackCommands": true,
     "DisableFirefoxStudies": true,
+    "DisableLaunchOnLogin": true,
     "DisablePocket": true,
     "DisableRemoteImprovements": true,
     "DisableSetDesktopBackground": true,
@@ -71,14 +72,19 @@
       ]
     },
     "FirefoxHome": {
-      "SponsoredPocket": false,
+      "Search": false,
+      "TopSites": false,
+      "SponsoredTopSites": false,
+      "Highlights": false,
       "Pocket": false,
       "Stories": false,
+      "SponsoredPocket": false,
       "SponsoredStories": false,
-      "Highlights": false,
-      "SponsoredTopSites": false,
-      "TopSites": false,
-      "Search": false,
+      "Snippets": false,
+      "Weather": false,
+      "Widgets": {
+        "Enabled": false
+      },
       "Locked": true
     },
     "Extensions": {
