@@ -49,7 +49,7 @@ yay -S yuzufox-git
 ```
 
 > [!NOTE]
-> The AUR package installs `yuzu.js`, `user.js` (as system defaults in `/usr/lib/firefox/browser/defaults/preferences/user.js`), and `policies.json` entirely system-wide (`provides=('firefox-settings')`). All existing and newly created profiles automatically inherit the entire configuration out-of-the-box—no profile scripts required.
+> The AUR package installs `yuzu.js`, `user.js` (as system defaults in `/usr/lib/firefox/browser/defaults/preferences/user.js`), and `policies.json` entirely system-wide (`provides=('firefox-settings')`). All existing and newly created profiles automatically inherit the entire configuration out-of-the-box—no profile scripts required. If you prefer applying YuzuFox only to specific profiles rather than system-wide, please use the [interactive script](#linux--macos-interactive-script) below instead of the AUR package.
 
 > [!TIP]
 > **Using Wayland? Pair YuzuFox with `firefox-pure` (CachyOS)**
