@@ -34,8 +34,9 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 // disable bookmarks/history speculative connections
 user_pref("browser.places.speculativeConnect.enabled", false);
 
-// expose only public IP via WebRTC
+// expose only public IP via WebRTC and enforce proxy routing
 user_pref("media.peerconnection.ice.default_address_only", true);
+user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
 
 // reduce maximum redirection hops to limit bounce tracking
 user_pref("network.http.redirection-limit", 10);
@@ -157,6 +158,9 @@ user_pref("security.dialog_enable_delay", 1000);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
 
+// prevent WebAuthn hardware batch cert attestation leak
+user_pref("security.webauthn.always_allow_direct_attestation", false);
+
 // show advanced info on bad cert error pages
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 
@@ -253,9 +257,10 @@ user_pref("browser.urlbar.wikipedia.featureGate", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
 
-// disable live search suggestions
+// disable live search suggestions and engine switcher buttons
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.suggest.engines", false);
 
 // separate search engine for private windows
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
@@ -269,11 +274,18 @@ user_pref("full-screen-api.warning.timeout", 0);
 // open PDF attachments inline
 user_pref("browser.download.open_pdf_attachments_inline", true);
 
-// open bookmarks in new tab
+// open bookmarks in background tab without stealing focus
 user_pref("browser.tabs.loadBookmarksInTabs", true);
+user_pref("browser.tabs.loadBookmarksInBackground", true);
 
 // keep bookmarks menu open on middle-click
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
+
+// keep window open when closing last tab
+user_pref("browser.tabs.closeWindowWithLastTab", false);
+
+// open new tabs next to the active tab
+user_pref("browser.tabs.insertAfterCurrent", true);
 
 // highlight all findbar matches and modal dimming
 user_pref("findbar.highlightAll", true);
@@ -300,6 +312,21 @@ user_pref("browser.tabs.searchclipboardfor.middleclick", false);
 
 // block media autoplay with sound by default
 user_pref("media.autoplay.default", 1);
+
+// prevent single-tap Alt key from focusing menu bar on Linux
+user_pref("ui.key.menuAccessKeyFocuses", false);
+
+// wrap long lines in View Page Source
+user_pref("view_source.wrap_long_lines", true);
+
+// suggest www. on HTTPS-Only warning pages
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
+
+// enable playback speed controls in Picture-in-Picture window
+user_pref("media.videocontrols.picture-in-picture.playback-speed.enabled", true);
+
+// stop word selection at punctuation on double-click
+user_pref("layout.word_select.stop_at_punctuation", true);
 // -----------------------------------------------------------------------------
 // OS SPECIFIC
 // -----------------------------------------------------------------------------

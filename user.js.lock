@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T11:17:48.809110+00:00",
+  "generated_at": "2026-09-16T07:48:04.352321+00:00",
   "prefs": [
     {
       "files": [
@@ -185,7 +185,7 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "disable live search suggestions",
+      "note": "disable live search suggestions and engine switcher buttons",
       "pref": "browser.search.suggest.enabled",
       "source": "Arkenfox + Betterfox",
       "value": false
@@ -257,7 +257,34 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "open bookmarks in new tab",
+      "note": "keep window open when closing last tab",
+      "pref": "browser.tabs.closeWindowWithLastTab",
+      "source": "YuzuFox / Betterfox",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "open new tabs next to the active tab",
+      "pref": "browser.tabs.insertAfterCurrent",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.tabs.loadBookmarksInBackground",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "open bookmarks in background tab without stealing focus",
       "pref": "browser.tabs.loadBookmarksInTabs",
       "source": "Betterfox",
       "value": true
@@ -341,6 +368,15 @@
       "note": "disable urlbar suggestions and quicksuggest",
       "pref": "browser.urlbar.suggest.addons",
       "source": "cachyos-firefox-settings",
+      "value": false
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": null,
+      "pref": "browser.urlbar.suggest.engines",
+      "source": "YuzuFox",
       "value": false
     },
     {
@@ -466,6 +502,15 @@
       ],
       "note": "enable HTTPS-Only mode",
       "pref": "dom.security.https_only_mode",
+      "source": "Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "suggest www. on HTTPS-Only warning pages",
+      "pref": "dom.security.https_only_mode_error_page_user_suggestions",
       "source": "Betterfox",
       "value": true
     },
@@ -680,6 +725,15 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
+      "note": "stop word selection at punctuation on double-click",
+      "pref": "layout.word_select.stop_at_punctuation",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
       "note": "block media autoplay with sound by default",
       "pref": "media.autoplay.default",
       "source": "Betterfox + Arkenfox",
@@ -689,9 +743,27 @@
       "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "expose only public IP via WebRTC",
+      "note": "expose only public IP via WebRTC and enforce proxy routing",
       "pref": "media.peerconnection.ice.default_address_only",
       "source": "Arkenfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/10-network.js"
+      ],
+      "note": null,
+      "pref": "media.peerconnection.ice.proxy_only_if_behind_proxy",
+      "source": "YuzuFox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "enable playback speed controls in Picture-in-Picture window",
+      "pref": "media.videocontrols.picture-in-picture.playback-speed.enabled",
+      "source": "YuzuFox",
       "value": true
     },
     {
@@ -1056,6 +1128,15 @@
     },
     {
       "files": [
+        "src/user.js/30-security.js"
+      ],
+      "note": "prevent WebAuthn hardware batch cert attestation leak",
+      "pref": "security.webauthn.always_allow_direct_attestation",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/20-privacy.js"
       ],
       "note": "disable password autofill",
@@ -1101,6 +1182,15 @@
     },
     {
       "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "prevent single-tap Alt key from focusing menu bar on Linux",
+      "pref": "ui.key.menuAccessKeyFocuses",
+      "source": "YuzuFox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/30-security.js"
       ],
       "note": "URL classifier skip lists for social embeds",
@@ -1116,6 +1206,15 @@
       "pref": "urlclassifier.trackingSkipURLs",
       "source": "YuzuFox",
       "value": "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com"
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "wrap long lines in View Page Source",
+      "pref": "view_source.wrap_long_lines",
+      "source": "YuzuFox",
+      "value": true
     },
     {
       "files": [

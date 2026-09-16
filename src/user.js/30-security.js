@@ -28,6 +28,9 @@ user_pref("security.dialog_enable_delay", 1000);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
 
+// [SOURCE: Arkenfox] [NOTE: prevent WebAuthn hardware batch cert attestation leak]
+user_pref("security.webauthn.always_allow_direct_attestation", false);
+
 // [SOURCE: Arkenfox + Betterfox] [NOTE: show advanced info on bad cert error pages]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 

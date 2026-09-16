@@ -207,3 +207,7 @@ pref("browser.ai.control.default", "blocked");
 
 // Firefox Relay
 pref("signon.firefoxRelay.feature", "disabled", locked);
+
+// New Tab Widgets (FF156+)
+pref("browser.newtabpage.activity-stream.widgets.enabled", false, locked);
+pref("browser.newtabpage.activity-stream.widgets.system.enabled", false, locked);
