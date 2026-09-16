@@ -36,6 +36,15 @@ YuzuFox separates configuration into three layers:
 
 ---
 
+> [!IMPORTANT]
+> **Updating YuzuFox?**  
+> Firefox writes preferences from `user.js` into your profile's persistent `prefs.js` file on startup. If a newer YuzuFox version removes or reverts a preference back to Firefox defaults, `prefs.js` will keep holding the old value unless cleared. To ensure newly updated settings and defaults take effect cleanly, **close Firefox completely** and delete `prefs.js` before updating:
+> ```bash
+> killall firefox firefox-bin 2>/dev/null
+> rm ~/.mozilla/firefox/*.default*/prefs.js
+> ```
+> *(Firefox will automatically regenerate a fresh `prefs.js` on next launch. Your bookmarks, extensions, history, and saved passwords are stored in separate SQLite databases and remain completely safe).*
+
 ## Installation
 
 Close Firefox before running any installation commands.

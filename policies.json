@@ -73,6 +73,7 @@
     },
     "FirefoxHome": {
       "Search": true,
+      "TopSites": true,
       "SponsoredTopSites": false,
       "Highlights": false,
       "Pocket": false,

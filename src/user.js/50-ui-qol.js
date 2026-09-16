@@ -18,20 +18,12 @@ user_pref("browser.urlbar.groupLabels.enabled", false);
 // [SOURCE: Arkenfox] [NOTE: show real URL instead of search terms in address bar]
 user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
-// [SOURCE: cachyos-firefox-settings] [NOTE: disable urlbar suggestions and quicksuggest]
+// [SOURCE: cachyos-firefox-settings] [NOTE: disable urlbar suggestions and trending]
 user_pref("browser.urlbar.suggest.addons", false);
-user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.trending", false);
-
-// [SOURCE: Arkenfox] [NOTE: disable urlbar feature gate suggestions]
-user_pref("browser.urlbar.importantDates.featureGate", false);
-user_pref("browser.urlbar.market.featureGate", false);
-user_pref("browser.urlbar.yelpRealtime.featureGate", false);
 user_pref("browser.urlbar.trending.featureGate", false);
-user_pref("browser.urlbar.amp.featureGate", false);
-user_pref("browser.urlbar.wikipedia.featureGate", false);
 
 // [SOURCE: Betterfox] [NOTE: disable about:config warning and welcome onboarding]
 user_pref("browser.aboutConfig.showWarning", false);
@@ -42,13 +34,10 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.suggest.engines", false);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: separate search engine for private windows]
+// [SOURCE: Arkenfox + Betterfox] [NOTE: separate search engine for private windows UI]
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
-user_pref("browser.search.separatePrivateDefault", true);
 
-// [SOURCE: Betterfox] [NOTE: instant fullscreen transitions]
-user_pref("full-screen-api.transition-duration.enter", "0 0");
-user_pref("full-screen-api.transition-duration.leave", "0 0");
+// [SOURCE: Betterfox] [NOTE: disable fullscreen warning delay]
 user_pref("full-screen-api.warning.timeout", 0);
 
 // [SOURCE: Betterfox] [NOTE: open PDF attachments inline]
@@ -71,9 +60,6 @@ user_pref("browser.tabs.insertAfterCurrent", true);
 user_pref("findbar.highlightAll", true);
 user_pref("findbar.modalHighlight", true);
 
-// [SOURCE: Arkenfox + Mozilla] [NOTE: enable Container Tabs and UI]
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
 // [SOURCE: Betterfox] [NOTE: MSD physics smooth scrolling]
 user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
 user_pref("general.smoothScroll.msdPhysics.enabled", true);

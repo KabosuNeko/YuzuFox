@@ -39,11 +39,8 @@ user_pref("privacy.bounceTrackingProtection.mode", 1);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable search and form history]
 user_pref("browser.formfill.enable", false);
-// user_pref("extensions.formautofill.addresses.enabled", false);
-// user_pref("extensions.formautofill.creditCards.enabled", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable formless and private browsing password capture]
-// user_pref("signon.rememberSignons", false);
 user_pref("signon.formlessCapture.enabled", false);
 user_pref("signon.privateBrowsingCapture.enabled", false);
 
@@ -61,9 +58,6 @@ user_pref("dom.disable_window_move_resize", true);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: restrict popup events to direct user interaction]
 user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
-// [SOURCE: Arkenfox + Betterfox] [NOTE: disable hyperlink auditing pings]
-user_pref("browser.send_pings", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable silent Windows SSO authentication]
 user_pref("network.http.windows-sso.enabled", false);
