@@ -1,15 +1,6 @@
 {
-  "generated_at": "2026-09-16T13:43:34.038238+00:00",
+  "generated_at": "2026-09-16T14:07:30.260450+00:00",
   "prefs": [
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "apz.overscroll.enabled",
-      "source": "YuzuFox",
-      "value": true
-    },
     {
       "files": [
         "src/user.js/50-ui-qol.js"
@@ -50,9 +41,9 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": "ETP strict mode and fingerprinting protection",
+      "note": "ETP strict mode (enables FPP on known tracking lists without breaking canvas globally)",
       "pref": "browser.contentblocking.category",
-      "source": "Arkenfox + Betterfox",
+      "source": "Betterfox",
       "value": "strict"
     },
     {
@@ -108,15 +99,6 @@
       "pref": "browser.formfill.enable",
       "source": "Arkenfox + Betterfox",
       "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "delete temp file after external app exits",
-      "pref": "browser.helperApps.deleteTempFileOnExit",
-      "source": "Arkenfox",
-      "value": true
     },
     {
       "files": [
@@ -284,15 +266,6 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": null,
-      "pref": "browser.urlbar.quicksuggest.enabled",
-      "source": "YuzuFox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
       "note": "show real URL instead of search terms in address bar",
       "pref": "browser.urlbar.showSearchTerms.enabled",
       "source": "Arkenfox",
@@ -396,33 +369,6 @@
       "pref": "browser.xul.error_pages.expert_bad_cert",
       "source": "Arkenfox + Betterfox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable device sensor APIs",
-      "pref": "device.sensors.enabled",
-      "source": "Arkenfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "prevent scripts from moving or resizing windows",
-      "pref": "dom.disable_window_move_resize",
-      "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "restrict popup events to direct user interaction",
-      "pref": "dom.popup_allowed_events",
-      "source": "Arkenfox + Betterfox",
-      "value": "click dblclick mousedown pointerdown"
     },
     {
       "files": [
@@ -624,38 +570,11 @@
     },
     {
       "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "stop word selection at punctuation on double-click",
-      "pref": "layout.word_select.stop_at_punctuation",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": "block media autoplay with sound by default",
-      "pref": "media.autoplay.default",
-      "source": "Betterfox + Arkenfox",
-      "value": 1
-    },
-    {
-      "files": [
         "src/user.js/10-network.js"
       ],
-      "note": "expose only public IP via WebRTC and enforce proxy routing",
-      "pref": "media.peerconnection.ice.default_address_only",
-      "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/10-network.js"
-      ],
-      "note": null,
+      "note": "enforce proxy routing for WebRTC ICE when behind proxy",
       "pref": "media.peerconnection.ice.proxy_only_if_behind_proxy",
-      "source": "YuzuFox",
+      "source": "Arkenfox",
       "value": true
     },
     {
@@ -666,15 +585,6 @@
       "pref": "media.videocontrols.picture-in-picture.playback-speed.enabled",
       "source": "YuzuFox",
       "value": true
-    },
-    {
-      "files": [
-        "src/user.js/50-ui-qol.js"
-      ],
-      "note": null,
-      "pref": "mousewheel.default.delta_multiplier_y",
-      "source": "YuzuFox",
-      "value": 300
     },
     {
       "files": [
@@ -750,15 +660,6 @@
     },
     {
       "files": [
-        "src/user.js/10-network.js"
-      ],
-      "note": "reduce maximum redirection hops to limit bounce tracking",
-      "pref": "network.http.redirection-limit",
-      "source": "Arkenfox",
-      "value": 10
-    },
-    {
-      "files": [
         "src/user.js/20-privacy.js"
       ],
       "note": "trim cross-origin referrers to scheme+host+port",
@@ -774,15 +675,6 @@
       "pref": "network.http.speculative-parallel-limit",
       "source": "Betterfox",
       "value": 0
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "disable silent Windows SSO authentication",
-      "pref": "network.http.windows-sso.enabled",
-      "source": "Arkenfox + Betterfox",
-      "value": false
     },
     {
       "files": [
@@ -869,27 +761,9 @@
       "files": [
         "src/user.js/20-privacy.js"
       ],
-      "note": null,
-      "pref": "privacy.fingerprintingProtection",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": null,
-      "pref": "privacy.fingerprintingProtection.pbmode",
-      "source": "YuzuFox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": "strip tracking query parameters",
+      "note": "strip tracking query parameters via dynamic lists",
       "pref": "privacy.query_stripping.enabled",
-      "source": "Arkenfox + Betterfox",
+      "source": "Betterfox",
       "value": true
     },
     {
@@ -903,30 +777,12 @@
     },
     {
       "files": [
-        "src/user.js/20-privacy.js"
-      ],
-      "note": null,
-      "pref": "privacy.query_stripping.strip_list",
-      "source": "YuzuFox",
-      "value": "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid"
-    },
-    {
-      "files": [
         "src/user.js/30-security.js"
       ],
       "note": "disable OCSP in favor of CRLite",
       "pref": "security.OCSP.enabled",
       "source": "Betterfox",
       "value": 0
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "strict Public Key Pinning",
-      "pref": "security.cert_pinning.enforcement_level",
-      "source": "Arkenfox",
-      "value": 2
     },
     {
       "files": [
@@ -941,27 +797,9 @@
       "files": [
         "src/user.js/30-security.js"
       ],
-      "note": "enforce CRLite mode 2",
-      "pref": "security.pki.crlite_mode",
-      "source": "Arkenfox",
-      "value": 2
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "require safe TLS renegotiation",
-      "pref": "security.ssl.require_safe_negotiation",
-      "source": "Arkenfox",
-      "value": true
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
       "note": "warn on unsafe SSL renegotiation",
       "pref": "security.ssl.treat_unsafe_negotiation_as_broken",
-      "source": "Arkenfox + Betterfox",
+      "source": "Betterfox",
       "value": true
     },
     {
@@ -970,16 +808,7 @@
       ],
       "note": "disable TLS 1.3 0-RTT",
       "pref": "security.tls.enable_0rtt_data",
-      "source": "Arkenfox + Betterfox",
-      "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "prevent WebAuthn hardware batch cert attestation leak",
-      "pref": "security.webauthn.always_allow_direct_attestation",
-      "source": "Arkenfox",
+      "source": "Betterfox",
       "value": false
     },
     {

@@ -8,10 +8,8 @@ user_pref("dom.security.https_only_mode", true);
 // [SOURCE: Arkenfox] [NOTE: disable HTTP background probe]
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: ETP strict mode and fingerprinting protection]
+// [SOURCE: Betterfox] [NOTE: ETP strict mode (enables FPP on known tracking lists without breaking canvas globally)]
 user_pref("browser.contentblocking.category", "strict");
-user_pref("privacy.fingerprintingProtection", true);
-user_pref("privacy.fingerprintingProtection.pbmode", true);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: isolate content script resources]
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
@@ -26,10 +24,9 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
 user_pref("network.cookie.cookieBehavior.optInPartitioning.pbmode", true);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: strip tracking query parameters]
+// [SOURCE: Betterfox] [NOTE: strip tracking query parameters via dynamic lists]
 user_pref("privacy.query_stripping.enabled", true);
 user_pref("privacy.query_stripping.enabled.pbmode", true);
-user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid");
 
 // [SOURCE: Betterfox] [NOTE: strict tracking protection list channels]
 user_pref("privacy.annotate_channels.strict_list.enabled", true);
@@ -52,18 +49,6 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 
 // [SOURCE: Betterfox] [NOTE: preserve pasted text without truncation]
 user_pref("editor.truncate_user_pastes", false);
-
-// [SOURCE: Arkenfox] [NOTE: prevent scripts from moving or resizing windows]
-user_pref("dom.disable_window_move_resize", true);
-
-// [SOURCE: Arkenfox + Betterfox] [NOTE: restrict popup events to direct user interaction]
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
-// [SOURCE: Arkenfox + Betterfox] [NOTE: disable silent Windows SSO authentication]
-user_pref("network.http.windows-sso.enabled", false);
-
-// [SOURCE: Arkenfox] [NOTE: disable device sensor APIs]
-user_pref("device.sensors.enabled", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: always show Punycode for IDNs]
 user_pref("network.IDN_show_punycode", true);
