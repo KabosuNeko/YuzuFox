@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T07:48:04.352321+00:00",
+  "generated_at": "2026-09-16T07:56:53.340985+00:00",
   "prefs": [
     {
       "files": [
@@ -131,10 +131,19 @@
       "files": [
         "src/user.js/40-telemetry-connections.js"
       ],
-      "note": "disable new tab page",
+      "note": null,
+      "pref": "browser.newtabpage.activity-stream.default.sites",
+      "source": "YuzuFox",
+      "value": ""
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "enable clean new tab page with shortcuts",
       "pref": "browser.newtabpage.enabled",
-      "source": "Arkenfox",
-      "value": false
+      "source": "Betterfox",
+      "value": true
     },
     {
       "files": [
@@ -234,24 +243,6 @@
       "pref": "browser.shell.shortcutFavicons",
       "source": "Arkenfox",
       "value": false
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "set homepage to blank page",
-      "pref": "browser.startup.homepage",
-      "source": "Arkenfox",
-      "value": "chrome://browser/content/blanktab.html"
-    },
-    {
-      "files": [
-        "src/user.js/40-telemetry-connections.js"
-      ],
-      "note": "set startup page to blank",
-      "pref": "browser.startup.page",
-      "source": "Arkenfox",
-      "value": 0
     },
     {
       "files": [

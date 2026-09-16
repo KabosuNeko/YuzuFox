@@ -2,14 +2,9 @@
 // STARTUP & QUIET SESSION
 // -----------------------------------------------------------------------------
 
-// [SOURCE: Arkenfox] [NOTE: set startup page to blank]
-user_pref("browser.startup.page", 0);
-
-// [SOURCE: Arkenfox] [NOTE: set homepage to blank page]
-user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
-
-// [SOURCE: Arkenfox] [NOTE: disable new tab page]
-user_pref("browser.newtabpage.enabled", false);
+// [SOURCE: Betterfox] [NOTE: enable clean new tab page with shortcuts]
+user_pref("browser.newtabpage.enabled", true);
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // [SOURCE: Arkenfox] [NOTE: restore open URLs only, no form or auth session data]
 user_pref("browser.sessionstore.privacy_level", 2);

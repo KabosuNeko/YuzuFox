@@ -166,7 +166,8 @@ pref("browser.ipProtection.guardian.endpoint", "", locked);
 // Activity Stream & sponsored feeds
 pref("browser.newtabpage.activity-stream.feeds.system.topsites", false, locked);
 pref("browser.newtabpage.activity-stream.feeds.system.topstories", false, locked);
-pref("browser.newtabpage.activity-stream.feeds.topsites", false, locked);
+pref("browser.newtabpage.activity-stream.feeds.topsites", true, locked);
+pref("browser.newtabpage.activity-stream.default.sites", "");
 pref("browser.newtabpage.activity-stream.feeds.section.topstories", false, locked);
 pref("browser.newtabpage.activity-stream.showSponsored", false, locked);
 pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false, locked);

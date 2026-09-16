@@ -195,14 +195,9 @@ user_pref("browser.download.always_ask_before_handling_new_types", true);
 // STARTUP & QUIET SESSION
 // -----------------------------------------------------------------------------
 
-// set startup page to blank
-user_pref("browser.startup.page", 0);
-
-// set homepage to blank page
-user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
-
-// disable new tab page
-user_pref("browser.newtabpage.enabled", false);
+// enable clean new tab page with shortcuts
+user_pref("browser.newtabpage.enabled", true);
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // restore open URLs only, no form or auth session data
 user_pref("browser.sessionstore.privacy_level", 2);
