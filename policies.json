@@ -72,8 +72,8 @@
       ]
     },
     "FirefoxHome": {
-      "Search": true,
-      "TopSites": true,
+      "Search": false,
+      "TopSites": false,
       "SponsoredTopSites": false,
       "Highlights": false,
       "Pocket": false,
