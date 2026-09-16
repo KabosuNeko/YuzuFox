@@ -202,25 +202,6 @@ Firefox Multi-Account Containers let you separate cookies and sessions per tab:
 
 ---
 
-## CachyOS & `firefox-pure` on Wayland
-
-If you run Arch Linux or CachyOS under Wayland, pairing YuzuFox with [`firefox-pure`](https://aur.archlinux.org/packages/firefox-pure) provides maximum rendering and execution performance:
-
-- **What is `firefox-pure`?** It is a custom Firefox package maintained by the CachyOS team, compiled specifically for pure Wayland with aggressive compiler optimizations (`-O3`, PGO, cross-language Rust/C++ LTO, and march-specific tuning) while removing Mozilla telemetry at build time.
-- **Why replace `cachyos-firefox-settings`?** By default, `firefox-pure` depends on `cachyos-firefox-settings`. However, `cachyos-firefox-settings` is infrequently maintained and completely disables Safe Browsing by default. While I respect the privacy sentiment, completely switching off local Safe Browsing exposes users to trivial phishing and malware attacks while drastically increasing browser fingerprint uniqueness (less than 1% of desktop Firefox browsers have Safe Browsing disabled).
-- **How YuzuFox fits in**: YuzuFox replaces `cachyos-firefox-settings` (`provides=('firefox-settings')`). It retains CachyOS's proven memory caching, JIT, and pipeline tuning, while retaining local Safe Browsing hash checks and updating all privacy and security controls to modern Firefox standards.
-
-To install:
-```bash
-# 1. Install yuzufox-git first (satisfies firefox-settings dependency)
-paru -S yuzufox-git
-
-# 2. Then install firefox-pure (answer 'y' to replace regular firefox)
-paru -S firefox-pure
-```
-
----
-
 ## Troubleshooting
 
 ### Handling Broken Websites (Smart Unbreak)
