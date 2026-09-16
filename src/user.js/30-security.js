@@ -5,23 +5,11 @@
 // [SOURCE: Betterfox] [NOTE: disable OCSP in favor of CRLite]
 user_pref("security.OCSP.enabled", 0);
 
-// [SOURCE: Arkenfox] [NOTE: enforce CRLite mode 2]
-user_pref("security.pki.crlite_mode", 2);
-
-// [SOURCE: Arkenfox] [NOTE: strict Public Key Pinning]
-user_pref("security.cert_pinning.enforcement_level", 2);
-
-// [SOURCE: Arkenfox] [NOTE: require safe TLS renegotiation]
-user_pref("security.ssl.require_safe_negotiation", true);
-
-// [SOURCE: Arkenfox + Betterfox] [NOTE: warn on unsafe SSL renegotiation]
+// [SOURCE: Betterfox] [NOTE: warn on unsafe SSL renegotiation]
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: disable TLS 1.3 0-RTT]
+// [SOURCE: Betterfox] [NOTE: disable TLS 1.3 0-RTT]
 user_pref("security.tls.enable_0rtt_data", false);
-
-// [SOURCE: Arkenfox] [NOTE: prevent WebAuthn hardware batch cert attestation leak]
-user_pref("security.webauthn.always_allow_direct_attestation", false);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: show advanced info on bad cert error pages]
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
@@ -35,9 +23,6 @@ user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twim
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: isolate downloads in temp directory]
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
-
-// [SOURCE: Arkenfox] [NOTE: delete temp file after external app exits]
-user_pref("browser.helperApps.deleteTempFileOnExit", true);
 
 // [SOURCE: Arkenfox + Betterfox] [NOTE: do not add downloads to recent documents]
 user_pref("browser.download.manager.addToRecentDocs", false);

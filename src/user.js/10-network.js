@@ -23,12 +23,8 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable bookmarks/history speculative connections]
 user_pref("browser.places.speculativeConnect.enabled", false);
 
-// [SOURCE: Arkenfox] [NOTE: expose only public IP via WebRTC and enforce proxy routing]
-user_pref("media.peerconnection.ice.default_address_only", true);
+// [SOURCE: Arkenfox] [NOTE: enforce proxy routing for WebRTC ICE when behind proxy]
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-
-// [SOURCE: Arkenfox] [NOTE: reduce maximum redirection hops to limit bounce tracking]
-user_pref("network.http.redirection-limit", 10);
 
 // [SOURCE: Arkenfox] [NOTE: resolve DNS remotely when using SOCKS proxy]
 user_pref("network.proxy.socks_remote_dns", true);

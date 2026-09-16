@@ -34,12 +34,8 @@ user_pref("browser.urlbar.speculativeConnect.enabled", false);
 // disable bookmarks/history speculative connections
 user_pref("browser.places.speculativeConnect.enabled", false);
 
-// expose only public IP via WebRTC and enforce proxy routing
-user_pref("media.peerconnection.ice.default_address_only", true);
+// enforce proxy routing for WebRTC ICE when behind proxy
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-
-// reduce maximum redirection hops to limit bounce tracking
-user_pref("network.http.redirection-limit", 10);
 
 // resolve DNS remotely when using SOCKS proxy
 user_pref("network.proxy.socks_remote_dns", true);
@@ -53,10 +49,8 @@ user_pref("dom.security.https_only_mode", true);
 // disable HTTP background probe
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
 
-// ETP strict mode and fingerprinting protection
+// ETP strict mode (enables FPP on known tracking lists without breaking canvas globally)
 user_pref("browser.contentblocking.category", "strict");
-user_pref("privacy.fingerprintingProtection", true);
-user_pref("privacy.fingerprintingProtection.pbmode", true);
 
 // isolate content script resources
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
@@ -71,10 +65,9 @@ user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 user_pref("network.cookie.cookieBehavior.optInPartitioning", true);
 user_pref("network.cookie.cookieBehavior.optInPartitioning.pbmode", true);
 
-// strip tracking query parameters
+// strip tracking query parameters via dynamic lists
 user_pref("privacy.query_stripping.enabled", true);
 user_pref("privacy.query_stripping.enabled.pbmode", true);
-user_pref("privacy.query_stripping.strip_list", "__hsfp __hssc __hstc __s _hsenc _openstat dclid fbclid gbraid gclid hsCtaTracking igshid mc_eid ml_subscriber ml_subscriber_hash msclkid oft_c oft_ck oft_d oft_id oft_ids oft_k oft_lk oft_sk oly_anon_id oly_enc_id rb_clickid s_cid twclid vero_conv vero_id wbraid wickedid yclid");
 
 // strict tracking protection list channels
 user_pref("privacy.annotate_channels.strict_list.enabled", true);
@@ -98,18 +91,6 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 // preserve pasted text without truncation
 user_pref("editor.truncate_user_pastes", false);
 
-// prevent scripts from moving or resizing windows
-user_pref("dom.disable_window_move_resize", true);
-
-// restrict popup events to direct user interaction
-user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
-
-// disable silent Windows SSO authentication
-user_pref("network.http.windows-sso.enabled", false);
-
-// disable device sensor APIs
-user_pref("device.sensors.enabled", false);
-
 // always show Punycode for IDNs
 user_pref("network.IDN_show_punycode", true);
 
@@ -129,23 +110,11 @@ user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate");
 // disable OCSP in favor of CRLite
 user_pref("security.OCSP.enabled", 0);
 
-// enforce CRLite mode 2
-user_pref("security.pki.crlite_mode", 2);
-
-// strict Public Key Pinning
-user_pref("security.cert_pinning.enforcement_level", 2);
-
-// require safe TLS renegotiation
-user_pref("security.ssl.require_safe_negotiation", true);
-
 // warn on unsafe SSL renegotiation
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
 // disable TLS 1.3 0-RTT
 user_pref("security.tls.enable_0rtt_data", false);
-
-// prevent WebAuthn hardware batch cert attestation leak
-user_pref("security.webauthn.always_allow_direct_attestation", false);
 
 // show advanced info on bad cert error pages
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
@@ -159,9 +128,6 @@ user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twim
 
 // isolate downloads in temp directory
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
-
-// delete temp file after external app exits
-user_pref("browser.helperApps.deleteTempFileOnExit", true);
 
 // do not add downloads to recent documents
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -222,7 +188,6 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 // disable urlbar suggestions, quicksuggest, and trending
 user_pref("browser.urlbar.suggest.addons", false);
-user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.trending", false);
@@ -273,14 +238,9 @@ user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2.0");
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
 user_pref("general.smoothScroll.currentVelocityWeighting", "1.0");
 user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
-user_pref("mousewheel.default.delta_multiplier_y", 300);
-user_pref("apz.overscroll.enabled", true);
 
 // disable middle-click clipboard search
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
-
-// block media autoplay with sound by default
-user_pref("media.autoplay.default", 1);
 
 // prevent single-tap Alt key from focusing menu bar on Linux
 user_pref("ui.key.menuAccessKeyFocuses", false);
@@ -293,9 +253,6 @@ user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 
 // enable playback speed controls in Picture-in-Picture window
 user_pref("media.videocontrols.picture-in-picture.playback-speed.enabled", true);
-
-// stop word selection at punctuation on double-click
-user_pref("layout.word_select.stop_at_punctuation", true);
 // -----------------------------------------------------------------------------
 // OS SPECIFIC
 // -----------------------------------------------------------------------------

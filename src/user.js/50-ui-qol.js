@@ -20,7 +20,6 @@ user_pref("browser.urlbar.showSearchTerms.enabled", false);
 
 // [SOURCE: cachyos-firefox-settings] [NOTE: disable urlbar suggestions, quicksuggest, and trending]
 user_pref("browser.urlbar.suggest.addons", false);
-user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.trending", false);
@@ -71,14 +70,9 @@ user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2.0");
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
 user_pref("general.smoothScroll.currentVelocityWeighting", "1.0");
 user_pref("general.smoothScroll.stopDecelerationWeighting", "1.0");
-user_pref("mousewheel.default.delta_multiplier_y", 300);
-user_pref("apz.overscroll.enabled", true);
 
 // [SOURCE: Arkenfox] [NOTE: disable middle-click clipboard search]
 user_pref("browser.tabs.searchclipboardfor.middleclick", false);
-
-// [SOURCE: Betterfox + Arkenfox] [NOTE: block media autoplay with sound by default]
-user_pref("media.autoplay.default", 1);
 
 // [SOURCE: YuzuFox] [NOTE: prevent single-tap Alt key from focusing menu bar on Linux]
 user_pref("ui.key.menuAccessKeyFocuses", false);
@@ -91,6 +85,3 @@ user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 
 // [SOURCE: YuzuFox] [NOTE: enable playback speed controls in Picture-in-Picture window]
 user_pref("media.videocontrols.picture-in-picture.playback-speed.enabled", true);
-
-// [SOURCE: YuzuFox] [NOTE: stop word selection at punctuation on double-click]
-user_pref("layout.word_select.stop_at_punctuation", true);
