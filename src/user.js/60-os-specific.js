@@ -15,6 +15,9 @@ user_pref("general.autoScroll", true);
 // [SOURCE: cachyos-firefox-settings] [NOTE: enable fractional scaling on Wayland]
 user_pref("widget.wayland.fractional-scale.enabled", true);
 
+// [SOURCE: YuzuFox] [NOTE: disable automatic copy to primary clipboard on text selection]
+user_pref("clipboard.autocopy", false);
+
 // Windows: disable location, block UNC paths, disable favicons & restart
 // [SOURCE: Arkenfox] [NOTE: disable Windows geolocation service]
 user_pref("geo.provider.ms-windows-location", false);
