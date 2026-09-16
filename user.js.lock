@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T13:31:02.138718+00:00",
+  "generated_at": "2026-09-16T13:39:20.366800+00:00",
   "prefs": [
     {
       "files": [
@@ -120,6 +120,15 @@
     },
     {
       "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "disable new tab page",
+      "pref": "browser.newtabpage.enabled",
+      "source": "Arkenfox",
+      "value": false
+    },
+    {
+      "files": [
         "src/user.js/10-network.js"
       ],
       "note": "disable bookmarks/history speculative connections",
@@ -198,6 +207,24 @@
       "pref": "browser.shell.shortcutFavicons",
       "source": "Arkenfox",
       "value": false
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "set homepage to blank page",
+      "pref": "browser.startup.homepage",
+      "source": "Arkenfox",
+      "value": "chrome://browser/content/blanktab.html"
+    },
+    {
+      "files": [
+        "src/user.js/40-telemetry-connections.js"
+      ],
+      "note": "set startup page to blank",
+      "pref": "browser.startup.page",
+      "source": "Arkenfox",
+      "value": 0
     },
     {
       "files": [
