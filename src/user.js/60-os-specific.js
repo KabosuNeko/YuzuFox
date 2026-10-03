@@ -12,9 +12,6 @@ user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
 // [SOURCE: Betterfox] [NOTE: enable middle-click autoscroll (matches Windows behavior)]
 user_pref("general.autoScroll", true);
 
-// [SOURCE: cachyos-firefox-settings] [NOTE: enable fractional scaling on Wayland]
-user_pref("widget.wayland.fractional-scale.enabled", true);
-
 // [SOURCE: YuzuFox] [NOTE: disable automatic copy to primary clipboard on text selection]
 user_pref("clipboard.autocopy", false);
 

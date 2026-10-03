@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T15:02:37.729208+00:00",
+  "generated_at": "2026-10-03T15:09:22.684707+00:00",
   "prefs": [
     {
       "files": [
@@ -131,8 +131,17 @@
       "files": [
         "src/user.js/50-ui-qol.js"
       ],
-      "note": "separate search engine for private windows UI",
-      "pref": "browser.search.separatePrivateDefault.ui.enabled",
+      "note": "use a separate default search engine in private windows (renamed in FF157, now off by default)",
+      "pref": "browser.search.separatePrivateDefault.enabled",
+      "source": "Arkenfox + Betterfox",
+      "value": true
+    },
+    {
+      "files": [
+        "src/user.js/50-ui-qol.js"
+      ],
+      "note": "show the separate private-window search engine setting (FF157 rename of .ui.enabled)",
+      "pref": "browser.search.separatePrivateDefault.featureGate",
       "source": "Arkenfox + Betterfox",
       "value": true
     },
@@ -882,15 +891,6 @@
       "pref": "widget.use-xdg-desktop-portal.file-picker",
       "source": "cachyos-firefox-settings",
       "value": 1
-    },
-    {
-      "files": [
-        "src/user.js/60-os-specific.js"
-      ],
-      "note": "enable fractional scaling on Wayland",
-      "pref": "widget.wayland.fractional-scale.enabled",
-      "source": "cachyos-firefox-settings",
-      "value": true
     }
   ],
   "sources": [

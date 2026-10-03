@@ -62,7 +62,6 @@ pref("gfx.content.skia-font-cache-size", 80);
 pref("javascript.options.baselinejit.threshold", 50);
 pref("javascript.options.ion.threshold", 500);
 pref("content.notify.interval", 100000);
-pref("content.notify.ontimer", true);
 
 // Parallel connections & HTTP/3
 pref("network.dnsCacheEntries", 1000);
