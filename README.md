@@ -19,19 +19,19 @@ YuzuFox separates configuration into three layers:
 | :--- | :--- | :--- |
 | **System Defaults**<br>`yuzu.js` | Linux: `/usr/lib/firefox/browser/defaults/preferences/yuzu.js`<br>macOS: `Firefox.app/.../defaults/preferences/yuzu.js`<br>Windows: `Program Files\\Mozilla Firefox\\browser\\defaults\\preferences\\yuzu.js` | Hardware video decoding (VA-API/GPU), WebRender, 1GB RAM cache (disables disk cache wear), network buffers, and permanently locks out Mozilla telemetry, AI chat, studies, and sponsored tiles. |
 | **Enterprise Policy**<br>`policies.json` | Linux: `/etc/firefox/policies/policies.json`<br>macOS: `Firefox.app/.../distribution/policies.json`<br>Windows: `Program Files\\Mozilla Firefox\\distribution\\policies.json` | Deploys uBlock Origin out of the box, removes built-in search engine clutter, sets DuckDuckGo default, and disables Mozilla onboarding/promotional popups. |
-| **Profile Overrides**<br>`user.js` | `~/.mozilla/firefox/<profile>/user.js`<br>`~/Library/Application Support/Firefox/Profiles/<profile>/user.js`<br>`%APPDATA%\\Mozilla\\Firefox\\Profiles\\<profile>\\user.js` | Per-profile tuning: Strict ETP, Fingerprinting Protection (FPP), query parameter stripping, CRLite revocation mode 2, and UI tweaks. Can be replaced or extended per profile. |
+| **Profile Overrides**<br>`user.js` | `~/.mozilla/firefox/<profile>/user.js`<br>`~/Library/Application Support/Firefox/Profiles/<profile>/user.js`<br>`%APPDATA%\\Mozilla\\Firefox\\Profiles\\<profile>\\user.js` | Per-profile tuning: Strict ETP, Fingerprinting Protection (FPP), query parameter stripping, CRLite revocation (OCSP disabled), and UI tweaks. Can be replaced or extended per profile. |
 
 ---
 
 ## Key Tweaks
 
 - **In-Memory Caching (`browser.cache.disk.enable = false`)**: Directs page cache entirely to RAM with a 1GB limit. Avoids disk I/O latency and SSD write wear.
-- **Telemetry & Sponsored Purge**: Locks Normandy, Shield studies, PingCentre, Activity Stream ads, Pocket, and Firefox 156 Generative AI integration.
+- **Telemetry & Sponsored Purge**: Locks Normandy, Shield studies, PingCentre, Activity Stream ads, Pocket, and Firefox 157 Generative AI integration.
 - **ETP Strict & Fingerprint Parity**: Employs Mozilla's native Enhanced Tracking Protection (ETP) Strict mode with Total Cookie Protection (dFPI) to isolate trackers, matching the Betterfox baseline without synthetic canvas noise.
 - **Clean New Tab & CSS Theming**: Retains the search bar and your own Top Sites shortcuts while purging sponsored tiles, Pocket, and AI clutter. Fully compatible with custom `userContent.css` themes.
 - **Query Stripping**: Removes tracking tokens (`fbclid`, `gclid`, `mc_eid`, `twclid`, etc.) on navigation.
 - **Security Baseline**: Offline CRLite certificate revocation, safe TLS renegotiation, and disabled speculative pre-connections.
-- **Linux & Wayland Polish**: Native XDG Desktop Portal file picker, Wayland fractional scaling, Alt key menu focus suppression, and middle-click autoscroll.
+- **Linux & Wayland Polish**: Native XDG Desktop Portal file picker, Alt key menu focus suppression, and middle-click autoscroll.
 - **Fluid Scrolling & Ergonomics**: Mass-Spring-Damper (MSD) physics simulation buffers motion curves in real time for fluid inertia scrolling without frame stutter.
 - **Password & Form Safety**: Form history harvesting is disabled (`browser.formfill.enable = false`) to prevent hidden-field credential scraping. Standard password saving remains enabled, while silent autofill is blocked until direct user interaction.
 

@@ -193,8 +193,11 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.suggest.engines", false);
 
-// separate search engine for private windows UI
-user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
+// show the separate private-window search engine setting (FF157 rename of .ui.enabled)
+user_pref("browser.search.separatePrivateDefault.featureGate", true);
+
+// use a separate default search engine in private windows (renamed in FF157, now off by default)
+user_pref("browser.search.separatePrivateDefault.enabled", true);
 
 // disable fullscreen warning delay
 user_pref("full-screen-api.warning.timeout", 0);
@@ -257,9 +260,6 @@ user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
 
 // enable middle-click autoscroll (matches Windows behavior)
 user_pref("general.autoScroll", true);
-
-// enable fractional scaling on Wayland
-user_pref("widget.wayland.fractional-scale.enabled", true);
 
 // disable automatic copy to primary clipboard on text selection
 user_pref("clipboard.autocopy", false);

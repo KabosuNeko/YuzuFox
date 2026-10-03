@@ -34,8 +34,11 @@ user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.suggest.engines", false);
 
-// [SOURCE: Arkenfox + Betterfox] [NOTE: separate search engine for private windows UI]
-user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
+// [SOURCE: Arkenfox + Betterfox] [NOTE: show the separate private-window search engine setting (FF157 rename of .ui.enabled)]
+user_pref("browser.search.separatePrivateDefault.featureGate", true);
+
+// [SOURCE: Arkenfox + Betterfox] [NOTE: use a separate default search engine in private windows (renamed in FF157, now off by default)]
+user_pref("browser.search.separatePrivateDefault.enabled", true);
 
 // [SOURCE: Betterfox] [NOTE: disable fullscreen warning delay]
 user_pref("full-screen-api.warning.timeout", 0);
