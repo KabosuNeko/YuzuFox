@@ -27,7 +27,7 @@ YuzuFox separates configuration into three layers:
 
 - **In-Memory Caching (`browser.cache.disk.enable = false`)**: Directs page cache entirely to RAM with a 1GB limit. Avoids disk I/O latency and SSD write wear.
 - **Telemetry & Sponsored Purge**: Locks Normandy, Shield studies, PingCentre, Activity Stream ads, Pocket, and Firefox 157 Generative AI integration.
-- **ETP Strict & Fingerprint Parity**: Employs Mozilla's native Enhanced Tracking Protection (ETP) Strict mode with Total Cookie Protection (dFPI) to isolate trackers, matching the Betterfox baseline without synthetic canvas noise.
+- **ETP Strict & Fingerprint Parity**: Employs Mozilla's native Enhanced Tracking Protection (ETP) Strict mode with Total Cookie Protection (dFPI) and Fingerprinting Protection (FPP, which already includes canvas randomization) to isolate trackers, matching the Betterfox baseline with no extra spoofing extensions.
 - **Clean New Tab & CSS Theming**: Retains the search bar and your own Top Sites shortcuts while purging sponsored tiles, Pocket, and AI clutter. Fully compatible with custom `userContent.css` themes.
 - **Query Stripping**: Removes tracking tokens (`fbclid`, `gclid`, `mc_eid`, `twclid`, etc.) on navigation.
 - **Security Baseline**: Offline CRLite certificate revocation, safe TLS renegotiation, and disabled speculative pre-connections.

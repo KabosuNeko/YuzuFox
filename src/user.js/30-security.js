@@ -17,10 +17,6 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable remote Safe Browsing download reputation]
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
-// [SOURCE: YuzuFox] [NOTE: URL classifier skip lists for social embeds]
-user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com, *.x.com");
-user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com");
-
 // [SOURCE: Arkenfox + Betterfox] [NOTE: isolate downloads in temp directory]
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 

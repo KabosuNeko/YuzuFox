@@ -112,7 +112,7 @@ user_pref("signon.rememberSignons", false);
   ```js
   user_pref("mousewheel.default.delta_multiplier_y", 300);
   ```
-- **Overscroll**: `apz.overscroll.enabled = true` enables the subtle bounce animation when reaching the top or bottom of a page.
+- **Overscroll**: `apz.overscroll.enabled = true` (Firefox's own default, kept as-is) enables the subtle bounce animation when reaching the top or bottom of a page.
 
 To revert completely to stock mechanical scrolling:
 ```js
@@ -120,7 +120,7 @@ user_pref("general.smoothScroll.msdPhysics.enabled", false);
 ```
 
 ### Media Autoplay Exceptions
-YuzuFox blocks media from playing audio automatically (`media.autoplay.default = 1`) to prevent intrusive auto-playing video ads with sound on news and blog pages.
+Firefox already blocks media from playing audio automatically (`media.autoplay.default = 1` is Mozilla's default; YuzuFox leaves it untouched) to prevent intrusive auto-playing video ads with sound on news and blog pages.
 
 To allow media to autoplay on streaming sites (YouTube, Twitch, Spotify):
 1. Open the target website.
