@@ -10,6 +10,7 @@ on:
       - 'install.sh'
       - 'install.ps1'
       - 'build.py'
+      - 'scripts/**'
       - 'src/user.js/**'
       - '.github/workflows/validate.yml'
   pull_request:
@@ -20,10 +21,33 @@ on:
       - 'install.sh'
       - 'install.ps1'
       - 'build.py'
+      - 'scripts/**'
       - 'src/user.js/**'
       - '.github/workflows/validate.yml'
+  schedule:
+    # Weekly drift check: fails when a newer Firefox release exists than the
+    # newest version tag in this repository.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
 
 jobs:
+  validate-firefox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check prefs and policies against the current Firefox release
+        run: python3 scripts/check_firefox.py
+
+  validate-firefox-drift:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Fail when Firefox moved past the newest YuzuFox tag
+        run: python3 scripts/check_firefox.py --require-current-version
+
   validate-json:
     runs-on: ubuntu-latest
     steps:

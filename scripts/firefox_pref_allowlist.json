@@ -1,0 +1,31 @@
+{
+  "_comment": "YuzuFox prefs that legitimately have no entry in Firefox's all.js / firefox.js / StaticPrefList.yaml. Checked by scripts/check_firefox.py. Keep this file tiny and always explain why the pref still exists.",
+  "prefs": {
+    "browser.contentblocking.category": "written and applied by the ContentBlockingPrefs category machinery, not a default pref",
+    "browser.newtabpage.activity-stream.feeds.section.topstories": "Activity Stream pref read from the newtab modules with a built-in fallback",
+    "browser.newtabpage.activity-stream.feeds.system.topsites": "Activity Stream system-gate pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.feeds.system.topstories": "Activity Stream system-gate pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.feeds.topsites": "Activity Stream feed pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.showSponsored": "Activity Stream pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.showSponsoredCheckboxes": "Activity Stream pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.showSponsoredTopSites": "Activity Stream pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.system.showSponsored": "Activity Stream system-gate pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.telemetry": "Activity Stream pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.unifiedAds.adsFeed.tiles.enabled": "Activity Stream unified-ads pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.widgets.enabled": "Firefox 156+ newtab widgets pref read from the newtab modules",
+    "browser.newtabpage.activity-stream.widgets.system.enabled": "Firefox 156+ newtab widgets system-gate pref read from the newtab modules",
+    "browser.search.serpEventTelemetryCategorization.regionEnabled": "SERP telemetry pref read by the search telemetry module",
+    "browser.startup.homepage_override.mstone": "read and written by the startup/update machinery",
+    "extensions.enabledScopes": "read by the add-on manager with a built-in fallback",
+    "extensions.getAddons.showPane": "read by about:addons with a built-in fallback",
+    "intl.locale.requested": "read by the locale service, empty means follow the system locale",
+    "network.file.disable_unc_paths": "read by the file URI code on Windows only",
+    "pdfjs.enableScripting": "default lives in the PDF.js default prefs inside the gre omni, not in all.js/firefox.js",
+    "spellchecker.dictionary_path": "read by the spellcheck service from the environment",
+    "toolkit.coverage.opt-out": "read by the coverage/telemetry modules",
+    "toolkit.telemetry.cachedClientID": "telemetry state pref, written/read by TelemetryUtils",
+    "toolkit.telemetry.cachedProfileGroupID": "telemetry state pref, written/read by TelemetryUtils",
+    "toolkit.telemetry.enabled": "read by the telemetry modules, not a default pref",
+    "toolkit.telemetry.updatePing.enabled": "lost its default in Firefox 157; still referenced by the shipped telemetry pref map, kept defensively"
+  }
+}
