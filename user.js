@@ -122,10 +122,6 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 // disable remote Safe Browsing download reputation
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
-// URL classifier skip lists for social embeds
-user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com, *.x.com");
-user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com");
-
 // isolate downloads in temp directory
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 

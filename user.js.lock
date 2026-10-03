@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T15:09:22.684707+00:00",
+  "generated_at": "2026-10-03T15:09:54.482190+00:00",
   "prefs": [
     {
       "files": [
@@ -855,24 +855,6 @@
       "pref": "ui.key.menuAccessKeyFocuses",
       "source": "YuzuFox",
       "value": false
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": "URL classifier skip lists for social embeds",
-      "pref": "urlclassifier.features.socialtracking.skipURLs",
-      "source": "YuzuFox",
-      "value": "*.instagram.com, *.twitter.com, *.twimg.com, *.x.com"
-    },
-    {
-      "files": [
-        "src/user.js/30-security.js"
-      ],
-      "note": null,
-      "pref": "urlclassifier.trackingSkipURLs",
-      "source": "YuzuFox",
-      "value": "*.reddit.com, *.twitter.com, *.twimg.com, *.x.com"
     },
     {
       "files": [

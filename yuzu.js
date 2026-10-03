@@ -47,7 +47,7 @@ pref("media.cache_readahead_limit", 7200);
 pref("media.cache_resume_threshold", 3600);
 
 // Image & font cache
-pref("image.cache.size", 10485760);
+pref("image.cache.size", 33554432);
 pref("image.mem.decode_bytes_at_a_time", 65536);
 pref("image.mem.shared.unmap.min_expiration_ms", 120000);
 pref("network.buffer.cache.size", 65535);
@@ -64,7 +64,7 @@ pref("javascript.options.ion.threshold", 500);
 pref("content.notify.interval", 100000);
 
 // Parallel connections & HTTP/3
-pref("network.dnsCacheEntries", 1000);
+pref("network.dnsCacheEntries", 3200);
 pref("network.dnsCacheExpiration", 3600);
 pref("network.http.max-connections", 1800);
 pref("network.http.max-persistent-connections-per-server", 10);
@@ -74,6 +74,14 @@ pref("network.http.request.max-start-delay", 5);
 pref("network.http.http2.send-buffer-size", 131072);
 pref("network.http.http3.enable", true);
 pref("browser.sessionhistory.max_total_viewers", 10);
+
+// -----------------------------------------------------------------------------
+// FIREFOX 157+ UI SURFACE
+// -----------------------------------------------------------------------------
+// Hide the new sidebar launcher (157 defaults it to "always-show"). Unlocked on
+// purpose: this lives in the defaults branch, so turning the launcher back on in
+// Settings keeps working across restarts.
+pref("sidebar.visibility", "hide-launcher");
 
 // -----------------------------------------------------------------------------
 // TELEMETRY & EXPERIMENTATION (LOCKED)
