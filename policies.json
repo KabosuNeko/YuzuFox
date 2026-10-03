@@ -146,7 +146,6 @@
     "UserMessaging": {
       "FeatureRecommendations": false,
       "ExtensionRecommendations": false,
-      "WhatsNew": false,
       "UrlbarInterventions": false,
       "SkipOnboarding": true,
       "FirefoxLabs": false,
