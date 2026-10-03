@@ -169,6 +169,28 @@ python3 build.py
 python3 build.py --check
 ```
 
+### Firefox compatibility checks
+
+`scripts/check_firefox.py` fetches the Firefox release sources and verifies that
+every pref in `user.js`/`yuzu.js` still exists (and flags prefs that were renamed
+or removed since the previous release), that `policies.json` validates against
+that release's policy schema, and that every policy and property we set is still
+implemented in its `Policies.sys.mjs`. Prefs whose default lives outside
+`all.js` / `firefox.js` / `StaticPrefList.yaml` are listed with a reason in
+`scripts/firefox_pref_allowlist.json`.
+
+```bash
+# Check against the latest stable Firefox
+python3 scripts/check_firefox.py
+
+# Check a specific release, or fail when a newer Firefox is out
+python3 scripts/check_firefox.py --version 157.0 --previous 156.0
+python3 scripts/check_firefox.py --require-current-version
+```
+
+CI runs the check on every push and weekly, so a Firefox rename or a deprecated
+policy fails the build instead of silently doing nothing.
+
 ---
 
 ## Technical Notes
