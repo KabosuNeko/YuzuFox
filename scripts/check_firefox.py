@@ -12,9 +12,12 @@ What it verifies, using the Firefox release sources (no browser build needed):
                browser.search.separatePrivateDefault.ui.enabled).
   3. policies- policies.json validates against the target's policies schema and
                every policy/property we set is actually implemented in the
-               target's Policies.sys.mjs.
+               target's Policies.sys.mjs; search engine names in Default,
+               DefaultPrivate, and Remove exist in the target's search config.
   4. drift   - with --require-current-version, fails when a newer Firefox
                release exists than the newest version tag in this repo.
+  5. allowlist - every entry in scripts/firefox_pref_allowlist.json is still
+                 used by user.js or yuzu.js (no stale exemptions).
 
 Sources: hg.mozilla.org (mozilla-release, FIREFOX_<ver>_RELEASE tags) and
 product-details.mozilla.org. Requires network access.
@@ -25,6 +28,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -40,6 +44,7 @@ SOURCES = {
     "StaticPrefList.yaml": "modules/libpref/init/StaticPrefList.yaml",
     "policies-schema.json": "browser/components/enterprisepolicies/schemas/policies-schema.json",
     "Policies.sys.mjs": "browser/components/enterprisepolicies/Policies.sys.mjs",
+    "search-config-v2.json": "services/settings/dumps/main/search-config-v2.json",
 }
 
 MAX_BYTES = 8 * 1024 * 1024
@@ -68,12 +73,24 @@ def warn(msg):
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "yuzufox-check"})
-    with urllib.request.urlopen(req, timeout=90) as resp:
-        data = resp.read(MAX_BYTES + 1)
-    if len(data) > MAX_BYTES:
-        raise RuntimeError("response too large: %s" % url)
-    return data.decode("utf-8", "replace")
+    last_error = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "yuzufox-check"})
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                data = resp.read(MAX_BYTES + 1)
+            if len(data) > MAX_BYTES:
+                raise RuntimeError("response too large: %s" % url)
+            return data.decode("utf-8", "replace")
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                raise
+            last_error = exc
+        except Exception as exc:  # noqa: BLE001 - network/parse errors are all fatal here
+            last_error = exc
+        if attempt < 2:
+            time.sleep(1 + attempt)
+    raise last_error
 
 
 def tag_candidates(version):
@@ -187,6 +204,14 @@ def load_allowlist():
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8")).get("prefs", {})
+
+
+def check_allowlist_usage(entries, allowlist):
+    """Every allowlist entry must still be used by the repo, or it is stale."""
+    used = {pref for pref, _layer in entries}
+    for pref in sorted(set(allowlist) - used):
+        err("scripts/firefox_pref_allowlist.json: %s is not used by user.js/yuzu.js - "
+            "remove the stale allowlist entry" % pref)
 
 
 def check_prefs(target, previous, allowlist):
@@ -318,6 +343,31 @@ def check_policies(target):
     return len(policies)
 
 
+def check_search_engines(target):
+    """SearchEngines defaults/removals must match engine names in the release dump."""
+    config = json.loads(target["search-config-v2.json"])
+    builtin = set()
+    for record in config.get("data", []):
+        if record.get("recordType") != "engine":
+            continue
+        name = (record.get("base") or {}).get("name")
+        if name:
+            builtin.add(name)
+
+    policies = json.loads((REPO / "policies.json").read_text(encoding="utf-8"))["policies"]
+    engines = policies.get("SearchEngines", {})
+    available = builtin | {entry.get("Name") for entry in engines.get("Add", []) if entry.get("Name")}
+    for key in ("Default", "DefaultPrivate"):
+        name = engines.get(key)
+        if name and name not in available:
+            err("policies.json: SearchEngines.%s is %r, which is not an engine name in "
+                "Firefox %s" % (key, name, target["version"]))
+    for name in engines.get("Remove", []):
+        if name not in builtin:
+            err("policies.json: SearchEngines.Remove entry %r is not an engine name in "
+                "Firefox %s" % (name, target["version"]))
+
+
 def check_version_drift(latest):
     tags = subprocess.run(["git", "tag", "-l"], cwd=REPO, capture_output=True, text=True).stdout.split()
     versions = []
@@ -359,8 +409,11 @@ def main():
     print("sources: %s (target), %s (previous)" % (target_tag, previous_tag))
     target["version"] = version
 
-    count = check_prefs(target, dict(previous_sources, version=previous), load_allowlist())
+    allowlist = load_allowlist()
+    count = check_prefs(target, dict(previous_sources, version=previous), allowlist)
+    check_allowlist_usage(repo_prefs(), allowlist)
     policies = check_policies(target)
+    check_search_engines(target)
 
     latest = json.loads(fetch(PRODUCT_VERSIONS))["LATEST_FIREFOX_VERSION"]
     if args.require_current_version:

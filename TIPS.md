@@ -55,6 +55,8 @@ DuckDuckGo is configured as the default search engine in `policies.json`. Five e
 
 Usage in URL bar: type `sp Arch Linux wiki` to search Startpage directly.
 
+Google, Bing, eBay, and Perplexity are removed by `SearchEngines.Remove`. You can add any of them back from `about:preferences#search` if you need them.
+
 ---
 
 ## Extensions & Fingerprinting
@@ -76,6 +78,13 @@ Enable your region-specific filters directly in uBlock Origin:
 3. Expand the **Regions, languages** group.
 4. Check the list matching your language (e.g. `VIE: ABPVN List`, `DEU: EasyList Germany`, etc.).
 5. Click **Apply changes** at the top.
+
+> [!IMPORTANT]
+> `policies.json` enforces uBlock Origin's `selectedFilterLists`. uBlock re-applies that exact set at every start, so lists enabled only in the dashboard are reset. To keep a regional list, add its token to `selectedFilterLists` in `policies.json` and reinstall, or remove the `adminSettings` block to let uBlock keep your own selection.
+
+## AI Features
+
+`policies.json` sets `AIControls.Default = blocked`, which disables Firefox's AI chat, link previews, Smart Window, tab-group suggestions, page translation, PDF alt text, and the AI Controls entry for on-device speech recognition. To keep a local feature such as Firefox Translations, set that feature back to `{"Value": "available", "Locked": false}` under `AIControls` and remove the matching locked pref from `yuzu.js` (for example `browser.translations.enable`), then reinstall.
 
 ---
 
@@ -140,7 +149,7 @@ YuzuFox trades idle memory headroom for lower rendering latency and disk enduran
 | `browser.cache.memory.capacity` | `-1` (auto) | `1048576` | 1 GB memory cache pool |
 | `media.memory_cache_max_size` | auto | `1048576` | 1 GB per media element buffer |
 | `media.memory_caches_combined_limit_kb` | auto | `3145728` | 3 GB total media buffer cap |
-| `browser.sessionhistory.max_total_viewers` | auto | `10` | Keeps up to 10 recent tabs in memory for instant back/forward navigation |
+| `browser.sessionhistory.max_total_viewers` | `-1` (auto) | `10` | Caps back/forward (bfcache) snapshots, not tabs; lowers memory at the cost of fewer instant history restores |
 
 ### GPU Acceleration
 | Preference | Default | YuzuFox | Purpose |
@@ -157,6 +166,9 @@ To confirm that your GPU is decoding video rather than consuming CPU:
 3. Under Linux terminal, play a 4K 60fps YouTube video and inspect GPU activity:
    - Intel: `sudo intel_gpu_top` (observe the `Video` bar).
    - NVIDIA / AMD: `nvtop` (observe the `DEC` percentage).
+
+> [!WARNING]
+> `media.hardware-video-decoding.force-enabled = true` forces hardware decoding even when Firefox would disable it. On older GPUs or broken drivers this can cause crashes, artifacts, or playback failures. If that happens, set the pref to `false` in your profile `user.js`.
 
 > [!TIP]
 > **Older iGPUs (H.264 fallback)**: If your CPU spikes to 100% on YouTube because an older GPU lacks native VP9/AV1 hardware decoding, install the [enhanced-h264ify](https://addons.mozilla.org/firefox/addon/enhanced-h264ify/) extension to force YouTube to serve lightweight H.264 streams that your GPU handles natively.

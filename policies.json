@@ -1,5 +1,11 @@
 {
   "policies": {
+    "AIControls": {
+      "Default": {
+        "Value": "blocked",
+        "Locked": true
+      }
+    },
     "AutofillAddressEnabled": false,
     "AutofillCreditCardEnabled": false,
     "BackgroundAppUpdate": false,
@@ -29,13 +35,6 @@
       "WebSuggestions": false,
       "SponsoredSuggestions": false,
       "OnlineEnabled": false,
-      "Locked": true
-    },
-    "GenerativeAI": {
-      "Enabled": false,
-      "Chatbot": false,
-      "LinkPreviews": false,
-      "TabGroups": false,
       "Locked": true
     },
     "SearchEngines": {
@@ -78,6 +77,9 @@
         }
       ],
       "Remove": [
+        "Google",
+        "Bing",
+        "eBay",
         "Perplexity"
       ]
     },
@@ -98,14 +100,6 @@
     "Extensions": {
       "Install": [
         "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
-      ],
-      "Uninstall": [
-        "amazondotcom@search.mozilla.org",
-        "bing@search.mozilla.org",
-        "ebay@search.mozilla.org",
-        "google@search.mozilla.org",
-        "duckduckgo@search.mozilla.org",
-        "twitter@search.mozilla.org"
       ]
     },
     "ExtensionSettings": {

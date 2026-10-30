@@ -112,6 +112,10 @@ jobs:
           FAKE_BIN="$RUNNER_TEMP/yuzufox-fake-bin"
           FAKE_ROOT="$RUNNER_TEMP/yuzufox-fake-root"
           mkdir -p "$FAKE_BIN" "$FAKE_ROOT"
+          mkdir -p "$FAKE_ROOT/etc/firefox/policies" \
+                   "$FAKE_ROOT/usr/lib/firefox/browser/defaults/preferences"
+          printf 'old policies\n' > "$FAKE_ROOT/etc/firefox/policies/policies.json"
+          printf 'old yuzu\n' > "$FAKE_ROOT/usr/lib/firefox/browser/defaults/preferences/yuzu.js"
           cat > "$FAKE_BIN/sudo" <<'EOF'
           #!/usr/bin/env bash
           # Redirects system-wide writes into FAKE_ROOT so the CI job stays non-destructive.
@@ -122,9 +126,20 @@ jobs:
             mkdir -p "$FAKE_ROOT${args[2]}"
             exit 0
           fi
+          if [ "${args[0]}" = "test" ] && [ "${args[1]}" = "-f" ]; then
+            [ -f "$FAKE_ROOT${args[2]}" ]
+            exit $?
+          fi
           if [ "${args[0]}" = "cp" ] && [ "${args[1]}" = "-f" ]; then
             mkdir -p "$(dirname "$FAKE_ROOT${args[3]}")"
-            cp -f "${args[2]}" "$FAKE_ROOT${args[3]}"
+            src="${args[2]}"
+            if [ -f "$FAKE_ROOT$src" ]; then src="$FAKE_ROOT$src"; fi
+            cp -f "$src" "$FAKE_ROOT${args[3]}"
+            exit 0
+          fi
+          if [ "${args[0]}" = "mv" ] && [ "${args[1]}" = "-f" ]; then
+            mkdir -p "$(dirname "$FAKE_ROOT${args[3]}")"
+            mv -f "$FAKE_ROOT${args[2]}" "$FAKE_ROOT${args[3]}"
             exit 0
           fi
           if [ "${args[0]}" = "rm" ] && [ "${args[1]}" = "-f" ]; then

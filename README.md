@@ -17,16 +17,19 @@ YuzuFox separates configuration into three layers:
 
 | Layer | Path | Purpose |
 | :--- | :--- | :--- |
-| **System Defaults**<br>`yuzu.js` | Linux: `/usr/lib/firefox/browser/defaults/preferences/yuzu.js`<br>macOS: `Firefox.app/.../defaults/preferences/yuzu.js`<br>Windows: `Program Files\\Mozilla Firefox\\browser\\defaults\\preferences\\yuzu.js` | Hardware video decoding (VA-API/GPU), WebRender, 1GB RAM cache (disables disk cache wear), network buffers, and permanently locks out Mozilla telemetry, AI chat, studies, and sponsored tiles. |
+| **System Defaults**<br>`yuzu.js` | Linux: `/usr/lib/firefox/browser/defaults/preferences/yuzu.js`<br>macOS: `Firefox.app/.../defaults/preferences/yuzu.js`<br>Windows: `Program Files\\Mozilla Firefox\\browser\\defaults\\preferences\\yuzu.js` | Hardware video decoding (VA-API/GPU), WebRender, 1GB RAM cache (disables disk cache wear), network buffers, and permanently locks out Mozilla telemetry, AI features, studies, and sponsored tiles. |
 | **Enterprise Policy**<br>`policies.json` | Linux: `/etc/firefox/policies/policies.json`<br>macOS: `Firefox.app/.../distribution/policies.json`<br>Windows: `Program Files\\Mozilla Firefox\\distribution\\policies.json` | Deploys uBlock Origin out of the box, removes built-in search engine clutter, sets DuckDuckGo default, and disables Mozilla onboarding/promotional popups. |
 | **Profile Overrides**<br>`user.js` | `~/.mozilla/firefox/<profile>/user.js`<br>`~/Library/Application Support/Firefox/Profiles/<profile>/user.js`<br>`%APPDATA%\\Mozilla\\Firefox\\Profiles\\<profile>\\user.js` | Per-profile tuning: Strict ETP, Fingerprinting Protection (FPP), query parameter stripping, CRLite revocation (OCSP disabled), and UI tweaks. Can be replaced or extended per profile. |
+
+> [!NOTE]
+> `--profiles-only` / `-ProfilesOnly` applies only the profile layer. System defaults (telemetry/AI locks) and enterprise policies (uBlock, search engines, popup suppression) are skipped; use the full install or `--system-only` for those.
 
 ---
 
 ## Key Tweaks
 
 - **In-Memory Caching (`browser.cache.disk.enable = false`)**: Directs page cache entirely to RAM with a 1GB limit. Avoids disk I/O latency and SSD write wear.
-- **Telemetry & Sponsored Purge**: Locks Normandy, Shield studies, PingCentre, Activity Stream ads, Pocket, and Firefox 157 Generative AI integration.
+- **Telemetry & Sponsored Purge**: Locks Normandy, Shield studies, PingCentre, Activity Stream ads, Pocket, and the Firefox 159 AI Controls surface (chat, link previews, Smart Window, translations, tab groups).
 - **ETP Strict & Fingerprint Parity**: Employs Mozilla's native Enhanced Tracking Protection (ETP) Strict mode with Total Cookie Protection (dFPI) and Fingerprinting Protection (FPP, which already includes canvas randomization) to isolate trackers, matching the Betterfox baseline with no extra spoofing extensions.
 - **Clean New Tab & CSS Theming**: Retains the search bar and your own Top Sites shortcuts while purging sponsored tiles, Pocket, and AI clutter. Fully compatible with custom `userContent.css` themes.
 - **Query Stripping**: Removes tracking tokens (`fbclid`, `gclid`, `mc_eid`, `twclid`, etc.) on navigation.
@@ -75,7 +78,7 @@ yay -S yuzufox-git
 ### Linux & macOS (Interactive Script)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/KabosuNeko/YuzuFox/main/install.sh -o install.sh
 bash install.sh
 ```
 
@@ -89,7 +92,14 @@ bash install.sh --dry-run       # Print target paths without writing
 bash install.sh --uninstall     # Clean up installed files
 ```
 
-*Existing `user.js` files are backed up as `user.js.yuzubak`.*
+*Existing `user.js` files are backed up as `user.js.yuzubak`.* System-wide
+`policies.json` and `yuzu.js` are backed up the same way before being replaced;
+uninstalling restores those backups.
+
+> [!NOTE]
+> On Linux the system installer auto-detects `/usr/lib/firefox`,
+> `/usr/lib64/firefox`, and the `firefox-esr` equivalents. ESR deployments use
+> `/etc/firefox-esr/policies` instead of `/etc/firefox/policies`.
 
 ### Windows (PowerShell)
 
@@ -141,6 +151,7 @@ sudo pacman -R yuzufox-git
 ```
 
 To restore your old profile settings, rename `user.js.yuzubak` back to `user.js`.
+System-wide backups (`policies.json.yuzubak`, `yuzu.js.yuzubak`) are restored automatically.
 
 ---
 
@@ -175,16 +186,17 @@ python3 build.py --check
 every pref in `user.js`/`yuzu.js` still exists (and flags prefs that were renamed
 or removed since the previous release), that `policies.json` validates against
 that release's policy schema, and that every policy and property we set is still
-implemented in its `Policies.sys.mjs`. Prefs whose default lives outside
-`all.js` / `firefox.js` / `StaticPrefList.yaml` are listed with a reason in
-`scripts/firefox_pref_allowlist.json`.
+implemented in its `Policies.sys.mjs`. Search engine names in `SearchEngines`
+are checked against the release's search config dump. Prefs whose default lives
+outside `all.js` / `firefox.js` / `StaticPrefList.yaml` are listed with a reason
+in `scripts/firefox_pref_allowlist.json`; stale entries there also fail the check.
 
 ```bash
 # Check against the latest stable Firefox
 python3 scripts/check_firefox.py
 
 # Check a specific release, or fail when a newer Firefox is out
-python3 scripts/check_firefox.py --version 157.0 --previous 156.0
+python3 scripts/check_firefox.py --version 159.0 --previous 158.0
 python3 scripts/check_firefox.py --require-current-version
 ```
 
