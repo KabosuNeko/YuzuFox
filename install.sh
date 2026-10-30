@@ -76,11 +76,29 @@ detect_os() {
     esac
 }
 
+# Locate the Firefox installation on distros that do not use /usr/lib/firefox.
+detect_linux_prefs_dir() {
+    local dir
+    for dir in \
+        /usr/lib/firefox \
+        /usr/lib64/firefox \
+        /usr/lib/firefox-esr \
+        /usr/lib64/firefox-esr \
+        /opt/firefox \
+        /usr/local/lib/firefox; do
+        if [ -d "$dir/browser/defaults/preferences" ]; then
+            printf '%s\n' "$dir/browser/defaults/preferences"
+            return 0
+        fi
+    done
+    return 1
+}
+
 # Fail fast when we would need to prompt but stdin is not a terminal
 # (e.g. `curl ... | bash` consumes stdin, so read -rp never sees the
 # keyboard). Suggest the two non-interactive escapes.
 require_tty() {
-    [ -t 0 ] || die "cannot prompt: stdin is not a terminal (curl | bash). Use --all, or download and run locally: curl -sSL -o yuzufox-install.sh $REPO_URL/install.sh && bash yuzufox-install.sh"
+    [ -t 0 ] || die "cannot prompt: stdin is not a terminal (curl | bash). Use --all, or download and run locally: curl -fsSL -o yuzufox-install.sh $REPO_URL/install.sh && bash yuzufox-install.sh"
 }
 
 OS="$(detect_os)"
@@ -93,8 +111,15 @@ OS="$(detect_os)"
 
 case "$OS" in
     linux)
-        POLICIES_DEST="/etc/firefox/policies/policies.json"
-        PREFS_DEST="/usr/lib/firefox/browser/defaults/preferences/yuzu.js"
+        if PREFS_DIR=$(detect_linux_prefs_dir); then
+            PREFS_DEST="$PREFS_DIR/yuzu.js"
+        else
+            PREFS_DEST="/usr/lib/firefox/browser/defaults/preferences/yuzu.js"
+        fi
+        case "$PREFS_DEST" in
+            *firefox-esr*) POLICIES_DEST="/etc/firefox-esr/policies/policies.json" ;;
+            *)             POLICIES_DEST="/etc/firefox/policies/policies.json" ;;
+        esac
         ;;
     macos)
         APP_DIR="/Applications/Firefox.app"
@@ -104,9 +129,15 @@ case "$OS" in
 esac
 
 # --- Prerequisites ------------------------------------------------------------
-for cmd in curl sudo pgrep; do
+for cmd in curl pgrep; do
     command -v "$cmd" &>/dev/null || die "'$cmd' is required but not installed."
 done
+
+# Root is only needed for system-wide writes; --profiles-only and dry runs work
+# in rootless containers and on systems without sudo.
+if [ "$MODE" != "profiles" ] && [ "$DRY_RUN" != "1" ]; then
+    command -v sudo &>/dev/null || die "'sudo' is required for system-wide changes."
+fi
 
 if [ "$OS" = "macos" ] && [ ! -d "/Applications/Firefox.app" ]; then
     die "/Applications/Firefox.app not found. Firefox must be installed first."
@@ -204,13 +235,33 @@ select_profiles() {
 }
 
 # --- System-wide actions ------------------------------------------------------
+backup_system_file() {
+  local dest="$1"
+  if sudo test -f "$dest" && ! sudo test -f "$dest.yuzubak"; then
+    sudo cp -f "$dest" "$dest.yuzubak"
+    say_note "[~] Existing $(basename "$dest") backed up to $dest.yuzubak"
+  fi
+}
+
+restore_system_file() {
+  local dest="$1"
+  if sudo test -f "$dest.yuzubak"; then
+    sudo mv -f "$dest.yuzubak" "$dest"
+    say_note "[~] Restored $dest from backup"
+  else
+    sudo rm -f "$dest"
+  fi
+}
+
 install_system() {
   say "Downloading configuration files..."
   SYSTEM_TMP=$(mktemp -d)
-  curl -sSL "$POLICIES_URL" -o "$SYSTEM_TMP/policies.json" || die "Failed to download policies.json"
-  curl -sSL "$PREFS_URL" -o "$SYSTEM_TMP/yuzu.js" || die "Failed to download yuzu.js"
+  curl -fsSL "$POLICIES_URL" -o "$SYSTEM_TMP/policies.json" || die "Failed to download policies.json"
+  curl -fsSL "$PREFS_URL" -o "$SYSTEM_TMP/yuzu.js" || die "Failed to download yuzu.js"
 
   say "Installing system-wide [$OS] (requires sudo)..."
+  backup_system_file "$POLICIES_DEST"
+  backup_system_file "$PREFS_DEST"
   sudo mkdir -p "$(dirname "$POLICIES_DEST")"
   sudo cp -f "$SYSTEM_TMP/policies.json" "$POLICIES_DEST"
   sudo mkdir -p "$(dirname "$PREFS_DEST")"
@@ -219,7 +270,7 @@ install_system() {
 }
 
 uninstall_system() {
-  echo "    This will remove:"
+  echo "    This will restore (or remove) the YuzuFox system files:"
   echo "    - $POLICIES_DEST"
   echo "    - $PREFS_DEST"
   if [ "$ALL" != "1" ]; then
@@ -230,9 +281,9 @@ uninstall_system() {
       return 1
     fi
   fi
-  say "Removing files (requires sudo)..."
-  sudo rm -f "$POLICIES_DEST"
-  sudo rm -f "$PREFS_DEST"
+  say "Restoring or removing files (requires sudo)..."
+  restore_system_file "$POLICIES_DEST"
+  restore_system_file "$PREFS_DEST"
   say_note "Done."
 }
 
@@ -240,7 +291,7 @@ uninstall_system() {
 install_profiles() {
   say "Downloading user.js..."
   USERJS_TMP=$(mktemp -d)
-  curl -sSL "$USERJS_URL" -o "$USERJS_TMP/user.js" || die "Failed to download user.js"
+  curl -fsSL "$USERJS_URL" -o "$USERJS_TMP/user.js" || die "Failed to download user.js"
 
   select_profiles
   for i in "${SELECTED_IDX[@]}"; do

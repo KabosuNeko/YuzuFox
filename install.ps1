@@ -128,8 +128,15 @@ if ($Mode -ne "profiles") {
                     if ($Mode -eq "system") { return }
                 }
                 else {
-                    Remove-Item -Force -ErrorAction SilentlyContinue $PoliciesDest
-                    Remove-Item -Force -ErrorAction SilentlyContinue $PrefsDest
+                    foreach ($dest in @($PoliciesDest, $PrefsDest)) {
+                        if (Test-Path "$dest.yuzubak") {
+                            Move-Item -Force "$dest.yuzubak" $dest
+                            SayNote "[~] Restored $dest from backup"
+                        }
+                        else {
+                            Remove-Item -Force -ErrorAction SilentlyContinue $dest
+                        }
+                    }
                     SayNote "System-wide settings removed."
                 }
             }
@@ -164,6 +171,12 @@ if ($Mode -ne "profiles") {
                     Invoke-WebRequest -Uri $PoliciesUrl -OutFile "$tmp\policies.json" -UseBasicParsing
                     Invoke-WebRequest -Uri $PrefsUrl    -OutFile "$tmp\yuzu.js"     -UseBasicParsing
                     Say "Installing system-wide (requires Administrator)..."
+                    foreach ($dest in @($PoliciesDest, $PrefsDest)) {
+                        if ((Test-Path $dest) -and -not (Test-Path "$dest.yuzubak")) {
+                            Copy-Item -Force $dest "$dest.yuzubak"
+                            SayNote "[~] Existing $(Split-Path -Leaf $dest) backed up to $dest.yuzubak"
+                        }
+                    }
                     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PoliciesDest) | Out-Null
                     Copy-Item -Force "$tmp\policies.json" $PoliciesDest
                     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PrefsDest) | Out-Null

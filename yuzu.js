@@ -6,7 +6,7 @@
 // Sensitive prefs are locked. Per-profile overrides live in user.js.
 // =============================================================================
 
-// OS locale & Hunspell dictionary
+// OS locale & Hunspell dictionary (path is Linux-only; other platforms use theirs)
 pref("intl.locale.requested", "");
 pref("spellchecker.dictionary_path", "/usr/share/hunspell");
 
@@ -58,10 +58,9 @@ pref("gfx.canvas.accelerated.cache-items", 32768);
 pref("gfx.canvas.accelerated.cache-size", 4096);
 pref("gfx.content.skia-font-cache-size", 80);
 
-// JIT thresholds & reflow
+// JIT thresholds
 pref("javascript.options.baselinejit.threshold", 50);
 pref("javascript.options.ion.threshold", 500);
-pref("content.notify.interval", 100000);
 
 // Parallel connections & HTTP/3
 pref("network.dnsCacheEntries", 3200);
@@ -128,8 +127,6 @@ pref("network.traffic_analyzer.enabled", false, locked);
 
 // Toolkit telemetry
 pref("toolkit.contentRelevancy.enabled", false, locked);
-pref("toolkit.coverage.endpoint.base", "", locked);
-pref("toolkit.coverage.opt-out", true, locked);
 pref("toolkit.telemetry.archive.enabled", false, locked);
 pref("toolkit.telemetry.bhrPing.enabled", false, locked);
 pref("toolkit.telemetry.cachedClientID", "", locked);
@@ -178,7 +175,6 @@ pref("browser.newtabpage.activity-stream.feeds.section.topstories", false, locke
 pref("browser.newtabpage.activity-stream.showSponsored", false, locked);
 pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false, locked);
 pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false, locked);
-pref("browser.newtabpage.activity-stream.system.showSponsored", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.adsFeed.enabled", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.adsFeed.tiles.enabled", false, locked);
 pref("browser.newtabpage.activity-stream.unifiedAds.endpoint", "", locked);
@@ -204,13 +200,17 @@ pref("captivedetect.canonicalURL", "", locked);
 pref("devtools.debugger.remote-enabled", false, locked);
 
 // Mozilla AI / ML & smart tab groups
+// AIControls in policies.json locks the individual AI surfaces; these defaults
+// keep the features off even when only the system defaults file is installed.
+pref("browser.smartwindow.enabled", false, locked);
+pref("browser.translations.enable", false, locked);
 pref("browser.ml.enable", false, locked);
 pref("browser.ml.chat.enabled", false, locked);
 pref("browser.ml.chat.page", false, locked);
 pref("browser.ml.chat.menu", false);
 pref("browser.ml.linkPreview.enabled", false, locked);
 pref("browser.tabs.groups.smart.enabled", false);
-pref("browser.ai.control.default", "blocked");
+pref("browser.ai.control.default", "blocked", locked);
 
 // Firefox Relay
 pref("signon.firefoxRelay.feature", "disabled", locked);
