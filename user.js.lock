@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T01:43:23.414621+00:00",
+  "generated_at": "2026-11-10T05:42:50.550929+00:00",
   "prefs": [
     {
       "files": [
@@ -747,6 +747,15 @@
       "pref": "privacy.bounceTrackingProtection.mode",
       "source": "Arkenfox + Betterfox",
       "value": 1
+    },
+    {
+      "files": [
+        "src/user.js/20-privacy.js"
+      ],
+      "note": "send Global Privacy Control signal (matches the Betterfox crowd's Sec-GPC header)",
+      "pref": "privacy.globalprivacycontrol.enabled",
+      "source": "Betterfox",
+      "value": true
     },
     {
       "files": [

@@ -55,6 +55,9 @@ user_pref("browser.contentblocking.category", "strict");
 // isolate content script resources
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
+// send Global Privacy Control signal (matches the Betterfox crowd's Sec-GPC header)
+user_pref("privacy.globalprivacycontrol.enabled", true);
+
 // disable CSP reporting
 user_pref("security.csp.reporting.enabled", false);
 

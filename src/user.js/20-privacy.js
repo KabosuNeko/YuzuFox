@@ -14,6 +14,9 @@ user_pref("browser.contentblocking.category", "strict");
 // [SOURCE: Arkenfox + Betterfox] [NOTE: isolate content script resources]
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
+// [SOURCE: Betterfox] [NOTE: send Global Privacy Control signal (matches the Betterfox crowd's Sec-GPC header)]
+user_pref("privacy.globalprivacycontrol.enabled", true);
+
 // [SOURCE: Arkenfox + Betterfox] [NOTE: disable CSP reporting]
 user_pref("security.csp.reporting.enabled", false);
 
